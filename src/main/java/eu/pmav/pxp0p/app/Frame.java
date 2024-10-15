@@ -46,12 +46,14 @@ public class Frame
 
         int x = configuration.getxInit();
         int y = configuration.getyInit();
+        int frameIndex = 0;
 
         for (int line = 0; line < configuration.getObjectLines(); line++)
         {
             for (int column = 0; column < configuration.getObjectColumns(); column++)
             {
-                coordinateList.add(new Coordinate(x, y));
+                coordinateList.add(new Coordinate(x, y, frameIndex));
+                frameIndex++;
 
                 x += configuration.getxIncrement();
             }
@@ -65,13 +67,13 @@ public class Frame
 
         // Draw object for each base coordinate
         coordinateList.forEach(c -> {
-            drawObject(c.getX(), c.getY(), configuration);
+            drawObject(c.getX(), c.getY(), configuration, c.getFrameIndex());
         });
 
         pApplet.filter(pApplet.BLUR, configuration.getBlurValue());
     }
 
-    private void drawObject(int x, int y, Configuration configuration)
+    private void drawObject(int x, int y, Configuration configuration, int frameIndex)
     {
         if (configuration.getxVariation() != 0) {
             x = x + Math.round((pApplet.random(-1, 1) * configuration.getxVariation()));
@@ -86,15 +88,15 @@ public class Frame
         switch (formType)
         {
             case SQUARE:
-                (new SquareForm(pApplet)).draw(x, y, configuration);
+                (new SquareForm(pApplet)).draw(x, y, frameIndex, configuration);
                 break;
 
             case CIRCLE:
-                (new CircleForm(pApplet)).draw(x, y, configuration);
+                (new CircleForm(pApplet)).draw(x, y, frameIndex, configuration);
                 break;
 
             case TRIANGLE:
-                (new TriangleForm(pApplet)).draw(x, y, configuration);
+                (new TriangleForm(pApplet)).draw(x, y, frameIndex, configuration);
                 break;
         }
     }

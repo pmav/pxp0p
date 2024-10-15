@@ -11,20 +11,23 @@ public class TriangleForm extends Form
         super(pApplet);
     }
 
-    public void draw(int x, int y, Configuration configuration)
+    public void draw(int x, int y, int frameIndex, Configuration configuration)
     {
         final int size = PApplet.parseInt(
             configuration.isHaveSizeTransform()
                 ? configuration.getObjectSize() * pApplet.random(configuration.getMinSizeTransform(), configuration.getMaxSizeTransform())
                 : configuration.getObjectSize());
 
-        final boolean cut1 = configuration.isHaveCuts() && PApplet.parseInt(pApplet.random(0, 2)) == 1;
-        // final boolean cut2 = int(random(0, 2)) == 1;
-        // final boolean cut3 = int(random(0, 2)) == 1;
+        final boolean cut1 = configuration.isHaveCuts(); // && PApplet.parseInt(pApplet.random(0, 2)) == 1;
         final int cutSize = Math.round(size * configuration.getCutSize());
-        final int direction = PApplet.parseInt(pApplet.random(0, 4));
 
-        final int alpha = configuration.isHaveAlpha() ? PApplet.parseInt(pApplet.random(configuration.getMinAlpha(), configuration.getMaxAlpha())) : 255;
+        final int direction = configuration.isHaveDirection()
+                ? configuration.getCalculateDirection().apply(frameIndex) // PApplet.parseInt(pApplet.random(0, 4))
+                : 0;
+
+        final int alpha = configuration.isHaveAlpha()
+                ? PApplet.parseInt(pApplet.random(configuration.getMinAlpha(), configuration.getMaxAlpha()))
+                : 255;
 
         pApplet.pushMatrix();
         pApplet.fill(getRandomColor(configuration.getColorsTriangle()), alpha);
@@ -34,6 +37,7 @@ public class TriangleForm extends Form
             case 0:
                 // Pointing up
                 pApplet.triangle(x, y + size, x + (size / 2f), y, x + size, y + size);
+
                 if (cut1)
                 {
                     pApplet.fill(getRandomColor(configuration.getColorsCutTriangle()));
@@ -42,7 +46,7 @@ public class TriangleForm extends Form
                 }
                 break;
 
-            case 1:
+            case 2:
                 // Pointing down
                 pApplet.triangle(x, y, x + size, y, x + (size / 2f), y + size);
                 if (cut1)
@@ -54,7 +58,7 @@ public class TriangleForm extends Form
                 }
                 break;
 
-            case 2:
+            case 3:
                 // Pointing left
                 pApplet.triangle(x + size, y, x, y + (size / 2f), x + size, y + size);
                 if (cut1)
@@ -65,7 +69,7 @@ public class TriangleForm extends Form
                 }
                 break;
 
-            case 3:
+            case 1:
                 // Pointing right
                 pApplet.triangle(x, y, x, y + size, x + size, y + (size / 2f));
                 if (cut1)

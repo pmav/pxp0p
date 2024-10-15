@@ -11,7 +11,7 @@ public class CircleForm extends Form
         super(pApplet);
     }
 
-    public void draw(int x, int y, Configuration configuration)
+    public void draw(int x, int y, int frameIndex, Configuration configuration)
     {
         final int size = PApplet.parseInt(
             configuration.isHaveSizeTransform()
@@ -39,19 +39,19 @@ public class CircleForm extends Form
             pApplet.circle(x + size / 2f, y + cutSize / 2f, cutSize);
         }
 
-        if (cut2)
+        else if (cut2)
         {
             pApplet.fill(getRandomColor(configuration.getColorsCutCircle()));
             pApplet.circle(x + size - cutSize / 2f, y + size / 2f, cutSize);
         }
 
-        if (cut3)
+        else if (cut3)
         {
             pApplet.fill(getRandomColor(configuration.getColorsCutCircle()));
             pApplet.circle(x + size / 2f, y + size - cutSize / 2f, cutSize);
         }
 
-        if (cut4)
+        else if (cut4)
         {
             pApplet.fill(getRandomColor(configuration.getColorsCutCircle()));
             pApplet.circle(x + cutSize / 2f, y + size / 2f, cutSize);

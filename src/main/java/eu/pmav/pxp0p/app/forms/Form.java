@@ -12,7 +12,7 @@ public abstract class Form
         this.pApplet = pApplet;
     }
 
-    public abstract void draw(int x, int y, Configuration configuration);
+    public abstract void draw(int x, int y, int frameIndex, Configuration configuration);
 
     protected int getRandomColor(int[] colors)
     {

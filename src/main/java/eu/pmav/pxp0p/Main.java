@@ -1,23 +1,22 @@
 package eu.pmav.pxp0p;
 
-import eu.pmav.pxp0p.configuration.DevelopmentCombinatorGenerator;
+import eu.pmav.pxp0p.configuration.*;
 import eu.pmav.pxp0p.app.model.Configuration;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import eu.pmav.pxp0p.app.Frame;
-import eu.pmav.pxp0p.configuration.RandomGenerator;
 import processing.core.PApplet;
 
 public class Main extends PApplet
 {
     // Canvas size
-    final int CANVAS_WIDTH = 1080;
-    final int CANVAS_HEIGHT = 1080;
+    final int CANVAS_WIDTH = 1000;
+    final int CANVAS_HEIGHT = 1600;
 
     // Path to save each frame
-    final String SAVE_PATH = "/home/pmav/Dropbox/pxp0p/";
+    final String SAVE_PATH = "/mnt/Storage/pxp0p/";
 
     // Main class to load the program
     static final String MAIN_CLASS = "eu.pmav.pxp0p.Main";
@@ -41,9 +40,11 @@ public class Main extends PApplet
     {
         try
         {
-            // List<Configuration> configurations = InstagramConfigurationGenerator.generateConfigurations();
+            // List<Configuration> configurations = CuidadoComOCaoCombinatorGenerator.generateConfigurations();
+            // List<Configuration> configurations = InstagramCombinatorGenerator.generateConfigurations();
             // List<Configuration> configurations = DevelopmentCombinatorGenerator.generateConfigurations();
             List<Configuration> configurations = new RandomGenerator().generateConfigurations(10);
+            // List<Configuration> configurations = OlympicsCombinatorGenerator.generateConfigurations();
 
             AtomicInteger  frameNumber = new AtomicInteger(1);
 
@@ -64,14 +65,15 @@ public class Main extends PApplet
 
     private void saveImage(int count)
     {
-        String currentTimestamp =
-            nf(year(), 4) +
-                nf(month(), 2) +
-                nf(day(), 2) +
-                nf(hour(), 2) +
-                nf(minute(), 2) +
-                nf(second(), 2);
+        final String year = nf(year(), 4);
+        final String month = nf(month(), 2);
+        final String day = nf(day(), 2);
+        final String hour = nf(hour(), 2);
+        final String minute = nf(minute(), 2);
+        final String second = nf(second(), 2);
 
-        save(String.format("%s/%s_%d.png", SAVE_PATH, currentTimestamp, count));
+        String currentTimestamp = String.format("%s_%s_%s-%s_%s_%s", year, month, day, hour, minute, second);
+
+        save(String.format("%s/%s-%d.png", SAVE_PATH, currentTimestamp, count));
     }
 }

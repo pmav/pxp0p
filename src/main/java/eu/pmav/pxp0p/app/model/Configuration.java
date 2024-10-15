@@ -9,12 +9,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.function.Function;
 
 public class Configuration implements Serializable
 {
 
     // Space used inside canvas
-    private int gridWidth = 900;
+    private int gridWidth = 800;
     private int gridHeight = 900;
 
     // Objects in the grid
@@ -50,6 +51,10 @@ public class Configuration implements Serializable
     private int[] colorsCutCircle = {0xff000000};
     private int[] colorsCutSquare = {0xff000000};
     private int[] colorsCutTriangle = {0xff000000};
+
+    // Direction
+    private boolean haveDirection = false;
+    private Function<Integer, Integer> calculateDirection;
 
     // Center object
     private boolean haveCenterObject = true;
@@ -97,8 +102,8 @@ public class Configuration implements Serializable
 
     public void calculate()
     {
-        borderWidth = (1080 - gridWidth) / 2; // TODO
-        borderHeight = (1080 - gridHeight) / 2; // TODO
+        borderWidth = (1000 - gridWidth) / 2; // TODO Remove hardcoded value
+        borderHeight = (1600 - gridHeight) / 2; // TODO Remove hardcoded value
 
         objectSizeGrid = Math.min(gridWidth / objectColumns, gridHeight / objectLines); // Size of the object in the grid
 
@@ -490,6 +495,22 @@ public class Configuration implements Serializable
     public void setMaxSizeTransform(float maxSizeTransform)
     {
         this.maxSizeTransform = maxSizeTransform;
+    }
+
+    public boolean isHaveDirection() {
+        return haveDirection;
+    }
+
+    public void setHaveDirection(boolean haveDirection) {
+        this.haveDirection = haveDirection;
+    }
+
+    public Function<Integer, Integer> getCalculateDirection() {
+        return calculateDirection;
+    }
+
+    public void setCalculateDirection(Function<Integer, Integer> calculateDirection) {
+        this.calculateDirection = calculateDirection;
     }
 }
 

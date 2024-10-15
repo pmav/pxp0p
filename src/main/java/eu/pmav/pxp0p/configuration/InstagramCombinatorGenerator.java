@@ -2,9 +2,12 @@ package eu.pmav.pxp0p.configuration;
 
 import eu.pmav.pxp0p.app.model.Configuration;
 import eu.pmav.pxp0p.app.forms.FormType;
+import processing.core.PApplet;
+
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
 
 public class InstagramCombinatorGenerator extends CombinatorGenerator
 {
@@ -33,39 +36,91 @@ public class InstagramCombinatorGenerator extends CombinatorGenerator
 
         int[] colorsRedStrong = {0xffFF0000, 0xffBC0022, 0xffB40A1B, 0xffE20338, 0xffB30000};
 
-        List<Object> colorsStroke = List.of(colorWhite, colorBlack);
-        List<Object> colorsBackground = List.of(colorWhite, colorBlack);
+        List<Object> colorsStroke = List.of(colorWhite);
+        List<Object> colorsBackground = List.of(colorBlack);
 
         // Initial configuration
         List<Configuration> configurations = Collections.singletonList(new Configuration());
 
-        // Update parameters
+        // Layout
         configurations = applyParameter(configurations, List.of(16), (c, v) -> c.setObjectColumns((int) v));
         configurations = applyParameter(configurations, List.of(16), (c, v) -> c.setObjectLines((int) v));
-        configurations = applyParameter(configurations, List.of(0), (c, v) -> c.setObjectSpacing((int) v));
-
-        configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setHaveStroke((boolean) v));
-        configurations = applyParameter(configurations, List.of(2, 4, 8), (c, v) -> c.setStrokeSize((int) v));
-        configurations = applyParameter(configurations, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
-
-        configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setHaveCuts((boolean) v));
-        configurations = applyParameter(configurations, List.of(0.4f, 0.7f, 0.9f), (c, v) -> c.setCutSize((float) v));
+        configurations = applyParameter(configurations, List.of(10), (c, v) -> c.setObjectSpacing((int) v));
 
         configurations = applyParameter(configurations, colorsBackground, (c, v) -> c.setColorBackground((int) v));
         configurations = applyParameter(configurations, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
-        //configurations = applyParameter(configurations, Collections.singletonList(new ObjectType[]{ObjectType.CIRCLE, ObjectType.SQUARE, ObjectType.TRIANGLE}), (c, v) -> c.setObjectTypes((ObjectType[]) v));
-        //configurations = applyParameter(configurations, Collections.singletonList(new ObjectType[]{ObjectType.SQUARE}), (c, v) -> c.setObjectTypes((ObjectType[]) v));
         configurations = applyParameter(configurations, Collections.singletonList(new FormType[]{FormType.TRIANGLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
+
+        // Direction
+        configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveDirection((boolean) v));
+        //configurations = applyParameter(configurations, List.of(), (c, v) -> c.setCalculateDirection((Function<Integer, Integer>) v));
+
+        //PApplet.parseInt(pApplet.random(0, 4))
 
         // Object Colors
         configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsCircle((int[]) v));
         configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsSquare((int[]) v));
         configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsTriangle((int[]) v));
 
-        // Cut colors
-        configurations = applyParameter(configurations, List.of(colorsSlack), (c, v) -> c.setColorsCutCircle((int[]) v));
-        configurations = applyParameter(configurations, List.of(colorsSlack), (c, v) -> c.setColorsCutSquare((int[]) v));
-        configurations = applyParameter(configurations, List.of(colorsSlack), (c, v) -> c.setColorsCutTriangle((int[]) v));
+        // Size Transform
+        configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveSizeTransform((boolean) v));
+        configurations = applyParameter(configurations, List.of(1.0f), (c, v) -> c.setMinSizeTransform((float) v));
+        configurations = applyParameter(configurations, List.of(1.2f), (c, v) -> c.setMaxSizeTransform((float) v));
+
+        // Alpha
+        configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveAlpha((boolean) v));
+        configurations = applyParameter(configurations, List.of(0), (c, v) -> c.setMinAlpha((int) v));
+        configurations = applyParameter(configurations, List.of(150), (c, v) -> c.setMaxAlpha((int) v));
+
+        // Variation
+        configurations = applyParameter(configurations, List.of(0), (c, v) -> c.setxVariation((int) v));
+        configurations = applyParameter(configurations, List.of(0), (c, v) -> c.setyVariation((int) v));
+
+        // Stroke
+        configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setHaveStroke((boolean) v));
+        configurations = applyParameter(configurations, List.of(4), (c, v) -> c.setStrokeSize((int) v));
+        configurations = applyParameter(configurations, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
+
+        // Center Object
+        configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setHaveCenterObject((boolean) v));
+        configurations = applyParameter(configurations, List.of(0.5f), (c, v) -> c.setCenterObjectSize((float) v));
+        configurations = applyParameter(configurations, List.of(colorsBlue), (c, v) -> c.setColorsCenterObject((int[]) v));
+
+        // Cuts
+        configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveCuts((boolean) v));
+        configurations = applyParameter(configurations, List.of(0.8f), (c, v) -> c.setCutSize((float) v));
+
+        configurations = applyParameter(configurations, List.of(colorsBlue), (c, v) -> c.setColorsCutCircle((int[]) v));
+        configurations = applyParameter(configurations, List.of(colorsBlue), (c, v) -> c.setColorsCutSquare((int[]) v));
+        configurations = applyParameter(configurations, List.of(colorsBlue), (c, v) -> c.setColorsCutTriangle((int[]) v));
+
+//        // Update parameters
+//        configurations = applyParameter(configurations, List.of(16), (c, v) -> c.setObjectColumns((int) v));
+//        configurations = applyParameter(configurations, List.of(16), (c, v) -> c.setObjectLines((int) v));
+//        configurations = applyParameter(configurations, List.of(10), (c, v) -> c.setObjectSpacing((int) v));
+//
+//        configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setHaveStroke((boolean) v));
+//        configurations = applyParameter(configurations, List.of(4), (c, v) -> c.setStrokeSize((int) v));
+//        configurations = applyParameter(configurations, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
+//
+//        configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveCuts((boolean) v));
+//        configurations = applyParameter(configurations, List.of(0.4f), (c, v) -> c.setCutSize((float) v));
+//
+//        configurations = applyParameter(configurations, colorsBackground, (c, v) -> c.setColorBackground((int) v));
+//        configurations = applyParameter(configurations, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
+//        //configurations = applyParameter(configurations, Collections.singletonList(new ObjectType[]{ObjectType.CIRCLE, ObjectType.SQUARE, ObjectType.TRIANGLE}), (c, v) -> c.setObjectTypes((ObjectType[]) v));
+//        //configurations = applyParameter(configurations, Collections.singletonList(new ObjectType[]{ObjectType.SQUARE}), (c, v) -> c.setObjectTypes((ObjectType[]) v));
+//        configurations = applyParameter(configurations, Collections.singletonList(new FormType[]{FormType.TRIANGLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
+//
+//        // Object Colors
+//        configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsCircle((int[]) v));
+//        configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsSquare((int[]) v));
+//        configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsTriangle((int[]) v));
+//
+//        // Cut colors
+//        configurations = applyParameter(configurations, List.of(colorsSlack), (c, v) -> c.setColorsCutCircle((int[]) v));
+//        configurations = applyParameter(configurations, List.of(colorsSlack), (c, v) -> c.setColorsCutSquare((int[]) v));
+//        configurations = applyParameter(configurations, List.of(colorsSlack), (c, v) -> c.setColorsCutTriangle((int[]) v));
 
         System.out.printf("Generated %s configurations...%n", configurations.size());
 

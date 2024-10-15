@@ -11,7 +11,7 @@ public class SquareForm extends Form
         super(pApplet);
     }
 
-    public void draw(int x, int y, Configuration configuration)
+    public void draw(int x, int y, int frameIndex, Configuration configuration)
     {
         final int size = PApplet.parseInt(
             configuration.isHaveSizeTransform()
@@ -22,10 +22,10 @@ public class SquareForm extends Form
         x = x + offset/2;
         y = y + offset/2;
 
-        final boolean cut1 = configuration.isHaveCuts() && PApplet.parseInt(pApplet.random(0, 2)) == 1;
-        final boolean cut2 = configuration.isHaveCuts() && PApplet.parseInt(pApplet.random(0, 2)) == 1;
-        final boolean cut3 = configuration.isHaveCuts() && PApplet.parseInt(pApplet.random(0, 2)) == 1;
-        final boolean cut4 = configuration.isHaveCuts() && PApplet.parseInt(pApplet.random(0, 2)) == 1;
+        final boolean cut1 = configuration.isHaveCuts(); // && PApplet.parseInt(pApplet.random(0, 2)) == 1;
+        final boolean cut2 = configuration.isHaveCuts(); // && PApplet.parseInt(pApplet.random(0, 2)) == 1;
+        final boolean cut3 = configuration.isHaveCuts(); // && PApplet.parseInt(pApplet.random(0, 2)) == 1;
+        final boolean cut4 = false; // configuration.isHaveCuts(); // && PApplet.parseInt(pApplet.random(0, 2)) == 1;
         final int cutSize = Math.round(size * configuration.getCutSize());
 
         final boolean haveCenterObject = configuration.haveCenterObject();

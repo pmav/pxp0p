@@ -12,7 +12,8 @@ public class DevelopmentCombinatorGenerator extends CombinatorGenerator
     {
         // Set colors
         int colorWhite = 0xffDCDCDC;
-        int colorBlack = 0xff101010;
+        //int colorBlack = 0xff101010;
+        int colorBlack = 0xff000000;
 
         int[] colorsBlack = {colorBlack};
         int[] colorsWhite = {colorWhite};
@@ -51,9 +52,9 @@ public class DevelopmentCombinatorGenerator extends CombinatorGenerator
         configurations = applyParameter(configurations, Collections.singletonList(new FormType[]{FormType.SQUARE, FormType.CIRCLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
 
         // Object Colors
-        configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsCircle((int[]) v));
-        configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsSquare((int[]) v));
-        configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsTriangle((int[]) v));
+        configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsCircle((int[]) v));
+        configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsSquare((int[]) v));
+        configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsTriangle((int[]) v));
 
         // Size
         configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setHaveSizeTransform((boolean) v));
