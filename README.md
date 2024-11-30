@@ -1,6 +1,6 @@
 # pxp0p
 
-## Run:
+### Run:
 
 This project uses Maven to create an uber jar with all dependencies:
 ```
@@ -12,7 +12,7 @@ After building the uber jar you can run it:
 make run
 ```
 
-## Resources:
+### Resources:
 
 * https://tilda.cc/colors/
 * https://usbrandcolors.com/
