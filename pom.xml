@@ -18,16 +18,17 @@
 
     <repositories>
         <repository>
-            <id>project-local-repo</id>
-            <url>file://${project.basedir}/local-repo</url>
+            <id>jogamp</id>
+            <name>JogAmp Repository</name>
+            <url>https://jogamp.org/deployment/maven/</url>
         </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>processing</groupId>
+            <groupId>org.processing</groupId>
             <artifactId>core</artifactId>
-            <version>4.3</version>
+            <version>4.3.1</version>
         </dependency>
     </dependencies>
 
@@ -40,6 +41,7 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.7.1</version>
                 <configuration>
+                    <finalName>pxp0p</finalName>
                     <archive>
                         <manifest>
                             <mainClass>eu.pmav.pxp0p.Main</mainClass>
@@ -48,6 +50,7 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                    <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
                 <executions>
                     <execution>

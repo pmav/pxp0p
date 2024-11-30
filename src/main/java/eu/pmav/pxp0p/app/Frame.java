@@ -26,7 +26,7 @@ public class Frame
 
     public void render()
     {
-        pApplet.clear();
+        //pApplet.clear();
         pApplet.randomSeed(0);
 
         if (configuration.isHaveStroke())
