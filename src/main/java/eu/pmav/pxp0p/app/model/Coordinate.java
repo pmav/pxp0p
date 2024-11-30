@@ -1,27 +1,32 @@
 package eu.pmav.pxp0p.app.model;
 
-public class Coordinate {
+public class Coordinate
+{
 
     private final int x;
     private final int y;
 
     private final int frameIndex;
 
-    public Coordinate(int x, int y, int framePosition) {
+    public Coordinate(int x, int y, int framePosition)
+    {
         this.x = x;
         this.y = y;
         this.frameIndex = framePosition;
     }
 
-    public int getX() {
+    public int getX()
+    {
         return x;
     }
 
-    public int getY() {
+    public int getY()
+    {
         return y;
     }
 
-    public int getFrameIndex() {
+    public int getFrameIndex()
+    {
         return frameIndex;
     }
 }

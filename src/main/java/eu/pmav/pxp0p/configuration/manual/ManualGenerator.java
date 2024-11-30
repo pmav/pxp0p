@@ -1,13 +1,16 @@
-package eu.pmav.pxp0p.configuration;
+package eu.pmav.pxp0p.configuration.manual;
 
 import eu.pmav.pxp0p.app.model.Configuration;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
-public abstract class CombinatorGenerator
+public abstract class ManualGenerator
 {
+
+    public abstract List<Configuration> generateConfigurations() throws IOException, ClassNotFoundException;
 
     protected static List<Configuration> applyParameter(List<Configuration> configurations, List<Object> parameterValues, BiConsumer<Configuration, Object> c) throws IOException, ClassNotFoundException
     {

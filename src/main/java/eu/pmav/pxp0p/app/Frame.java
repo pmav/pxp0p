@@ -1,11 +1,11 @@
 package eu.pmav.pxp0p.app;
 
+import eu.pmav.pxp0p.app.forms.FormType;
 import eu.pmav.pxp0p.app.forms.imlp.CircleForm;
 import eu.pmav.pxp0p.app.forms.imlp.SquareForm;
 import eu.pmav.pxp0p.app.forms.imlp.TriangleForm;
 import eu.pmav.pxp0p.app.model.Configuration;
 import eu.pmav.pxp0p.app.model.Coordinate;
-import eu.pmav.pxp0p.app.forms.FormType;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
@@ -29,6 +29,7 @@ public class Frame
         //pApplet.clear();
         pApplet.randomSeed(0);
 
+        // Generate stroke
         if (configuration.isHaveStroke())
         {
             pApplet.stroke(configuration.getStrokeColor());
@@ -39,9 +40,11 @@ public class Frame
         }
 
         pApplet.strokeWeight(configuration.getStrokeSize());
+
+        // Set background color
         pApplet.background(configuration.getColorBackground());
 
-        // Generate base coordinates for all objects.
+        // Generate base coordinates for all objects
         List<Coordinate> coordinateList = new ArrayList<>();
 
         int x = configuration.getxInit();
@@ -66,20 +69,23 @@ public class Frame
         Collections.shuffle(coordinateList, new Random(0));
 
         // Draw object for each base coordinate
-        coordinateList.forEach(c -> {
+        coordinateList.forEach(c ->
+        {
             drawObject(c.getX(), c.getY(), configuration, c.getFrameIndex());
         });
 
-        pApplet.filter(pApplet.BLUR, configuration.getBlurValue());
+        pApplet.filter(PApplet.BLUR, configuration.getBlurValue());
     }
 
     private void drawObject(int x, int y, Configuration configuration, int frameIndex)
     {
-        if (configuration.getxVariation() != 0) {
+        if (configuration.getxVariation() != 0)
+        {
             x = x + Math.round((pApplet.random(-1, 1) * configuration.getxVariation()));
         }
 
-        if (configuration.getyVariation() != 0) {
+        if (configuration.getyVariation() != 0)
+        {
             y = y + Math.round((pApplet.random(-1, 1) * configuration.getyVariation()));
         }
 

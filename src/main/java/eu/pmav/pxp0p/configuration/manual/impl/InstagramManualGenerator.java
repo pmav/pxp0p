@@ -1,17 +1,16 @@
-package eu.pmav.pxp0p.configuration;
+package eu.pmav.pxp0p.configuration.manual.impl;
 
-import eu.pmav.pxp0p.app.model.Configuration;
 import eu.pmav.pxp0p.app.forms.FormType;
-import processing.core.PApplet;
+import eu.pmav.pxp0p.app.model.Configuration;
+import eu.pmav.pxp0p.configuration.manual.ManualGenerator;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Function;
 
-public class InstagramCombinatorGenerator extends CombinatorGenerator
+public class InstagramManualGenerator extends ManualGenerator
 {
-    public static List<Configuration> generateConfigurations() throws IOException, ClassNotFoundException
+    public List<Configuration> generateConfigurations() throws IOException, ClassNotFoundException
     {
         // Set colors
         int colorWhite = 0xffDCDCDC;
@@ -20,13 +19,13 @@ public class InstagramCombinatorGenerator extends CombinatorGenerator
         int[] colorsBlack = {colorBlack};
         int[] colorsBasePale = {0xffB30000, 0xff5199FF, 0xffFFEB7F};
         int[] colorsApple = {0xff61ba46, 0xfffcb829, 0xfff8811d, 0xffe03a3e, 0xff963d97, 0xff059ddc, 0xffDCDCDC, 0xff101010};
-        int[] colorsGoogle = {0xff4285F4,0xffDB4437,0xffF4B400,0xff0F9D58};
-        int[] colorsInstagram = {0xff405DE6,0xff5B51D8,0xff833AB4,0xffC13584,0xffE1306C,0xffFD1D1D,0xffF56040,0xffF77737,0xffFCAF45,0xffFFDC80};
+        int[] colorsGoogle = {0xff4285F4, 0xffDB4437, 0xffF4B400, 0xff0F9D58};
+        int[] colorsInstagram = {0xff405DE6, 0xff5B51D8, 0xff833AB4, 0xffC13584, 0xffE1306C, 0xffFD1D1D, 0xffF56040, 0xffF77737, 0xffFCAF45, 0xffFFDC80};
         int[] colorsSlack = {0xff36C5F0, 0xff2EB67D, 0xffE01E5A, 0xffECB22E};
-        int[] colorsWhatsApp = {0xff128C7E,0xff075E54,0xff25D366,0xff34B7F1};
+        int[] colorsWhatsApp = {0xff128C7E, 0xff075E54, 0xff25D366, 0xff34B7F1};
         int[] colorsTwitter = {0xff1DA1F2, 0xff14171A, 0xff657786, 0xffAAB8C2, 0xffE1E8ED, 0xffF5F8FA};
-        int[] colorsMicrosoft = {0xffF25022,0xff7FBA00,0xff00A4EF,0xffFFB900,0xff737373};
-        int[] colorsAirbnb = {0xffFF5A5F,0xff00A699,0xffFC642D,0xff484848,0xff767676};
+        int[] colorsMicrosoft = {0xffF25022, 0xff7FBA00, 0xff00A4EF, 0xffFFB900, 0xff737373};
+        int[] colorsAirbnb = {0xffFF5A5F, 0xff00A699, 0xffFC642D, 0xff484848, 0xff767676};
 
         int[] colorsRed = {0xffF6522E, 0xffFF6E4E, 0xffFF6A61, 0xffE20338, 0xffB40A1B, 0xffEE3D48, 0xff460000, 0xff922D25};
         int[] colorsBlue = {0xff5199FF, 0xff1771F1, 0xff0260E8, 0xff0351C1, 0xff0043A4, 0xff002D6D, 0xff052555, 0xff01142F};

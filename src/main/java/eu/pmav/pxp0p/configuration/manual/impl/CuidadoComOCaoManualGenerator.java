@@ -1,16 +1,19 @@
-package eu.pmav.pxp0p.configuration;
+package eu.pmav.pxp0p.configuration.manual.impl;
 
-import eu.pmav.pxp0p.app.helpers.SerializableFunction;
 import eu.pmav.pxp0p.app.forms.FormType;
+import eu.pmav.pxp0p.app.helpers.SerializableFunction;
 import eu.pmav.pxp0p.app.model.Configuration;
+import eu.pmav.pxp0p.configuration.manual.ManualGenerator;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 
-public class CuidadoComOCaoCombinatorGenerator extends CombinatorGenerator {
-    public static List<Configuration> generateConfigurations() throws IOException, ClassNotFoundException {
+public class CuidadoComOCaoManualGenerator extends ManualGenerator
+{
+    public List<Configuration> generateConfigurations() throws IOException, ClassNotFoundException
+    {
         // Set colors
         int colorYellow = 0xffFFD742;
         int colorCyan = 0xff01ACB7;
@@ -30,7 +33,10 @@ public class CuidadoComOCaoCombinatorGenerator extends CombinatorGenerator {
 
         // Direction
         configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setHaveDirection((boolean) v));
-        SerializableFunction<Integer, Integer> f = (Integer i) -> {return 1;};
+        SerializableFunction<Integer, Integer> f = (Integer i) ->
+        {
+            return 1;
+        };
         configurations = applyParameter(configurations, List.of(f), (c, v) -> c.setCalculateDirection((Function<Integer, Integer>) v));
 
         // Object Colors

@@ -1,7 +1,7 @@
 package eu.pmav.pxp0p.app.forms.imlp;
 
-import eu.pmav.pxp0p.app.model.Configuration;
 import eu.pmav.pxp0p.app.forms.Form;
+import eu.pmav.pxp0p.app.model.Configuration;
 import processing.core.PApplet;
 
 public class CircleForm extends Form
@@ -14,9 +14,9 @@ public class CircleForm extends Form
     public void draw(int x, int y, int frameIndex, Configuration configuration)
     {
         final int size = PApplet.parseInt(
-            configuration.isHaveSizeTransform()
-                ? configuration.getObjectSize() * pApplet.random(configuration.getMinSizeTransform(), configuration.getMaxSizeTransform())
-                : configuration.getObjectSize());
+                configuration.isHaveSizeTransform()
+                        ? configuration.getObjectSize() * pApplet.random(configuration.getMinSizeTransform(), configuration.getMaxSizeTransform())
+                        : configuration.getObjectSize());
 
         final boolean cut1 = configuration.isHaveCuts() && PApplet.parseInt(pApplet.random(0, 2)) == 1;
         final boolean cut2 = configuration.isHaveCuts() && PApplet.parseInt(pApplet.random(0, 2)) == 1;
@@ -38,26 +38,24 @@ public class CircleForm extends Form
             pApplet.fill(getRandomColor(configuration.getColorsCutCircle()));
             pApplet.circle(x + size / 2f, y + cutSize / 2f, cutSize);
         }
-
         else if (cut2)
         {
             pApplet.fill(getRandomColor(configuration.getColorsCutCircle()));
             pApplet.circle(x + size - cutSize / 2f, y + size / 2f, cutSize);
         }
-
         else if (cut3)
         {
             pApplet.fill(getRandomColor(configuration.getColorsCutCircle()));
             pApplet.circle(x + size / 2f, y + size - cutSize / 2f, cutSize);
         }
-
         else if (cut4)
         {
             pApplet.fill(getRandomColor(configuration.getColorsCutCircle()));
             pApplet.circle(x + cutSize / 2f, y + size / 2f, cutSize);
         }
 
-        if (haveCenterObject) {
+        if (haveCenterObject)
+        {
             pApplet.fill(getRandomColor(configuration.getColorsCenterObject()));
             pApplet.circle(x + size / 2f, y + size / 2f, centerObjectSize);
         }

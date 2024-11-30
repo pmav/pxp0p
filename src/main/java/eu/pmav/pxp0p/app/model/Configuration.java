@@ -3,16 +3,14 @@ package eu.pmav.pxp0p.app.model;
 
 import eu.pmav.pxp0p.app.forms.FormType;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.function.Function;
 
 public class Configuration implements Serializable
 {
+
+    private int canvasWidth = 1000;
+    private int canvasHeight = 1600;
 
     // Space used inside canvas
     private int gridWidth = 800;
@@ -67,9 +65,9 @@ public class Configuration implements Serializable
     private float blurValue = 0.6f;
 
     private FormType[] formTypes = {
-        FormType.CIRCLE,
-        FormType.SQUARE,
-        FormType.TRIANGLE
+            FormType.CIRCLE,
+            FormType.SQUARE,
+            FormType.TRIANGLE
     };
 
     private int[] colorsCircle = {0xff000000};
@@ -102,8 +100,8 @@ public class Configuration implements Serializable
 
     public void calculate()
     {
-        borderWidth = (1000 - gridWidth) / 2; // TODO Remove hardcoded value
-        borderHeight = (1600 - gridHeight) / 2; // TODO Remove hardcoded value
+        borderWidth = (canvasWidth - gridWidth) / 2;
+        borderHeight = (canvasHeight - gridHeight) / 2;
 
         objectSizeGrid = Math.min(gridWidth / objectColumns, gridHeight / objectLines); // Size of the object in the grid
 
@@ -114,6 +112,16 @@ public class Configuration implements Serializable
 
         yIncrement = objectSizeGrid;
         yInit = borderHeight + (gridHeight - (yIncrement * objectLines)) / 2;
+    }
+
+    public int getCanvasWidth()
+    {
+        return canvasWidth;
+    }
+
+    public int getCanvasHeight()
+    {
+        return canvasHeight;
     }
 
     public int getGridWidth()
@@ -497,19 +505,23 @@ public class Configuration implements Serializable
         this.maxSizeTransform = maxSizeTransform;
     }
 
-    public boolean isHaveDirection() {
+    public boolean isHaveDirection()
+    {
         return haveDirection;
     }
 
-    public void setHaveDirection(boolean haveDirection) {
+    public void setHaveDirection(boolean haveDirection)
+    {
         this.haveDirection = haveDirection;
     }
 
-    public Function<Integer, Integer> getCalculateDirection() {
+    public Function<Integer, Integer> getCalculateDirection()
+    {
         return calculateDirection;
     }
 
-    public void setCalculateDirection(Function<Integer, Integer> calculateDirection) {
+    public void setCalculateDirection(Function<Integer, Integer> calculateDirection)
+    {
         this.calculateDirection = calculateDirection;
     }
 }

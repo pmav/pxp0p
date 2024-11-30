@@ -1,7 +1,7 @@
 package eu.pmav.pxp0p.app.forms.imlp;
 
-import eu.pmav.pxp0p.app.model.Configuration;
 import eu.pmav.pxp0p.app.forms.Form;
+import eu.pmav.pxp0p.app.model.Configuration;
 import processing.core.PApplet;
 
 public class TriangleForm extends Form
@@ -14,9 +14,9 @@ public class TriangleForm extends Form
     public void draw(int x, int y, int frameIndex, Configuration configuration)
     {
         final int size = PApplet.parseInt(
-            configuration.isHaveSizeTransform()
-                ? configuration.getObjectSize() * pApplet.random(configuration.getMinSizeTransform(), configuration.getMaxSizeTransform())
-                : configuration.getObjectSize());
+                configuration.isHaveSizeTransform()
+                        ? configuration.getObjectSize() * pApplet.random(configuration.getMinSizeTransform(), configuration.getMaxSizeTransform())
+                        : configuration.getObjectSize());
 
         final boolean cut1 = configuration.isHaveCuts(); // && PApplet.parseInt(pApplet.random(0, 2)) == 1;
         final int cutSize = Math.round(size * configuration.getCutSize());

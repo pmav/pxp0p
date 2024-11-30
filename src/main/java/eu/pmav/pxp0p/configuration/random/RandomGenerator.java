@@ -1,4 +1,4 @@
-package eu.pmav.pxp0p.configuration;
+package eu.pmav.pxp0p.configuration.random;
 
 import eu.pmav.pxp0p.app.forms.FormType;
 import eu.pmav.pxp0p.app.model.Configuration;
@@ -7,11 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomGenerator {
+public class RandomGenerator
+{
 
     private final Random r;
 
-    public RandomGenerator(int seed) {
+    public RandomGenerator(int seed)
+    {
         this.r = new Random(seed);
     }
 
@@ -31,10 +33,12 @@ public class RandomGenerator {
             0xff0085c7, 0xfff4c300, 0xff000000, 0xff009f3d, 0xffdf0024
     };
 
-    public List<Configuration> generateConfigurations(int count) {
+    public List<Configuration> generateConfigurations(int count)
+    {
         List<Configuration> configurations = new ArrayList<>(count);
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++)
+        {
 
             int[] colors = getRandomColors(8);
             //int backgroundColor = 0xffDCDCDC; //getRandomColor();
@@ -97,35 +101,42 @@ public class RandomGenerator {
         return configurations;
     }
 
-    private FormType[] getRandomFormTypes() {
+    private FormType[] getRandomFormTypes()
+    {
         int count = getRandomInt(1, 3);
         FormType[] formsTypes = new FormType[count];
 
-        for (int i = 0; i < formsTypes.length; i++) {
+        for (int i = 0; i < formsTypes.length; i++)
+        {
             formsTypes[i] = getRandomFormType();
         }
 
         return formsTypes;
     }
 
-    private FormType getRandomFormType() {
+    private FormType getRandomFormType()
+    {
         int x = r.nextInt(FormType.class.getEnumConstants().length);
         return FormType.class.getEnumConstants()[x];
     }
 
-    private int getRandomInt(int min, int max) {
+    private int getRandomInt(int min, int max)
+    {
         return r.nextInt((max - min) + 1) + min;
     }
 
-    private float geRandomFloat(float min, float max) {
+    private float geRandomFloat(float min, float max)
+    {
         return min + r.nextFloat() * (max - min);
     }
 
-    private boolean getRandomBoolean() {
+    private boolean getRandomBoolean()
+    {
         return r.nextBoolean();
     }
 
-    private int getRandomColor() {
+    private int getRandomColor()
+    {
         return colorsPool[getRandomInt(0, colorsPool.length - 1)];
 
 //        return (int) ((r.nextFloat() * Math.pow(2, 8)) // blue
@@ -134,10 +145,12 @@ public class RandomGenerator {
 //                + 0xff000000;
     }
 
-    private int[] getRandomColors(int count) {
+    private int[] getRandomColors(int count)
+    {
         int[] colors = new int[count];
 
-        for (int i = 0; i < colors.length; i++) {
+        for (int i = 0; i < colors.length; i++)
+        {
             colors[i] = getRandomColor();
         }
 

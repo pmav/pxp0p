@@ -1,27 +1,31 @@
 package eu.pmav.pxp0p;
 
-import eu.pmav.pxp0p.configuration.*;
+import eu.pmav.pxp0p.app.Frame;
 import eu.pmav.pxp0p.app.model.Configuration;
-import java.io.IOException;
+import processing.core.PApplet;
+
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import eu.pmav.pxp0p.app.Frame;
-import processing.core.PApplet;
-
 public class Applet extends PApplet
 {
-    // Canvas size
-    final int CANVAS_WIDTH = 1000;
-    final int CANVAS_HEIGHT = 1600;
+    private final List<Configuration> configurations;
 
-    // Path to save each frame
-    final String SAVE_PATH = "/mnt/Storage/pxp0p/";
+    private final String saveDirectory;
 
+    private final Main main;
+
+    public Applet(List<Configuration> configurations, String saveDirectory, Main main)
+    {
+        this.configurations = configurations;
+        this.saveDirectory = saveDirectory;
+        this.main = main;
+    }
 
     public void settings()
     {
-        size(CANVAS_WIDTH, CANVAS_HEIGHT);
+        // TODO Refactor
+        size(this.configurations.getFirst().getCanvasWidth(), this.configurations.getFirst().getCanvasHeight());
     }
 
     public void setup()
@@ -31,42 +35,21 @@ public class Applet extends PApplet
 
     public void draw()
     {
-        try
+        AtomicInteger frameNumber = new AtomicInteger(1);
+
+        configurations.forEach(configuration ->
         {
-            // List<Configuration> configurations = CuidadoComOCaoCombinatorGenerator.generateConfigurations();
-            // List<Configuration> configurations = InstagramCombinatorGenerator.generateConfigurations();
-            // List<Configuration> configurations = DevelopmentCombinatorGenerator.generateConfigurations();
-            // List<Configuration> configurations = OlympicsCombinatorGenerator.generateConfigurations();
-            List<Configuration> configurations = new RandomGenerator(1).generateConfigurations(10);
+            Frame frame = new Frame(this, configuration);
+            frame.render();
 
-            AtomicInteger frameNumber = new AtomicInteger(1);
+            saveImage(saveDirectory, frameNumber.getAndIncrement());
+        });
 
-            configurations.forEach(configuration -> {
-                Frame frame = new Frame(this, configuration);
-                frame.render();
-
-                saveImage(frameNumber.getAndIncrement());
-            });
-
-            exit();
-        }
-        catch (Exception exception)
-        {
-            exception.printStackTrace();
-        }
+        this.main.m(this);
     }
 
-    private void saveImage(int count)
+    private void saveImage(String saveDirectory, int count)
     {
-        final String year = nf(year(), 4);
-        final String month = nf(month(), 2);
-        final String day = nf(day(), 2);
-        final String hour = nf(hour(), 2);
-        final String minute = nf(minute(), 2);
-        final String second = nf(second(), 2);
-
-        String currentTimestamp = String.format("%s_%s_%s-%s_%s_%s", year, month, day, hour, minute, second);
-
-        save(String.format("%s/%s-%d.png", SAVE_PATH, currentTimestamp, count));
+        save(String.format("%s/%d.png", saveDirectory, count));
     }
 }

@@ -1,7 +1,7 @@
 package eu.pmav.pxp0p.app.forms.imlp;
 
-import eu.pmav.pxp0p.app.model.Configuration;
 import eu.pmav.pxp0p.app.forms.Form;
+import eu.pmav.pxp0p.app.model.Configuration;
 import processing.core.PApplet;
 
 public class SquareForm extends Form
@@ -14,13 +14,13 @@ public class SquareForm extends Form
     public void draw(int x, int y, int frameIndex, Configuration configuration)
     {
         final int size = PApplet.parseInt(
-            configuration.isHaveSizeTransform()
-                ? configuration.getObjectSize() * pApplet.random(configuration.getMinSizeTransform(), configuration.getMaxSizeTransform())
-                : configuration.getObjectSize());
+                configuration.isHaveSizeTransform()
+                        ? configuration.getObjectSize() * pApplet.random(configuration.getMinSizeTransform(), configuration.getMaxSizeTransform())
+                        : configuration.getObjectSize());
 
         int offset = configuration.getObjectSize() - size;
-        x = x + offset/2;
-        y = y + offset/2;
+        x = x + offset / 2;
+        y = y + offset / 2;
 
         final boolean cut1 = configuration.isHaveCuts(); // && PApplet.parseInt(pApplet.random(0, 2)) == 1;
         final boolean cut2 = configuration.isHaveCuts(); // && PApplet.parseInt(pApplet.random(0, 2)) == 1;
@@ -32,8 +32,8 @@ public class SquareForm extends Form
         final int centerObjectSize = Math.round(size * configuration.getCenterObjectSize());
 
         final int alpha = configuration.isHaveAlpha()
-            ? PApplet.parseInt(pApplet.random(configuration.getMinAlpha(), configuration.getMaxAlpha()))
-            : 255;
+                ? PApplet.parseInt(pApplet.random(configuration.getMinAlpha(), configuration.getMaxAlpha()))
+                : 255;
 
         pApplet.pushMatrix();
 
@@ -64,9 +64,10 @@ public class SquareForm extends Form
             pApplet.square(x + size - cutSize, y + size - cutSize, cutSize);
         }
 
-        if (haveCenterObject) {
+        if (haveCenterObject)
+        {
             pApplet.fill(getRandomColor(configuration.getColorsCenterObject()), alpha);
-            pApplet.square((x+size/2f)-(centerObjectSize/2f), (y+size/2f)-(centerObjectSize/2f), centerObjectSize);
+            pApplet.square((x + size / 2f) - (centerObjectSize / 2f), (y + size / 2f) - (centerObjectSize / 2f), centerObjectSize);
         }
 
         pApplet.popMatrix();
