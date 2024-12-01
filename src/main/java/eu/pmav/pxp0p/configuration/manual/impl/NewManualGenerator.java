@@ -2,11 +2,13 @@ package eu.pmav.pxp0p.configuration.manual.impl;
 
 import eu.pmav.pxp0p.configuration.manual.ManualGenerator;
 import eu.pmav.pxp0p.render.forms.FormType;
+import eu.pmav.pxp0p.render.helpers.SerializableFunction;
 import eu.pmav.pxp0p.render.model.Configuration;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
 
 public class NewManualGenerator extends ManualGenerator
 {
@@ -14,8 +16,8 @@ public class NewManualGenerator extends ManualGenerator
     {
         // Set colors
         int colorWhite = 0xffDCDCDC;
-        //int colorBlack = 0xff101010;
-        int colorBlack = 0xff000000;
+        int colorBlack = 0xff101010;
+        //int colorBlack = 0xff000000;
 
         int[] colorsBlack = {colorBlack};
         int[] colorsWhite = {colorWhite};
@@ -51,7 +53,7 @@ public class NewManualGenerator extends ManualGenerator
 
         configurations = applyParameter(configurations, colorsBackground, (c, v) -> c.setColorBackground((int) v));
         configurations = applyParameter(configurations, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
-        configurations = applyParameter(configurations, Collections.singletonList(new FormType[]{FormType.SQUARE, FormType.CIRCLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        configurations = applyParameter(configurations, Collections.singletonList(new FormType[]{FormType.TRIANGLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
 
         // Object Colors
         configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsCircle((int[]) v));
@@ -59,7 +61,7 @@ public class NewManualGenerator extends ManualGenerator
         configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsTriangle((int[]) v));
 
         // Size
-        configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setHaveSizeTransform((boolean) v));
+        configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveSizeTransform((boolean) v));
         configurations = applyParameter(configurations, List.of(1.0f), (c, v) -> c.setMinSizeTransform((float) v));
         configurations = applyParameter(configurations, List.of(1.2f), (c, v) -> c.setMaxSizeTransform((float) v));
 
@@ -69,11 +71,11 @@ public class NewManualGenerator extends ManualGenerator
         configurations = applyParameter(configurations, List.of(150), (c, v) -> c.setMaxAlpha((int) v));
 
         // Variation
-        configurations = applyParameter(configurations, List.of(10), (c, v) -> c.setxVariation((int) v));
-        configurations = applyParameter(configurations, List.of(10), (c, v) -> c.setyVariation((int) v));
+        //configurations = applyParameter(configurations, List.of(10), (c, v) -> c.setxVariation((int) v));
+        //configurations = applyParameter(configurations, List.of(10), (c, v) -> c.setyVariation((int) v));
 
         // Stroke
-        configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setHaveStroke((boolean) v));
+        configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveStroke((boolean) v));
         configurations = applyParameter(configurations, List.of(8), (c, v) -> c.setStrokeSize((int) v));
         configurations = applyParameter(configurations, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
 
@@ -83,12 +85,20 @@ public class NewManualGenerator extends ManualGenerator
         configurations = applyParameter(configurations, List.of(colorsBlue), (c, v) -> c.setColorsCenterObject((int[]) v));
 
         // Cuts
-        configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveCuts((boolean) v));
-        configurations = applyParameter(configurations, List.of(0.8f), (c, v) -> c.setCutSize((float) v));
+        configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setHaveCuts((boolean) v));
+        configurations = applyParameter(configurations, List.of(0.2f), (c, v) -> c.setCutSize((float) v));
 
         configurations = applyParameter(configurations, List.of(colorsBlue), (c, v) -> c.setColorsCutCircle((int[]) v));
         configurations = applyParameter(configurations, List.of(colorsBlue), (c, v) -> c.setColorsCutSquare((int[]) v));
         configurations = applyParameter(configurations, List.of(colorsBlue), (c, v) -> c.setColorsCutTriangle((int[]) v));
+
+        // Change direction for triangles
+        configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setHaveDirection((boolean) v));
+        SerializableFunction<Integer, Integer> f = (Integer i) ->
+        {
+            return 2;
+        };
+        configurations = applyParameter(configurations, List.of(f), (c, v) -> c.setCalculateDirection((Function<Integer, Integer>) v));
 
         System.out.printf("Generated %s configurations...%n", configurations.size());
 
