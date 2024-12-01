@@ -40,7 +40,7 @@ public class NewManualGenerator extends ManualGenerator
         int[] colorsRedStrong = {0xffFF0000, 0xffBC0022, 0xffB40A1B, 0xffE20338, 0xffB30000};
         int[] colorsGrey = {0xffDCDCDC, 0xffD3D3D3, 0xffC0C0C0, 0xffA9A9A9, 0xff808080, 0xff696969, 0xff778899, 0xff708090, 0xff2F4F4F, 0xff000000};
 
-        List<Object> colorsStroke = List.of(colorBlack);
+        List<Object> colorsStroke = List.of(colorWhite);
         List<Object> colorsBackground = List.of(colorBlack);
 
         // Initial configuration
@@ -53,7 +53,7 @@ public class NewManualGenerator extends ManualGenerator
 
         configurations = applyParameter(configurations, colorsBackground, (c, v) -> c.setColorBackground((int) v));
         configurations = applyParameter(configurations, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
-        configurations = applyParameter(configurations, Collections.singletonList(new FormType[]{FormType.TRIANGLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        configurations = applyParameter(configurations, Collections.singletonList(new FormType[]{FormType.POLLY}), (c, v) -> c.setObjectTypes((FormType[]) v));
 
         // Object Colors
         configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsCircle((int[]) v));
@@ -75,7 +75,7 @@ public class NewManualGenerator extends ManualGenerator
         //configurations = applyParameter(configurations, List.of(10), (c, v) -> c.setyVariation((int) v));
 
         // Stroke
-        configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveStroke((boolean) v));
+        configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setHaveStroke((boolean) v));
         configurations = applyParameter(configurations, List.of(8), (c, v) -> c.setStrokeSize((int) v));
         configurations = applyParameter(configurations, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
 

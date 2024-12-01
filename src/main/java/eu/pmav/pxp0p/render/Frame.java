@@ -2,6 +2,7 @@ package eu.pmav.pxp0p.render;
 
 import eu.pmav.pxp0p.render.forms.FormType;
 import eu.pmav.pxp0p.render.forms.imlp.CircleForm;
+import eu.pmav.pxp0p.render.forms.imlp.PollyForm;
 import eu.pmav.pxp0p.render.forms.imlp.SquareForm;
 import eu.pmav.pxp0p.render.forms.imlp.TriangleForm;
 import eu.pmav.pxp0p.render.model.Configuration;
@@ -102,6 +103,9 @@ public class Frame
 
             case TRIANGLE:
                 (new TriangleForm(applet)).draw(x, y, frameIndex, configuration);
+                break;
+            case POLLY:
+                (new PollyForm(applet)).draw(x, y, frameIndex, configuration);
                 break;
         }
     }

@@ -4,5 +4,6 @@ public enum FormType
 {
     CIRCLE,
     SQUARE,
-    TRIANGLE
+    TRIANGLE,
+    POLLY
 }
