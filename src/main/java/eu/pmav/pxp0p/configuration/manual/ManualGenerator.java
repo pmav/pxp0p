@@ -1,6 +1,6 @@
 package eu.pmav.pxp0p.configuration.manual;
 
-import eu.pmav.pxp0p.app.model.Configuration;
+import eu.pmav.pxp0p.render.model.Configuration;
 
 import java.io.IOException;
 import java.util.ArrayList;

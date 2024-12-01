@@ -1,14 +1,14 @@
 package eu.pmav.pxp0p.configuration.manual.impl;
 
+import eu.pmav.pxp0p.configuration.manual.ManualGenerator;
 import eu.pmav.pxp0p.render.forms.FormType;
 import eu.pmav.pxp0p.render.model.Configuration;
-import eu.pmav.pxp0p.configuration.manual.ManualGenerator;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-public class DevelopmentManualGenerator extends ManualGenerator
+public class NewManualGenerator extends ManualGenerator
 {
     public List<Configuration> generateConfigurations() throws IOException, ClassNotFoundException
     {

@@ -1,6 +1,6 @@
-package eu.pmav.pxp0p.app.forms;
+package eu.pmav.pxp0p.render.forms;
 
-import eu.pmav.pxp0p.app.model.Configuration;
+import eu.pmav.pxp0p.render.model.Configuration;
 import processing.core.PApplet;
 
 public abstract class Form

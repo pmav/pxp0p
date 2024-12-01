@@ -1,20 +1,23 @@
-package eu.pmav.pxp0p.app.model;
+package eu.pmav.pxp0p.render.model;
 
 
-import eu.pmav.pxp0p.app.forms.FormType;
+import eu.pmav.pxp0p.render.forms.FormType;
 
 import java.io.*;
 import java.util.function.Function;
 
 public class Configuration implements Serializable
 {
+    // Frame path
+    private String framePath;
 
+    // Canvas size
     private int canvasWidth = 1000;
-    private int canvasHeight = 1600;
+    private int canvasHeight = 1000;
 
     // Space used inside canvas
     private int gridWidth = 800;
-    private int gridHeight = 900;
+    private int gridHeight = 800;
 
     // Objects in the grid
     private int objectColumns = 16;
@@ -112,6 +115,16 @@ public class Configuration implements Serializable
 
         yIncrement = objectSizeGrid;
         yInit = borderHeight + (gridHeight - (yIncrement * objectLines)) / 2;
+    }
+
+    public String getFramePath()
+    {
+        return framePath;
+    }
+
+    public void setFramePath(String framePath)
+    {
+        this.framePath = framePath;
     }
 
     public int getCanvasWidth()

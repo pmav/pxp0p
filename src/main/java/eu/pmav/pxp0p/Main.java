@@ -1,58 +1,61 @@
 package eu.pmav.pxp0p;
 
-import eu.pmav.pxp0p.app.model.Configuration;
-import eu.pmav.pxp0p.configuration.manual.impl.DevelopmentManualGenerator;
-import eu.pmav.pxp0p.configuration.manual.impl.OlympicsManualGenerator;
+import eu.pmav.pxp0p.configuration.manual.impl.*;
+import eu.pmav.pxp0p.render.Applet;
+import eu.pmav.pxp0p.render.model.Configuration;
+import eu.pmav.pxp0p.utils.ExitHandler;
 import eu.pmav.pxp0p.utils.Utils;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main
 {
     // Path to save each frame
     static final String SAVE_PATH = "/mnt/Storage/pxp0p/";
 
-    private List<Applet> applets = new ArrayList<>();
 
     public static void main(String[] args) throws Exception
     {
-        (new Main()).run();
-    }
-
-
-    public void run() throws Exception {
+        // Create directory to save frames
         final String saveDirectory = String.format("%s/%s", SAVE_PATH, Utils.getTimestampID());
-
-        // Create directory
         Utils.createDirectory(saveDirectory);
 
-        List<Configuration> configurations;
-        List<Configuration> configurations2;
+        // Create exit handler
+        ExitHandler exitHandler = new ExitHandler();
 
-        //configurations = (new CuidadoComOCaoManualGenerator()).generateConfigurations();
-        //configurations = (new InstagramManualGenerator()).generateConfigurations();
-        configurations = (new DevelopmentManualGenerator()).generateConfigurations();
-        configurations2 = (new OlympicsManualGenerator()).generateConfigurations();
-        //configurations = (new RandomGenerator(1)).generateConfigurations(10);
+        // Create configurations
+        List<Configuration> configurations = new ArrayList<>();
 
-        Applet applet = new Applet(configurations, saveDirectory, this);
-        applets.add(applet);
-        PApplet.runSketch(new String[]{applet.getClass().getName()}, applet);
+        //configurations.addAll((new CuidadoComOCaoManualGenerator()).generateConfigurations());
+        //configurations.addAll((new InstagramManualGenerator()).generateConfigurations());
+        //configurations.addAll((new DevelopmentManualGenerator()).generateConfigurations());
+        //configurations.addAll((new OlympicsManualGenerator()).generateConfigurations());
+        //configurations.addAll((new RandomGenerator(1)).generateConfigurations(5));
+        //configurations.addAll((new RandomGenerator(2)).generateConfigurations(5));
 
-        Applet applet2 = new Applet(configurations2, saveDirectory, this);
-        applets.add(applet2);
-        PApplet.runSketch(new String[]{applet2.getClass().getName()}, applet2);
-    }
 
-    public void m(Applet applet) {
-        System.out.println("Removing: "+applet.hashCode());
-        applets.remove(applet);
-        if (applets.isEmpty())
+        configurations.addAll((new NewManualGenerator()).generateConfigurations());
+
+        // Render each configuration on a new Applet
+        AtomicInteger frameNumber = new AtomicInteger(1);
+
+        configurations.forEach(configuration ->
         {
-            System.out.println("Done");
-            System.exit(0);
-        }
+            // Add frame path
+            final String framePath = String.format("%s/%d.png", saveDirectory, frameNumber.getAndIncrement());
+            configuration.setFramePath(framePath);
+
+            // Create Applet
+            Applet applet = new Applet(configuration, exitHandler);
+
+            // Register applet
+            exitHandler.registerApplet(applet);
+
+            // Run Applet
+            PApplet.runSketch(new String[]{applet.getClass().getName()}, applet);
+        });
     }
 }

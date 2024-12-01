@@ -1,4 +1,4 @@
-package eu.pmav.pxp0p.app.model;
+package eu.pmav.pxp0p.render.model;
 
 public class Coordinate
 {

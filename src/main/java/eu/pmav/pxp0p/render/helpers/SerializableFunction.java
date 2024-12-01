@@ -1,4 +1,4 @@
-package eu.pmav.pxp0p.app.helpers;
+package eu.pmav.pxp0p.render.helpers;
 
 import java.io.Serializable;
 import java.util.function.Function;

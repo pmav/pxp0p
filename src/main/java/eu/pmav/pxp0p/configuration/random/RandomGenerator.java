@@ -1,7 +1,7 @@
 package eu.pmav.pxp0p.configuration.random;
 
-import eu.pmav.pxp0p.app.forms.FormType;
-import eu.pmav.pxp0p.app.model.Configuration;
+import eu.pmav.pxp0p.render.forms.FormType;
+import eu.pmav.pxp0p.render.model.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,8 +1,8 @@
 package eu.pmav.pxp0p.configuration.manual.impl;
 
-import eu.pmav.pxp0p.app.forms.FormType;
-import eu.pmav.pxp0p.app.helpers.SerializableFunction;
-import eu.pmav.pxp0p.app.model.Configuration;
+import eu.pmav.pxp0p.render.forms.FormType;
+import eu.pmav.pxp0p.render.helpers.SerializableFunction;
+import eu.pmav.pxp0p.render.model.Configuration;
 import eu.pmav.pxp0p.configuration.manual.ManualGenerator;
 
 import java.io.IOException;

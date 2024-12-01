@@ -1,4 +1,4 @@
-package eu.pmav.pxp0p.app.forms;
+package eu.pmav.pxp0p.render.forms;
 
 public enum FormType
 {
