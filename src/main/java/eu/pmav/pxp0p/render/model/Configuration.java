@@ -12,12 +12,12 @@ public class Configuration implements Serializable
     private String framePath;
 
     // Canvas size
-    private int canvasWidth = 1000;
-    private int canvasHeight = 1000;
+    private int canvasWidth = 1000; // TODO Remove hardcoded value
+    private int canvasHeight = 1000; // TODO Remove hardcoded value
 
     // Space used inside canvas
-    private int gridWidth = 800;
-    private int gridHeight = 800;
+    private int gridWidth = 800; // TODO Remove hardcoded value
+    private int gridHeight = 800; // TODO Remove hardcoded value
 
     // Objects in the grid
     private int objectColumns = 16;
@@ -77,7 +77,7 @@ public class Configuration implements Serializable
     private int[] colorsSquare = {0xff000000};
     private int[] colorsTriangle = {0xff000000};
 
-    // Internal state
+    // Internal state (defined after running calculate())
     private int borderWidth;
     private int borderHeight;
     private int objectSizeGrid;
@@ -117,6 +117,29 @@ public class Configuration implements Serializable
         yInit = borderHeight + (gridHeight - (yIncrement * objectLines)) / 2;
     }
 
+    @Override
+    public String toString() {
+        return "Configuration{" +
+                "canvasWidth=" + canvasWidth +
+                ", canvasHeight=" + canvasHeight +
+                ", gridWidth=" + gridWidth +
+                ", gridHeight=" + gridHeight +
+                ", objectColumns=" + objectColumns +
+                ", objectLines=" + objectLines +
+                ", objectSpacing=" + objectSpacing +
+                ", borderWidth=" + borderWidth +
+                ", borderHeight=" + borderHeight +
+                ", objectSizeGrid=" + objectSizeGrid +
+                ", objectSize=" + objectSize +
+                ", xIncrement=" + xIncrement +
+                ", xInit=" + xInit +
+                ", yIncrement=" + yIncrement +
+                ", yInit=" + yInit +
+                "}\n";
+    }
+
+// Getters and setters
+
     public String getFramePath()
     {
         return framePath;
@@ -132,9 +155,17 @@ public class Configuration implements Serializable
         return canvasWidth;
     }
 
+    public void setCanvasWidth(int canvasWidth) {
+        this.canvasWidth = canvasWidth;
+    }
+
     public int getCanvasHeight()
     {
         return canvasHeight;
+    }
+
+    public void setCanvasHeight(int canvasHeight) {
+        this.canvasHeight = canvasHeight;
     }
 
     public int getGridWidth()
@@ -486,7 +517,6 @@ public class Configuration implements Serializable
     {
         this.maxAlpha = maxAlpha;
     }
-
 
     public boolean isHaveSizeTransform()
     {

@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Main
 {
     // Path to save each frame
-    static final String SAVE_PATH = "/mnt/Storage/pxp0p/";
+    static final String SAVE_PATH = "/Users/pedro/Workspace/pxp0p/tmp";
 
 
     public static void main(String[] args) throws Exception

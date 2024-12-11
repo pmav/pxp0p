@@ -49,11 +49,11 @@ public class NewManualGenerator extends ManualGenerator
         // Layout
         configurations = applyParameter(configurations, List.of(4), (c, v) -> c.setObjectColumns((int) v));
         configurations = applyParameter(configurations, List.of(4), (c, v) -> c.setObjectLines((int) v));
-        configurations = applyParameter(configurations, List.of(8), (c, v) -> c.setObjectSpacing((int) v));
+        configurations = applyParameter(configurations, List.of(0, 8), (c, v) -> c.setObjectSpacing((int) v));
 
         configurations = applyParameter(configurations, colorsBackground, (c, v) -> c.setColorBackground((int) v));
         configurations = applyParameter(configurations, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
-        configurations = applyParameter(configurations, Collections.singletonList(new FormType[]{FormType.POLLY}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        configurations = applyParameter(configurations, Collections.singletonList(new FormType[]{FormType.SEMICIRCLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
 
         // Object Colors
         configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsCircle((int[]) v));
@@ -70,12 +70,12 @@ public class NewManualGenerator extends ManualGenerator
         configurations = applyParameter(configurations, List.of(0), (c, v) -> c.setMinAlpha((int) v));
         configurations = applyParameter(configurations, List.of(150), (c, v) -> c.setMaxAlpha((int) v));
 
-        // Variation
-        //configurations = applyParameter(configurations, List.of(10), (c, v) -> c.setxVariation((int) v));
-        //configurations = applyParameter(configurations, List.of(10), (c, v) -> c.setyVariation((int) v));
+        // Variation (0 means no variation on the x,y position of the object)
+        configurations = applyParameter(configurations, List.of(0), (c, v) -> c.setxVariation((int) v));
+        configurations = applyParameter(configurations, List.of(0), (c, v) -> c.setyVariation((int) v));
 
         // Stroke
-        configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setHaveStroke((boolean) v));
+        configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveStroke((boolean) v));
         configurations = applyParameter(configurations, List.of(8), (c, v) -> c.setStrokeSize((int) v));
         configurations = applyParameter(configurations, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
 
@@ -101,6 +101,7 @@ public class NewManualGenerator extends ManualGenerator
         configurations = applyParameter(configurations, List.of(f), (c, v) -> c.setCalculateDirection((Function<Integer, Integer>) v));
 
         System.out.printf("Generated %s configurations...%n", configurations.size());
+        configurations.forEach(c -> System.out.printf(c.toString()));
 
         return configurations;
     }

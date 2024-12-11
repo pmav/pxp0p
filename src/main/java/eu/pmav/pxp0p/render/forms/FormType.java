@@ -5,5 +5,6 @@ public enum FormType
     CIRCLE,
     SQUARE,
     TRIANGLE,
-    POLLY
+    POLLY,
+    SEMICIRCLE,
 }
