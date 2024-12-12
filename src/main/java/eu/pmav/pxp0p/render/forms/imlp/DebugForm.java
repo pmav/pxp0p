@@ -16,18 +16,18 @@ public class DebugForm extends Form {
 
         System.out.printf("x: %s, y: %s, size: %s\n", x, y, size);
 
-        pApplet.pushMatrix();
+        applet.pushMatrix();
 
         // Create square
-        pApplet.fill(getRandomColor(configuration.getColorsForm().get(FormType.DEBUG)));
+        applet.fill(getRandomColor(configuration.getColorsForm().get(FormType.DEBUG)));
 
-        pApplet.beginShape();
-        pApplet.vertex(x, y);
-        pApplet.vertex(x + size, y);
-        pApplet.vertex(x + size, y + size);
-        pApplet.vertex(x, y + size);
-        pApplet.endShape(PShape.OPEN);
+        applet.beginShape();
+        applet.vertex(x, y);
+        applet.vertex(x + size, y);
+        applet.vertex(x + size, y + size);
+        applet.vertex(x, y + size);
+        applet.endShape(PShape.OPEN);
 
-        pApplet.popMatrix();
+        applet.popMatrix();
     }
 }

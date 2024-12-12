@@ -16,7 +16,7 @@ public class TriangleForm extends Form
     {
         final int size = PApplet.parseInt(
                 configuration.isHaveSizeTransform()
-                        ? configuration.getObjectSize() * pApplet.random(configuration.getMinSizeTransform(), configuration.getMaxSizeTransform())
+                        ? configuration.getObjectSize() * applet.random(configuration.getMinSizeTransform(), configuration.getMaxSizeTransform())
                         : configuration.getObjectSize());
 
         final boolean cut1 = configuration.isHaveCuts(); // && PApplet.parseInt(pApplet.random(0, 2)) == 1;
@@ -27,62 +27,62 @@ public class TriangleForm extends Form
                 : 0;
 
         final int alpha = configuration.isHaveAlpha()
-                ? PApplet.parseInt(pApplet.random(configuration.getMinAlpha(), configuration.getMaxAlpha()))
+                ? PApplet.parseInt(applet.random(configuration.getMinAlpha(), configuration.getMaxAlpha()))
                 : 255;
 
-        pApplet.pushMatrix();
-        pApplet.fill(getRandomColor(configuration.getColorsForm().get(FormType.TRIANGLE)), alpha);
+        applet.pushMatrix();
+        applet.fill(getRandomColor(configuration.getColorsForm().get(FormType.TRIANGLE)), alpha);
 
         switch (direction)
         {
             case 0:
                 // Pointing up
-                pApplet.triangle(x, y + size, x + (size / 2f), y, x + size, y + size);
+                applet.triangle(x, y + size, x + (size / 2f), y, x + size, y + size);
 
                 if (cut1)
                 {
-                    pApplet.fill(getRandomColor(configuration.getColorsCutTriangle()));
+                    applet.fill(getRandomColor(configuration.getColorsCutTriangle()));
                     x = x + size / 2 - cutSize / 2;
-                    pApplet.triangle(x, y + cutSize, x + (cutSize / 2f), y, x + cutSize, y + cutSize);
+                    applet.triangle(x, y + cutSize, x + (cutSize / 2f), y, x + cutSize, y + cutSize);
                 }
                 break;
 
             case 2:
                 // Pointing down
-                pApplet.triangle(x, y, x + size, y, x + (size / 2f), y + size);
+                applet.triangle(x, y, x + size, y, x + (size / 2f), y + size);
                 if (cut1)
                 {
-                    pApplet.fill(getRandomColor(configuration.getColorsCutTriangle()));
+                    applet.fill(getRandomColor(configuration.getColorsCutTriangle()));
                     x = x + size / 2 - cutSize / 2;
                     y = y + size - cutSize;
-                    pApplet.triangle(x, y, x + cutSize, y, x + (cutSize / 2f), y + cutSize);
+                    applet.triangle(x, y, x + cutSize, y, x + (cutSize / 2f), y + cutSize);
                 }
                 break;
 
             case 3:
                 // Pointing left
-                pApplet.triangle(x + size, y, x, y + (size / 2f), x + size, y + size);
+                applet.triangle(x + size, y, x, y + (size / 2f), x + size, y + size);
                 if (cut1)
                 {
-                    pApplet.fill(getRandomColor(configuration.getColorsCutTriangle()));
+                    applet.fill(getRandomColor(configuration.getColorsCutTriangle()));
                     y = y + size / 2 - cutSize / 2;
-                    pApplet.triangle(x + cutSize, y, x, y + (cutSize / 2f), x + cutSize, y + cutSize);
+                    applet.triangle(x + cutSize, y, x, y + (cutSize / 2f), x + cutSize, y + cutSize);
                 }
                 break;
 
             case 1:
                 // Pointing right
-                pApplet.triangle(x, y, x, y + size, x + size, y + (size / 2f));
+                applet.triangle(x, y, x, y + size, x + size, y + (size / 2f));
                 if (cut1)
                 {
-                    pApplet.fill(getRandomColor(configuration.getColorsCutTriangle()));
+                    applet.fill(getRandomColor(configuration.getColorsCutTriangle()));
                     x = x + size - cutSize;
                     y = y + size / 2 - cutSize / 2;
-                    pApplet.triangle(x, y, x, y + cutSize, x + cutSize, y + (cutSize / 2f));
+                    applet.triangle(x, y, x, y + cutSize, x + cutSize, y + (cutSize / 2f));
                 }
                 break;
         }
 
-        pApplet.popMatrix();
+        applet.popMatrix();
     }
 }

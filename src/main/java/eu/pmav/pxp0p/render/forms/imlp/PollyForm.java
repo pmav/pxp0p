@@ -17,15 +17,15 @@ public class PollyForm extends Form
     {
 
 
-        pApplet.pushMatrix();
+        applet.pushMatrix();
 
-        pApplet.fill(getRandomColor(configuration.getColorsForm().get(FormType.SQUARE)));
+        applet.fill(getRandomColor(configuration.getColorsForm().get(FormType.SQUARE)));
 
-        pApplet.beginShape();
-        pApplet.vertex(100,100);
-        pApplet.vertex(100,200);
-        pApplet.vertex(200,100);
-        pApplet.vertex(200,200);
+        applet.beginShape();
+        applet.vertex(100,100);
+        applet.vertex(100,200);
+        applet.vertex(200,100);
+        applet.vertex(200,200);
 
 //        for (float a = 0; a < TWO_PI; a += angle) {
 //            float sx = x + cos(a) * radius;
@@ -33,8 +33,8 @@ public class PollyForm extends Form
 //            vertex(sx, sy);
 //        }
 
-        pApplet.endShape(PShape.CLOSE);
+        applet.endShape(PShape.CLOSE);
 
-        pApplet.popMatrix();
+        applet.popMatrix();
     }
 }

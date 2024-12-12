@@ -17,14 +17,14 @@ public class SemiCircleForm extends Form
     {
         final int size = PApplet.parseInt(
                 configuration.isHaveSizeTransform()
-                        ? configuration.getObjectSize() * pApplet.random(configuration.getMinSizeTransform(), configuration.getMaxSizeTransform())
+                        ? configuration.getObjectSize() * applet.random(configuration.getMinSizeTransform(), configuration.getMaxSizeTransform())
                         : configuration.getObjectSize());
 
-        pApplet.pushMatrix();
+        applet.pushMatrix();
 
-        pApplet.fill(getRandomColor(configuration.getColorsForm().get(FormType.SQUARE)));
-        pApplet.arc(x + size / 2f, y + size / 2f, size, size, 0, PConstants.PI, PConstants.CHORD);
+        applet.fill(getRandomColor(configuration.getColorsForm().get(FormType.SQUARE)));
+        applet.arc(x + size / 2f, y + size / 2f, size, size, 0, PConstants.PI, PConstants.CHORD);
 
-        pApplet.popMatrix();
+        applet.popMatrix();
     }
 }

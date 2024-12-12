@@ -1,13 +1,14 @@
 package eu.pmav.pxp0p.utils;
 
+import processing.core.PApplet;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static processing.core.PApplet.*;
 
-public class Utils
-{
+public class Utils {
 
     // TODO Remove PApplet dependency
     public static String getTimestampID()
@@ -22,15 +23,11 @@ public class Utils
         return String.format("%s%s%s_%sh%sm%ss", year, month, day, hour, minute, second);
     }
 
-
     public static void createDirectory(String directory)
     {
-        try
-        {
+        try {
             Files.createDirectories(Paths.get(directory));
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

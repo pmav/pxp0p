@@ -16,61 +16,61 @@ public class SquareForm extends Form
     {
         final int size = PApplet.parseInt(
                 configuration.isHaveSizeTransform()
-                        ? configuration.getObjectSize() * pApplet.random(configuration.getMinSizeTransform(), configuration.getMaxSizeTransform())
+                        ? configuration.getObjectSize() * applet.random(configuration.getMinSizeTransform(), configuration.getMaxSizeTransform())
                         : configuration.getObjectSize());
 
         int offset = configuration.getObjectSize() - size;
         x = x + offset / 2;
         y = y + offset / 2;
 
-        final boolean cut1 = configuration.isHaveCuts() && PApplet.parseInt(pApplet.random(0, 2)) == 1;
-        final boolean cut2 = configuration.isHaveCuts() && PApplet.parseInt(pApplet.random(0, 2)) == 1;
-        final boolean cut3 = configuration.isHaveCuts() && PApplet.parseInt(pApplet.random(0, 2)) == 1;
-        final boolean cut4 = configuration.isHaveCuts() && PApplet.parseInt(pApplet.random(0, 2)) == 1;
+        final boolean cut1 = configuration.isHaveCuts() && PApplet.parseInt(applet.random(0, 2)) == 1;
+        final boolean cut2 = configuration.isHaveCuts() && PApplet.parseInt(applet.random(0, 2)) == 1;
+        final boolean cut3 = configuration.isHaveCuts() && PApplet.parseInt(applet.random(0, 2)) == 1;
+        final boolean cut4 = configuration.isHaveCuts() && PApplet.parseInt(applet.random(0, 2)) == 1;
         final int cutSize = Math.round(size * configuration.getCutSize());
 
         final boolean haveCenterObject = configuration.haveCenterObject();
         final int centerObjectSize = Math.round(size * configuration.getCenterObjectSize());
 
         final int alpha = configuration.isHaveAlpha()
-                ? PApplet.parseInt(pApplet.random(configuration.getMinAlpha(), configuration.getMaxAlpha()))
+                ? PApplet.parseInt(applet.random(configuration.getMinAlpha(), configuration.getMaxAlpha()))
                 : 255;
 
-        pApplet.pushMatrix();
+        applet.pushMatrix();
 
-        pApplet.fill(getRandomColor(configuration.getColorsForm().get(FormType.SQUARE)), alpha);
-        pApplet.square(x, y, size);
+        applet.fill(getRandomColor(configuration.getColorsForm().get(FormType.SQUARE)), alpha);
+        applet.square(x, y, size);
 
         if (cut1)
         {
-            pApplet.fill(getRandomColor(configuration.getColorsCutSquare()));
-            pApplet.square(x, y, cutSize);
+            applet.fill(getRandomColor(configuration.getColorsCutSquare()));
+            applet.square(x, y, cutSize);
         }
 
         if (cut2)
         {
-            pApplet.fill(getRandomColor(configuration.getColorsCutSquare()));
-            pApplet.square(x + size - cutSize, y, cutSize);
+            applet.fill(getRandomColor(configuration.getColorsCutSquare()));
+            applet.square(x + size - cutSize, y, cutSize);
         }
 
         if (cut3)
         {
-            pApplet.fill(getRandomColor(configuration.getColorsCutSquare()));
-            pApplet.square(x, y + size - cutSize, cutSize);
+            applet.fill(getRandomColor(configuration.getColorsCutSquare()));
+            applet.square(x, y + size - cutSize, cutSize);
         }
 
         if (cut4)
         {
-            pApplet.fill(getRandomColor(configuration.getColorsCutSquare()));
-            pApplet.square(x + size - cutSize, y + size - cutSize, cutSize);
+            applet.fill(getRandomColor(configuration.getColorsCutSquare()));
+            applet.square(x + size - cutSize, y + size - cutSize, cutSize);
         }
 
         if (haveCenterObject)
         {
-            pApplet.fill(getRandomColor(configuration.getColorsCenterObject()), alpha);
-            pApplet.square((x + size / 2f) - (centerObjectSize / 2f), (y + size / 2f) - (centerObjectSize / 2f), centerObjectSize);
+            applet.fill(getRandomColor(configuration.getColorsCenterObject()), alpha);
+            applet.square((x + size / 2f) - (centerObjectSize / 2f), (y + size / 2f) - (centerObjectSize / 2f), centerObjectSize);
         }
 
-        pApplet.popMatrix();
+        applet.popMatrix();
     }
 }
