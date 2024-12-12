@@ -1,7 +1,7 @@
 package eu.pmav.pxp0p.configuration.manual.impl;
 
 import eu.pmav.pxp0p.render.forms.FormType;
-import eu.pmav.pxp0p.render.model.Configuration;
+import eu.pmav.pxp0p.configuration.Configuration;
 import eu.pmav.pxp0p.configuration.manual.ManualGenerator;
 
 import java.io.IOException;
@@ -38,9 +38,9 @@ public class OlympicsManualGenerator extends ManualGenerator
         configurations = applyParameter(configurations, Collections.singletonList(new FormType[]{FormType.CIRCLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
 
         // Object Colors
-        configurations = applyParameter(configurations, List.of(colorsOlympics), (c, v) -> c.setColorsCircle((int[]) v));
-        configurations = applyParameter(configurations, List.of(colorsOlympics), (c, v) -> c.setColorsSquare((int[]) v));
-        configurations = applyParameter(configurations, List.of(colorsOlympics), (c, v) -> c.setColorsTriangle((int[]) v));
+        //configurations = applyParameter(configurations, List.of(colorsOlympics), (c, v) -> c.setColorsCircle((int[]) v));
+        //configurations = applyParameter(configurations, List.of(colorsOlympics), (c, v) -> c.setColorsSquare((int[]) v));
+        //configurations = applyParameter(configurations, List.of(colorsOlympics), (c, v) -> c.setColorsTriangle((int[]) v));
 
         // Size
         configurations = applyParameter(configurations, List.of(true, false), (c, v) -> c.setHaveSizeTransform((boolean) v));

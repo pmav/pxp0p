@@ -2,7 +2,7 @@ package eu.pmav.pxp0p.render;
 
 import eu.pmav.pxp0p.render.forms.FormType;
 import eu.pmav.pxp0p.render.forms.imlp.*;
-import eu.pmav.pxp0p.render.model.Configuration;
+import eu.pmav.pxp0p.configuration.Configuration;
 import eu.pmav.pxp0p.render.model.Coordinate;
 import processing.core.PApplet;
 
@@ -107,7 +107,11 @@ public class Frame
                 break;
 
             case SEMICIRCLE:
-                (new SemiCircle(applet)).draw(x, y, frameIndex, configuration);
+                (new SemiCircleForm(applet)).draw(x, y, frameIndex, configuration);
+                break;
+
+            case DEBUG:
+                (new DebugForm(applet)).draw(x, y, frameIndex, configuration);
                 break;
         }
     }

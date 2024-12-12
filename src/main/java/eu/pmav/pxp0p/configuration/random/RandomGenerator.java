@@ -1,7 +1,7 @@
 package eu.pmav.pxp0p.configuration.random;
 
 import eu.pmav.pxp0p.render.forms.FormType;
-import eu.pmav.pxp0p.render.model.Configuration;
+import eu.pmav.pxp0p.configuration.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,9 +57,9 @@ public class RandomGenerator
             configuration.setObjectTypes(new FormType[]{FormType.CIRCLE});
 
             // Object Colors
-            configuration.setColorsCircle(colors);
-            configuration.setColorsSquare(colors);
-            configuration.setColorsTriangle(colors);
+            //configuration.setColorsCircle(colors);
+            //configuration.setColorsSquare(colors);
+            //configuration.setColorsTriangle(colors);
 
             // Size
             configuration.setHaveSizeTransform(getRandomBoolean());

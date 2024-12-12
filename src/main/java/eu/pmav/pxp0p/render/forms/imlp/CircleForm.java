@@ -1,7 +1,8 @@
 package eu.pmav.pxp0p.render.forms.imlp;
 
 import eu.pmav.pxp0p.render.forms.Form;
-import eu.pmav.pxp0p.render.model.Configuration;
+import eu.pmav.pxp0p.configuration.Configuration;
+import eu.pmav.pxp0p.render.forms.FormType;
 import processing.core.PApplet;
 
 public class CircleForm extends Form
@@ -30,7 +31,7 @@ public class CircleForm extends Form
         final int alpha = configuration.isHaveAlpha() ? PApplet.parseInt(pApplet.random(configuration.getMinAlpha(), configuration.getMaxAlpha())) : 255;
 
         pApplet.pushMatrix();
-        pApplet.fill(getRandomColor(configuration.getColorsCircle()), alpha);
+        pApplet.fill(getRandomColor(configuration.getColorsForm().get(FormType.CIRCLE)), alpha);
         pApplet.circle(x + size / 2f, y + size / 2f, size);
 
         if (cut1)

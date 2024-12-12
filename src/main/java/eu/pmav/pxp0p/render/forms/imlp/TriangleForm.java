@@ -1,7 +1,8 @@
 package eu.pmav.pxp0p.render.forms.imlp;
 
 import eu.pmav.pxp0p.render.forms.Form;
-import eu.pmav.pxp0p.render.model.Configuration;
+import eu.pmav.pxp0p.configuration.Configuration;
+import eu.pmav.pxp0p.render.forms.FormType;
 import processing.core.PApplet;
 
 public class TriangleForm extends Form
@@ -30,7 +31,7 @@ public class TriangleForm extends Form
                 : 255;
 
         pApplet.pushMatrix();
-        pApplet.fill(getRandomColor(configuration.getColorsTriangle()), alpha);
+        pApplet.fill(getRandomColor(configuration.getColorsForm().get(FormType.TRIANGLE)), alpha);
 
         switch (direction)
         {

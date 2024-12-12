@@ -1,13 +1,14 @@
 package eu.pmav.pxp0p.render.forms.imlp;
 
 import eu.pmav.pxp0p.render.forms.Form;
-import eu.pmav.pxp0p.render.model.Configuration;
+import eu.pmav.pxp0p.configuration.Configuration;
+import eu.pmav.pxp0p.render.forms.FormType;
 import processing.core.PApplet;
 import processing.core.PConstants;
 
-public class SemiCircle extends Form
+public class SemiCircleForm extends Form
 {
-    public SemiCircle(PApplet pApplet)
+    public SemiCircleForm(PApplet pApplet)
     {
         super(pApplet);
     }
@@ -21,7 +22,7 @@ public class SemiCircle extends Form
 
         pApplet.pushMatrix();
 
-        pApplet.fill(getRandomColor(configuration.getColorsSquare()));
+        pApplet.fill(getRandomColor(configuration.getColorsForm().get(FormType.SQUARE)));
         pApplet.arc(x + size / 2f, y + size / 2f, size, size, 0, PConstants.PI, PConstants.CHORD);
 
         pApplet.popMatrix();

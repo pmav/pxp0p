@@ -2,7 +2,7 @@ package eu.pmav.pxp0p;
 
 import eu.pmav.pxp0p.configuration.manual.impl.*;
 import eu.pmav.pxp0p.render.Applet;
-import eu.pmav.pxp0p.render.model.Configuration;
+import eu.pmav.pxp0p.configuration.Configuration;
 import eu.pmav.pxp0p.utils.ExitHandler;
 import eu.pmav.pxp0p.utils.Utils;
 import processing.core.PApplet;

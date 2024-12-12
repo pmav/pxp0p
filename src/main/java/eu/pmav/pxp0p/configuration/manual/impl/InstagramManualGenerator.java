@@ -1,7 +1,7 @@
 package eu.pmav.pxp0p.configuration.manual.impl;
 
 import eu.pmav.pxp0p.render.forms.FormType;
-import eu.pmav.pxp0p.render.model.Configuration;
+import eu.pmav.pxp0p.configuration.Configuration;
 import eu.pmav.pxp0p.configuration.manual.ManualGenerator;
 
 import java.io.IOException;
@@ -57,9 +57,9 @@ public class InstagramManualGenerator extends ManualGenerator
         //PApplet.parseInt(pApplet.random(0, 4))
 
         // Object Colors
-        configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsCircle((int[]) v));
-        configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsSquare((int[]) v));
-        configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsTriangle((int[]) v));
+        //configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsCircle((int[]) v));
+        //configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsSquare((int[]) v));
+        //configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsTriangle((int[]) v));
 
         // Size Transform
         configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveSizeTransform((boolean) v));

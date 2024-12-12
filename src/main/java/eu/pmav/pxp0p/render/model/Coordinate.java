@@ -2,7 +2,6 @@ package eu.pmav.pxp0p.render.model;
 
 public class Coordinate
 {
-
     private final int x;
     private final int y;
 

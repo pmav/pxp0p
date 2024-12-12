@@ -3,7 +3,7 @@ package eu.pmav.pxp0p.configuration.manual.impl;
 import eu.pmav.pxp0p.configuration.manual.ManualGenerator;
 import eu.pmav.pxp0p.render.forms.FormType;
 import eu.pmav.pxp0p.render.helpers.SerializableFunction;
-import eu.pmav.pxp0p.render.model.Configuration;
+import eu.pmav.pxp0p.configuration.Configuration;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -46,19 +46,28 @@ public class NewManualGenerator extends ManualGenerator
         // Initial configuration
         List<Configuration> configurations = Collections.singletonList(new Configuration());
 
+        // Canvas and grid
+        configurations = applyParameter(configurations, List.of(1000), (c, v) -> c.setCanvasWidth((int) v));
+        configurations = applyParameter(configurations, List.of(1000), (c, v) -> c.setCanvasHeight((int) v));
+
+        configurations = applyParameter(configurations, List.of(800), (c, v) -> c.setGridWidth((int) v));
+        configurations = applyParameter(configurations, List.of(800), (c, v) -> c.setGridHeight((int) v));
+
         // Layout
         configurations = applyParameter(configurations, List.of(4), (c, v) -> c.setObjectColumns((int) v));
         configurations = applyParameter(configurations, List.of(4), (c, v) -> c.setObjectLines((int) v));
-        configurations = applyParameter(configurations, List.of(0, 8), (c, v) -> c.setObjectSpacing((int) v));
+        configurations = applyParameter(configurations, List.of(8), (c, v) -> c.setObjectSpacing((int) v));
 
         configurations = applyParameter(configurations, colorsBackground, (c, v) -> c.setColorBackground((int) v));
         configurations = applyParameter(configurations, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
-        configurations = applyParameter(configurations, Collections.singletonList(new FormType[]{FormType.SEMICIRCLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        configurations = applyParameter(configurations, Collections.singletonList(new FormType[]{FormType.DEBUG}), (c, v) -> c.setObjectTypes((FormType[]) v));
 
         // Object Colors
-        configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsCircle((int[]) v));
-        configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsSquare((int[]) v));
-        configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsTriangle((int[]) v));
+        //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsCircle((int[]) v));
+        //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsSquare((int[]) v));
+        //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsTriangle((int[]) v));
+        configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.DEBUG, (int[]) v));
+
 
         // Size
         configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveSizeTransform((boolean) v));
@@ -101,7 +110,12 @@ public class NewManualGenerator extends ManualGenerator
         configurations = applyParameter(configurations, List.of(f), (c, v) -> c.setCalculateDirection((Function<Integer, Integer>) v));
 
         System.out.printf("Generated %s configurations...%n", configurations.size());
-        configurations.forEach(c -> System.out.printf(c.toString()));
+
+        // Compute initial conditions for each configuration
+        configurations.forEach(c -> {
+            c.calculate();
+            System.out.printf(c.toString());
+        });
 
         return configurations;
     }

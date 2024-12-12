@@ -1,7 +1,8 @@
 package eu.pmav.pxp0p.render.forms.imlp;
 
 import eu.pmav.pxp0p.render.forms.Form;
-import eu.pmav.pxp0p.render.model.Configuration;
+import eu.pmav.pxp0p.configuration.Configuration;
+import eu.pmav.pxp0p.render.forms.FormType;
 import processing.core.PApplet;
 
 public class SquareForm extends Form
@@ -37,7 +38,7 @@ public class SquareForm extends Form
 
         pApplet.pushMatrix();
 
-        pApplet.fill(getRandomColor(configuration.getColorsSquare()), alpha);
+        pApplet.fill(getRandomColor(configuration.getColorsForm().get(FormType.SQUARE)), alpha);
         pApplet.square(x, y, size);
 
         if (cut1)

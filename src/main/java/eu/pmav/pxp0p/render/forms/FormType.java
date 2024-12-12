@@ -7,4 +7,5 @@ public enum FormType
     TRIANGLE,
     POLLY,
     SEMICIRCLE,
+    DEBUG,
 }
