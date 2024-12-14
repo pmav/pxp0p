@@ -16,6 +16,13 @@ public class Frame
     private final PApplet applet;
     private final Configuration configuration;
 
+    // Internal state (defined after running calculate())
+    private int objectSize;
+    private int xIncrement;
+    private int xInit;
+    private int yIncrement;
+    private int yInit;
+
     public Frame(PApplet applet, Configuration configuration)
     {
         this.applet = applet;
@@ -24,7 +31,11 @@ public class Frame
 
     public void render()
     {
+        // Set deterministic behaviour
         applet.randomSeed(0);
+
+        // Create internal state needed for render
+        calculate();
 
         // Generate stroke
         if (configuration.isHaveStroke())
@@ -44,8 +55,8 @@ public class Frame
         // Generate base coordinates for all objects
         List<Coordinate> coordinateList = new ArrayList<>();
 
-        int x = configuration.getxInit();
-        int y = configuration.getyInit();
+        int x = this.xInit;
+        int y = this.yInit;
         int frameIndex = 0;
 
         for (int line = 0; line < configuration.getObjectLines(); line++)
@@ -55,11 +66,11 @@ public class Frame
                 coordinateList.add(new Coordinate(x, y, frameIndex));
                 frameIndex++;
 
-                x += configuration.getxIncrement();
+                x += this.xIncrement;
             }
 
-            x = configuration.getxInit(); // Reset x-axis position
-            y += configuration.getyIncrement();
+            x = this.xInit; // Reset x-axis position
+            y += this.yIncrement;
         }
 
         // Randomize list of base object coordinates
@@ -68,14 +79,34 @@ public class Frame
         // Draw object for each base coordinate
         coordinateList.forEach(c ->
         {
-            drawObject(c.getX(), c.getY(), configuration, c.getFrameIndex());
+            drawObject(c, configuration);
         });
 
         applet.filter(PApplet.BLUR, configuration.getBlurValue());
     }
 
-    private void drawObject(int x, int y, Configuration configuration, int frameIndex)
+    public void calculate()
     {
+        final int borderWidth = (this.configuration.getCanvasWidth() - this.configuration.getGridWidth()) / 2;
+        final int borderHeight = (this.configuration.getCanvasHeight() - this.configuration.getGridHeight()) / 2;
+
+        final int objectSizeInGrid = Math.min(this.configuration.getGridWidth() / this.configuration.getObjectColumns(), this.configuration.getGridHeight() / this.configuration.getObjectLines()); // Size of the object in the grid
+
+        objectSize = objectSizeInGrid - this.configuration.getObjectSpacing(); // Actual object size, if spacing is zero the objects will fill the grid
+
+        xIncrement = objectSizeInGrid;
+        xInit = borderWidth + (this.configuration.getGridWidth() - (xIncrement * this.configuration.getObjectColumns())) / 2;
+
+        yIncrement = objectSizeInGrid;
+        yInit = borderHeight + (this.configuration.getGridWidth() - (yIncrement * this.configuration.getObjectLines())) / 2;
+    }
+
+    private void drawObject(Coordinate coordinate, Configuration configuration)
+    {
+        int x = coordinate.getX();
+        int y = coordinate.getY();
+        int frameIndex = coordinate.getY();
+
         if (configuration.getxVariation() != 0)
         {
             x = x + Math.round((applet.random(-1, 1) * configuration.getxVariation()));
@@ -91,27 +122,27 @@ public class Frame
         switch (formType)
         {
             case SQUARE:
-                (new SquareForm(applet)).draw(x, y, frameIndex, configuration);
+                (new SquareForm()).draw(x, y, frameIndex, configuration, this.objectSize, applet);
                 break;
 
             case CIRCLE:
-                (new CircleForm(applet)).draw(x, y, frameIndex, configuration);
+                (new CircleForm()).draw(x, y, frameIndex, configuration, this.objectSize, applet);
                 break;
 
             case TRIANGLE:
-                (new TriangleForm(applet)).draw(x, y, frameIndex, configuration);
+                (new TriangleForm()).draw(x, y, frameIndex, configuration, this.objectSize, applet);
                 break;
 
             case POLLY:
-                (new PollyForm(applet)).draw(x, y, frameIndex, configuration);
+                (new PollyForm()).draw(x, y, frameIndex, configuration, this.objectSize, applet);
                 break;
 
             case SEMICIRCLE:
-                (new SemiCircleForm(applet)).draw(x, y, frameIndex, configuration);
+                (new SemiCircleForm()).draw(x, y, frameIndex, configuration, this.objectSize, applet);
                 break;
 
             case DEBUG:
-                (new DebugForm(applet)).draw(x, y, frameIndex, configuration);
+                (new DebugForm()).draw(x, y, frameIndex, configuration, this.objectSize, applet);
                 break;
         }
     }

@@ -93,8 +93,6 @@ public class RandomGenerator
             configuration.setColorsCutSquare(colors);
             configuration.setColorsCutTriangle(colors);
 
-            configuration.calculate();
-
             configurations.add(configuration);
         }
 

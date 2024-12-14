@@ -5,18 +5,9 @@ import processing.core.PApplet;
 
 public abstract class Form
 {
-    protected final PApplet applet;
-
-    public Form(PApplet applet)
+    public Form()
     {
-        this.applet = applet;
     }
 
-    public abstract void draw(int x, int y, int frameIndex, Configuration configuration);
-
-    // TODO Move this method to a utils file
-    protected int getRandomColor(int[] colors)
-    {
-        return colors[PApplet.parseInt(applet.random(colors.length))];
-    }
+    public abstract void draw(int x, int y, int frameIndex, Configuration configuration, int objectSize, PApplet applet);
 }

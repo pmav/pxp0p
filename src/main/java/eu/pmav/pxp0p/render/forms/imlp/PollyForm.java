@@ -3,23 +3,24 @@ package eu.pmav.pxp0p.render.forms.imlp;
 import eu.pmav.pxp0p.render.forms.Form;
 import eu.pmav.pxp0p.configuration.Configuration;
 import eu.pmav.pxp0p.render.forms.FormType;
+import eu.pmav.pxp0p.utils.Utils;
 import processing.core.PApplet;
 import processing.core.PShape;
 
 public class PollyForm extends Form
 {
-    public PollyForm(PApplet pApplet)
+    public PollyForm()
     {
-        super(pApplet);
+        super();
     }
 
-    public void draw(int x, int y, int frameIndex, Configuration configuration)
+    public void draw(int x, int y, int frameIndex, Configuration configuration, int objectSize, PApplet applet)
     {
 
 
         applet.pushMatrix();
 
-        applet.fill(getRandomColor(configuration.getColorsForm().get(FormType.SQUARE)));
+        applet.fill(Utils.getRandomColor(applet, configuration.getColorsForm().get(FormType.SQUARE)));
 
         applet.beginShape();
         applet.vertex(100,100);

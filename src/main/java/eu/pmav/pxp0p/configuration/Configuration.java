@@ -78,13 +78,6 @@ public class Configuration implements Serializable
     private float centerObjectSize;
     private int[] colorsCenterObject;
 
-    // Internal state (defined after running calculate())
-    private int objectSize;
-    private int xIncrement;
-    private int xInit;
-    private int yIncrement;
-    private int yInit;
-
     public Configuration()
     {
     }
@@ -99,22 +92,6 @@ public class Configuration implements Serializable
         return (Configuration) objInputStream.readObject();
     }
 
-    public void calculate()
-    {
-        final int borderWidth = (canvasWidth - gridWidth) / 2;
-        final int borderHeight = (canvasHeight - gridHeight) / 2;
-
-        final int objectSizeInGrid = Math.min(gridWidth / objectColumns, gridHeight / objectLines); // Size of the object in the grid
-
-        objectSize = objectSizeInGrid - objectSpacing; // Actual object size, if spacing is zero the objects will fill the grid
-
-        xIncrement = objectSizeInGrid;
-        xInit = borderWidth + (gridWidth - (xIncrement * objectColumns)) / 2;
-
-        yIncrement = objectSizeInGrid;
-        yInit = borderHeight + (gridHeight - (yIncrement * objectLines)) / 2;
-    }
-
     @Override
     public String toString() {
         return "Configuration{" +
@@ -125,11 +102,6 @@ public class Configuration implements Serializable
                 ", objectColumns=" + objectColumns +
                 ", objectLines=" + objectLines +
                 ", objectSpacing=" + objectSpacing +
-                ", objectSize=" + objectSize +
-                ", xIncrement=" + xIncrement +
-                ", xInit=" + xInit +
-                ", yIncrement=" + yIncrement +
-                ", yInit=" + yInit +
                 "}\n";
     }
 
@@ -165,9 +137,19 @@ public class Configuration implements Serializable
         this.canvasHeight = canvasHeight;
     }
 
+    public int getGridWidth()
+    {
+        return gridWidth;
+    }
+
     public void setGridWidth(int gridWidth)
     {
         this.gridWidth = gridWidth;
+    }
+
+    public int getGridHeight()
+    {
+        return gridHeight;
     }
 
     public void setGridHeight(int gridHeight)
@@ -475,35 +457,6 @@ public class Configuration implements Serializable
     public void setCalculateDirection(Function<Integer, Integer> calculateDirection)
     {
         this.calculateDirection = calculateDirection;
-    }
-
-    //endregion
-
-    //region Getters for internal state
-
-    public int getObjectSize()
-    {
-        return objectSize;
-    }
-
-    public int getxIncrement()
-    {
-        return xIncrement;
-    }
-
-    public int getxInit()
-    {
-        return xInit;
-    }
-
-    public int getyIncrement()
-    {
-        return yIncrement;
-    }
-
-    public int getyInit()
-    {
-        return yInit;
     }
 
     //endregion

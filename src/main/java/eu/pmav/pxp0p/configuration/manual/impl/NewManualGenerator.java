@@ -68,7 +68,6 @@ public class NewManualGenerator extends ManualGenerator
         //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsTriangle((int[]) v));
         configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.DEBUG, (int[]) v));
 
-
         // Size
         configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveSizeTransform((boolean) v));
         configurations = applyParameter(configurations, List.of(1.0f), (c, v) -> c.setMinSizeTransform((float) v));
@@ -101,7 +100,7 @@ public class NewManualGenerator extends ManualGenerator
         configurations = applyParameter(configurations, List.of(colorsBlue), (c, v) -> c.setColorsCutSquare((int[]) v));
         configurations = applyParameter(configurations, List.of(colorsBlue), (c, v) -> c.setColorsCutTriangle((int[]) v));
 
-        // Change direction for triangles
+        // Change direction (triangles only)
         configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setHaveDirection((boolean) v));
         SerializableFunction<Integer, Integer> f = (Integer i) ->
         {
@@ -111,9 +110,7 @@ public class NewManualGenerator extends ManualGenerator
 
         System.out.printf("Generated %s configurations...%n", configurations.size());
 
-        // Compute initial conditions for each configuration
         configurations.forEach(c -> {
-            c.calculate();
             System.out.printf(c.toString());
         });
 

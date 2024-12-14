@@ -31,4 +31,9 @@ public class Utils {
             throw new RuntimeException(e);
         }
     }
+
+    public static int getRandomColor(PApplet applet, int[] colors)
+    {
+        return colors[PApplet.parseInt(applet.random(colors.length))];
+    }
 }
