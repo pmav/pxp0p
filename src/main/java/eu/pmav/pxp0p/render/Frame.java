@@ -1,9 +1,10 @@
 package eu.pmav.pxp0p.render;
 
+import eu.pmav.pxp0p.configuration.FrameConfiguration;
+import eu.pmav.pxp0p.render.forms.Form;
 import eu.pmav.pxp0p.render.forms.FormType;
 import eu.pmav.pxp0p.render.forms.imlp.*;
-import eu.pmav.pxp0p.configuration.Configuration;
-import eu.pmav.pxp0p.render.model.Coordinate;
+import eu.pmav.pxp0p.render.model.ObjectConfiguration;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
@@ -14,19 +15,18 @@ import java.util.Random;
 public class Frame
 {
     private final PApplet applet;
-    private final Configuration configuration;
+    private final FrameConfiguration frameConfiguration;
 
     // Internal state (defined after running calculate())
-    private int objectSize;
     private int xIncrement;
     private int xInit;
     private int yIncrement;
     private int yInit;
 
-    public Frame(PApplet applet, Configuration configuration)
+    public Frame(PApplet applet, FrameConfiguration frameConfiguration)
     {
         this.applet = applet;
-        this.configuration = configuration;
+        this.frameConfiguration = frameConfiguration;
     }
 
     public void render()
@@ -38,34 +38,34 @@ public class Frame
         calculate();
 
         // Generate stroke
-        if (configuration.isHaveStroke())
+        if (frameConfiguration.isHaveStroke())
         {
-            applet.stroke(configuration.getStrokeColor());
+            applet.stroke(frameConfiguration.getStrokeColor());
         }
         else
         {
             applet.noStroke();
         }
 
-        applet.strokeWeight(configuration.getStrokeSize());
+        applet.strokeWeight(frameConfiguration.getStrokeSize());
 
         // Set background color
-        applet.background(configuration.getColorBackground());
+        applet.background(frameConfiguration.getColorBackground());
 
-        // Generate base coordinates for all objects
-        List<Coordinate> coordinateList = new ArrayList<>();
+        // Generate configuration for each object in Frame
+        List<ObjectConfiguration> objectConfigurations = new ArrayList<>();
 
         int x = this.xInit;
         int y = this.yInit;
-        int frameIndex = 0;
+        int framePosition = 0;
 
-        for (int line = 0; line < configuration.getObjectLines(); line++)
+        for (int line = 0; line < frameConfiguration.getObjectLines(); line++)
         {
-            for (int column = 0; column < configuration.getObjectColumns(); column++)
+            for (int column = 0; column < frameConfiguration.getObjectColumns(); column++)
             {
-                coordinateList.add(new Coordinate(x, y, frameIndex));
-                frameIndex++;
+                objectConfigurations.add(new ObjectConfiguration(x, y, framePosition));
 
+                framePosition++;
                 x += this.xIncrement;
             }
 
@@ -73,77 +73,54 @@ public class Frame
             y += this.yIncrement;
         }
 
-        // Randomize list of base object coordinates
-        Collections.shuffle(coordinateList, new Random(0));
+        // Randomize list of object configurations
+        Collections.shuffle(objectConfigurations, new Random(0));
 
-        // Draw object for each base coordinate
-        coordinateList.forEach(c ->
-        {
-            drawObject(c, configuration);
+        // Draw object for each configuration
+        objectConfigurations.forEach(objectConfiguration -> {
+            // TODO Move to each Form:
+            /*
+            int x = objectConfiguration.getX();
+            int y = objectConfiguration.getY();
+
+            if (configuration.getxVariation() != 0)
+            {
+                x = x + Math.round((applet.random(-1, 1) * configuration.getxVariation()));
+            }
+
+            if (configuration.getyVariation() != 0)
+            {
+                y = y + Math.round((applet.random(-1, 1) * configuration.getyVariation()));
+            }
+             */
+
+            final FormType formType = frameConfiguration.getObjectTypes()[PApplet.parseInt(applet.random(frameConfiguration.getObjectTypes().length))];
+
+            final Form form = switch (formType) {
+                case SQUARE -> new SquareForm();
+                case CIRCLE -> new CircleForm();
+                case TRIANGLE -> new TriangleForm();
+                case POLLY -> new PollyForm();
+                case SEMICIRCLE -> new SemiCircleForm();
+                case DEBUG -> new DebugForm();
+            };
+
+            form.draw(applet, frameConfiguration, objectConfiguration);
         });
 
-        applet.filter(PApplet.BLUR, configuration.getBlurValue());
+        applet.filter(PApplet.BLUR, frameConfiguration.getBlurValue());
     }
 
     public void calculate()
     {
-        final int borderWidth = (this.configuration.getCanvasWidth() - this.configuration.getGridWidth()) / 2;
-        final int borderHeight = (this.configuration.getCanvasHeight() - this.configuration.getGridHeight()) / 2;
-
-        final int objectSizeInGrid = Math.min(this.configuration.getGridWidth() / this.configuration.getObjectColumns(), this.configuration.getGridHeight() / this.configuration.getObjectLines()); // Size of the object in the grid
-
-        objectSize = objectSizeInGrid - this.configuration.getObjectSpacing(); // Actual object size, if spacing is zero the objects will fill the grid
+        final int objectSizeInGrid = Math.min(this.frameConfiguration.getGridWidth() / this.frameConfiguration.getObjectColumns(), this.frameConfiguration.getGridHeight() / this.frameConfiguration.getObjectLines()); // Size of the object in the grid
 
         xIncrement = objectSizeInGrid;
-        xInit = borderWidth + (this.configuration.getGridWidth() - (xIncrement * this.configuration.getObjectColumns())) / 2;
+        final int borderWidth = (this.frameConfiguration.getCanvasWidth() - this.frameConfiguration.getGridWidth()) / 2;
+        xInit = borderWidth + (this.frameConfiguration.getGridWidth() - (xIncrement * this.frameConfiguration.getObjectColumns())) / 2;
 
         yIncrement = objectSizeInGrid;
-        yInit = borderHeight + (this.configuration.getGridWidth() - (yIncrement * this.configuration.getObjectLines())) / 2;
-    }
-
-    private void drawObject(Coordinate coordinate, Configuration configuration)
-    {
-        int x = coordinate.getX();
-        int y = coordinate.getY();
-        int frameIndex = coordinate.getY();
-
-        if (configuration.getxVariation() != 0)
-        {
-            x = x + Math.round((applet.random(-1, 1) * configuration.getxVariation()));
-        }
-
-        if (configuration.getyVariation() != 0)
-        {
-            y = y + Math.round((applet.random(-1, 1) * configuration.getyVariation()));
-        }
-
-        final FormType formType = configuration.getObjectTypes()[PApplet.parseInt(applet.random(configuration.getObjectTypes().length))];
-
-        switch (formType)
-        {
-            case SQUARE:
-                (new SquareForm()).draw(x, y, frameIndex, configuration, this.objectSize, applet);
-                break;
-
-            case CIRCLE:
-                (new CircleForm()).draw(x, y, frameIndex, configuration, this.objectSize, applet);
-                break;
-
-            case TRIANGLE:
-                (new TriangleForm()).draw(x, y, frameIndex, configuration, this.objectSize, applet);
-                break;
-
-            case POLLY:
-                (new PollyForm()).draw(x, y, frameIndex, configuration, this.objectSize, applet);
-                break;
-
-            case SEMICIRCLE:
-                (new SemiCircleForm()).draw(x, y, frameIndex, configuration, this.objectSize, applet);
-                break;
-
-            case DEBUG:
-                (new DebugForm()).draw(x, y, frameIndex, configuration, this.objectSize, applet);
-                break;
-        }
+        final int borderHeight = (this.frameConfiguration.getCanvasHeight() - this.frameConfiguration.getGridHeight()) / 2;
+        yInit = borderHeight + (this.frameConfiguration.getGridWidth() - (yIncrement * this.frameConfiguration.getObjectLines())) / 2;
     }
 }

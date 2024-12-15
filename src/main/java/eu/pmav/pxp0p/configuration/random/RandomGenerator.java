@@ -1,7 +1,7 @@
 package eu.pmav.pxp0p.configuration.random;
 
+import eu.pmav.pxp0p.configuration.FrameConfiguration;
 import eu.pmav.pxp0p.render.forms.FormType;
-import eu.pmav.pxp0p.configuration.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +33,9 @@ public class RandomGenerator
             0xff0085c7, 0xfff4c300, 0xff000000, 0xff009f3d, 0xffdf0024
     };
 
-    public List<Configuration> generateConfigurations(int count)
+    public List<FrameConfiguration> generateConfigurations(int count)
     {
-        List<Configuration> configurations = new ArrayList<>(count);
+        List<FrameConfiguration> frameConfigurations = new ArrayList<>(count);
 
         for (int i = 0; i < count; i++)
         {
@@ -45,16 +45,16 @@ public class RandomGenerator
             int backgroundColor = 0xff000000; //getRandomColor();
             int strokeColor = getRandomColor();
 
-            Configuration configuration = new Configuration();
+            FrameConfiguration frameConfiguration = new FrameConfiguration();
 
-            configuration.setObjectColumns(getRandomInt(1, 16));
-            configuration.setObjectLines(getRandomInt(1, 16));
-            configuration.setObjectSpacing(getRandomInt(0, 32));
+            frameConfiguration.setObjectColumns(getRandomInt(1, 16));
+            frameConfiguration.setObjectLines(getRandomInt(1, 16));
+            frameConfiguration.setObjectSpacing(getRandomInt(0, 32));
 
-            configuration.setColorBackground(backgroundColor);
-            configuration.setBlurValue(geRandomFloat(0, 1));
+            frameConfiguration.setColorBackground(backgroundColor);
+            frameConfiguration.setBlurValue(geRandomFloat(0, 1));
             //configuration.setObjectTypes(getRandomFormTypes());
-            configuration.setObjectTypes(new FormType[]{FormType.CIRCLE});
+            frameConfiguration.setObjectTypes(new FormType[]{FormType.CIRCLE});
 
             // Object Colors
             //configuration.setColorsCircle(colors);
@@ -62,41 +62,41 @@ public class RandomGenerator
             //configuration.setColorsTriangle(colors);
 
             // Size
-            configuration.setHaveSizeTransform(getRandomBoolean());
-            configuration.setMinSizeTransform(geRandomFloat(0, 1));
-            configuration.setMaxSizeTransform(geRandomFloat(1, 2));
+            frameConfiguration.setHaveSizeTransform(getRandomBoolean());
+            frameConfiguration.setMinSizeTransform(geRandomFloat(0, 1));
+            frameConfiguration.setMaxSizeTransform(geRandomFloat(1, 2));
 
             // Alpha
-            configuration.setHaveAlpha(getRandomBoolean());
-            configuration.setMinAlpha(getRandomInt(0, 127));
-            configuration.setMaxAlpha(getRandomInt(128, 255));
+            frameConfiguration.setHaveAlpha(getRandomBoolean());
+            frameConfiguration.setMinAlpha(getRandomInt(0, 127));
+            frameConfiguration.setMaxAlpha(getRandomInt(128, 255));
 
             // Variation
-            configuration.setxVariation(getRandomInt(0, 10));
-            configuration.setyVariation(getRandomInt(0, 10));
+            frameConfiguration.setxVariation(getRandomInt(0, 10));
+            frameConfiguration.setyVariation(getRandomInt(0, 10));
 
             // Stroke
-            configuration.setHaveStroke(getRandomBoolean());
-            configuration.setStrokeSize(getRandomInt(0, 16));
-            configuration.setStrokeColor(strokeColor);
+            frameConfiguration.setHaveStroke(getRandomBoolean());
+            frameConfiguration.setStrokeSize(getRandomInt(0, 16));
+            frameConfiguration.setStrokeColor(strokeColor);
 
             // Center Object
-            configuration.setHaveCenterObject(getRandomBoolean());
-            configuration.setCenterObjectSize(geRandomFloat(0, 1));
-            configuration.setColorsCenterObject(colors);
+            frameConfiguration.setHaveCenterObject(getRandomBoolean());
+            frameConfiguration.setCenterObjectSize(geRandomFloat(0, 1));
+            frameConfiguration.setColorsCenterObject(colors);
 
             // Cuts
-            configuration.setHaveCuts(getRandomBoolean());
-            configuration.setCutSize(geRandomFloat(0, 1));
+            frameConfiguration.setHaveCuts(getRandomBoolean());
+            frameConfiguration.setCutSize(geRandomFloat(0, 1));
 
-            configuration.setColorsCutCircle(colors);
-            configuration.setColorsCutSquare(colors);
-            configuration.setColorsCutTriangle(colors);
+            frameConfiguration.setColorsCutCircle(colors);
+            frameConfiguration.setColorsCutSquare(colors);
+            frameConfiguration.setColorsCutTriangle(colors);
 
-            configurations.add(configuration);
+            frameConfigurations.add(frameConfiguration);
         }
 
-        return configurations;
+        return frameConfigurations;
     }
 
     private FormType[] getRandomFormTypes()

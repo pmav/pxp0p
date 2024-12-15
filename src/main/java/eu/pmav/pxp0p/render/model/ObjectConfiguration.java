@@ -1,13 +1,14 @@
 package eu.pmav.pxp0p.render.model;
 
-public class Coordinate
+public class ObjectConfiguration
 {
     private final int x;
+
     private final int y;
 
     private final int frameIndex;
 
-    public Coordinate(int x, int y, int framePosition)
+    public ObjectConfiguration(int x, int y, int framePosition)
     {
         this.x = x;
         this.y = y;

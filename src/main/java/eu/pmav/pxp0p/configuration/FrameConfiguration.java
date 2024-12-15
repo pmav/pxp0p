@@ -1,7 +1,6 @@
 package eu.pmav.pxp0p.configuration;
 
 
-import eu.pmav.pxp0p.render.forms.Form;
 import eu.pmav.pxp0p.render.forms.FormType;
 
 import java.io.*;
@@ -9,8 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-public class Configuration implements Serializable
+public class FrameConfiguration implements Serializable
 {
+    // Size: this value is defined on the Frame
+    private int size;
+
     // Frame path
     private String framePath;
 
@@ -78,18 +80,18 @@ public class Configuration implements Serializable
     private float centerObjectSize;
     private int[] colorsCenterObject;
 
-    public Configuration()
+    public FrameConfiguration()
     {
     }
 
-    public Configuration copy() throws IOException, ClassNotFoundException
+    public FrameConfiguration copy() throws IOException, ClassNotFoundException
     {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ObjectOutputStream ObjectOutputStream = new ObjectOutputStream(outputStream);
         ObjectOutputStream.writeObject(this);
         ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
         ObjectInputStream objInputStream = new ObjectInputStream(inputStream);
-        return (Configuration) objInputStream.readObject();
+        return (FrameConfiguration) objInputStream.readObject();
     }
 
     @Override
@@ -108,6 +110,14 @@ public class Configuration implements Serializable
     //region Getters and setters
 
     // General
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 
     public String getFramePath()
     {

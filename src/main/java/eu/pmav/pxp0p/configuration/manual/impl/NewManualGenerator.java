@@ -1,9 +1,9 @@
 package eu.pmav.pxp0p.configuration.manual.impl;
 
+import eu.pmav.pxp0p.configuration.FrameConfiguration;
 import eu.pmav.pxp0p.configuration.manual.ManualGenerator;
 import eu.pmav.pxp0p.render.forms.FormType;
 import eu.pmav.pxp0p.render.helpers.SerializableFunction;
-import eu.pmav.pxp0p.configuration.Configuration;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -12,8 +12,7 @@ import java.util.function.Function;
 
 public class NewManualGenerator extends ManualGenerator
 {
-    public List<Configuration> generateConfigurations() throws IOException, ClassNotFoundException
-    {
+    protected List<FrameConfiguration> generateConfigurationsInternal() throws Exception {
         // Set colors
         int colorWhite = 0xffDCDCDC;
         int colorBlack = 0xff101010;
@@ -44,76 +43,76 @@ public class NewManualGenerator extends ManualGenerator
         List<Object> colorsBackground = List.of(colorBlack);
 
         // Initial configuration
-        List<Configuration> configurations = Collections.singletonList(new Configuration());
+        List<FrameConfiguration> fc = Collections.singletonList(new FrameConfiguration());
 
         // Canvas and grid
-        configurations = applyParameter(configurations, List.of(1000), (c, v) -> c.setCanvasWidth((int) v));
-        configurations = applyParameter(configurations, List.of(1000), (c, v) -> c.setCanvasHeight((int) v));
+        fc = applyParameter(fc, List.of(1000), (c, v) -> c.setCanvasWidth((int) v));
+        fc = applyParameter(fc, List.of(1000), (c, v) -> c.setCanvasHeight((int) v));
 
-        configurations = applyParameter(configurations, List.of(800), (c, v) -> c.setGridWidth((int) v));
-        configurations = applyParameter(configurations, List.of(800), (c, v) -> c.setGridHeight((int) v));
+        fc = applyParameter(fc, List.of(800), (c, v) -> c.setGridWidth((int) v));
+        fc = applyParameter(fc, List.of(800), (c, v) -> c.setGridHeight((int) v));
 
         // Layout
-        configurations = applyParameter(configurations, List.of(4), (c, v) -> c.setObjectColumns((int) v));
-        configurations = applyParameter(configurations, List.of(4), (c, v) -> c.setObjectLines((int) v));
-        configurations = applyParameter(configurations, List.of(8), (c, v) -> c.setObjectSpacing((int) v));
+        fc = applyParameter(fc, List.of(4), (c, v) -> c.setObjectColumns((int) v));
+        fc = applyParameter(fc, List.of(4), (c, v) -> c.setObjectLines((int) v));
+        fc = applyParameter(fc, List.of(8), (c, v) -> c.setObjectSpacing((int) v));
 
-        configurations = applyParameter(configurations, colorsBackground, (c, v) -> c.setColorBackground((int) v));
-        configurations = applyParameter(configurations, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
-        configurations = applyParameter(configurations, Collections.singletonList(new FormType[]{FormType.DEBUG}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        fc = applyParameter(fc, colorsBackground, (c, v) -> c.setColorBackground((int) v));
+        fc = applyParameter(fc, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
+        fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.DEBUG}), (c, v) -> c.setObjectTypes((FormType[]) v));
 
         // Object Colors
         //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsCircle((int[]) v));
         //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsSquare((int[]) v));
         //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsTriangle((int[]) v));
-        configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.DEBUG, (int[]) v));
+        fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.DEBUG, (int[]) v));
 
         // Size
-        configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveSizeTransform((boolean) v));
-        configurations = applyParameter(configurations, List.of(1.0f), (c, v) -> c.setMinSizeTransform((float) v));
-        configurations = applyParameter(configurations, List.of(1.2f), (c, v) -> c.setMaxSizeTransform((float) v));
+        fc = applyParameter(fc, List.of(false), (c, v) -> c.setHaveSizeTransform((boolean) v));
+        fc = applyParameter(fc, List.of(1.0f), (c, v) -> c.setMinSizeTransform((float) v));
+        fc = applyParameter(fc, List.of(1.2f), (c, v) -> c.setMaxSizeTransform((float) v));
 
         // Alpha
-        configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveAlpha((boolean) v));
-        configurations = applyParameter(configurations, List.of(0), (c, v) -> c.setMinAlpha((int) v));
-        configurations = applyParameter(configurations, List.of(150), (c, v) -> c.setMaxAlpha((int) v));
+        fc = applyParameter(fc, List.of(false), (c, v) -> c.setHaveAlpha((boolean) v));
+        fc = applyParameter(fc, List.of(0), (c, v) -> c.setMinAlpha((int) v));
+        fc = applyParameter(fc, List.of(150), (c, v) -> c.setMaxAlpha((int) v));
 
         // Variation (0 means no variation on the x,y position of the object)
-        configurations = applyParameter(configurations, List.of(0), (c, v) -> c.setxVariation((int) v));
-        configurations = applyParameter(configurations, List.of(0), (c, v) -> c.setyVariation((int) v));
+        fc = applyParameter(fc, List.of(0), (c, v) -> c.setxVariation((int) v));
+        fc = applyParameter(fc, List.of(0), (c, v) -> c.setyVariation((int) v));
 
         // Stroke
-        configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveStroke((boolean) v));
-        configurations = applyParameter(configurations, List.of(8), (c, v) -> c.setStrokeSize((int) v));
-        configurations = applyParameter(configurations, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
+        fc = applyParameter(fc, List.of(false), (c, v) -> c.setHaveStroke((boolean) v));
+        fc = applyParameter(fc, List.of(8), (c, v) -> c.setStrokeSize((int) v));
+        fc = applyParameter(fc, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
 
         // Center Object
-        configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveCenterObject((boolean) v));
-        configurations = applyParameter(configurations, List.of(0.5f), (c, v) -> c.setCenterObjectSize((float) v));
-        configurations = applyParameter(configurations, List.of(colorsBlue), (c, v) -> c.setColorsCenterObject((int[]) v));
+        fc = applyParameter(fc, List.of(false), (c, v) -> c.setHaveCenterObject((boolean) v));
+        fc = applyParameter(fc, List.of(0.5f), (c, v) -> c.setCenterObjectSize((float) v));
+        fc = applyParameter(fc, List.of(colorsBlue), (c, v) -> c.setColorsCenterObject((int[]) v));
 
         // Cuts
-        configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setHaveCuts((boolean) v));
-        configurations = applyParameter(configurations, List.of(0.2f), (c, v) -> c.setCutSize((float) v));
+        fc = applyParameter(fc, List.of(true), (c, v) -> c.setHaveCuts((boolean) v));
+        fc = applyParameter(fc, List.of(0.2f), (c, v) -> c.setCutSize((float) v));
 
-        configurations = applyParameter(configurations, List.of(colorsBlue), (c, v) -> c.setColorsCutCircle((int[]) v));
-        configurations = applyParameter(configurations, List.of(colorsBlue), (c, v) -> c.setColorsCutSquare((int[]) v));
-        configurations = applyParameter(configurations, List.of(colorsBlue), (c, v) -> c.setColorsCutTriangle((int[]) v));
+        fc = applyParameter(fc, List.of(colorsBlue), (c, v) -> c.setColorsCutCircle((int[]) v));
+        fc = applyParameter(fc, List.of(colorsBlue), (c, v) -> c.setColorsCutSquare((int[]) v));
+        fc = applyParameter(fc, List.of(colorsBlue), (c, v) -> c.setColorsCutTriangle((int[]) v));
 
         // Change direction (triangles only)
-        configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setHaveDirection((boolean) v));
+        fc = applyParameter(fc, List.of(true), (c, v) -> c.setHaveDirection((boolean) v));
         SerializableFunction<Integer, Integer> f = (Integer i) ->
         {
             return 2;
         };
-        configurations = applyParameter(configurations, List.of(f), (c, v) -> c.setCalculateDirection((Function<Integer, Integer>) v));
+        fc = applyParameter(fc, List.of(f), (c, v) -> c.setCalculateDirection((Function<Integer, Integer>) v));
 
-        System.out.printf("Generated %s configurations...%n", configurations.size());
+        System.out.printf("Generated %s Frame configurations...%n", fc.size());
 
-        configurations.forEach(c -> {
+        fc.forEach(c -> {
             System.out.printf(c.toString());
         });
 
-        return configurations;
+        return fc;
     }
 }

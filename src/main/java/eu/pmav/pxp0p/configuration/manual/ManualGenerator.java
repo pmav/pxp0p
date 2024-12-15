@@ -1,6 +1,6 @@
 package eu.pmav.pxp0p.configuration.manual;
 
-import eu.pmav.pxp0p.configuration.Configuration;
+import eu.pmav.pxp0p.configuration.FrameConfiguration;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,25 +9,40 @@ import java.util.function.BiConsumer;
 
 public abstract class ManualGenerator
 {
-    public abstract List<Configuration> generateConfigurations() throws IOException, ClassNotFoundException;
+    protected abstract List<FrameConfiguration> generateConfigurationsInternal() throws Exception;
 
-    protected static List<Configuration> applyParameter(List<Configuration> configurations, List<Object> parameterValues, BiConsumer<Configuration, Object> c) throws IOException, ClassNotFoundException
+    public List<FrameConfiguration> generateConfigurations() throws Exception
     {
-        List<Configuration> newConfigurations = new ArrayList<>();
+        List<FrameConfiguration> frameConfigurations = this.generateConfigurationsInternal();
 
-        for (Configuration configuration : configurations)
+        frameConfigurations.forEach(fc -> {
+            final int objectSizeInGrid = Math.min(fc.getGridWidth() / fc.getObjectColumns(), fc.getGridHeight() / fc.getObjectLines()); // Size of the object in the grid
+
+            final int objectSize = objectSizeInGrid - fc.getObjectSpacing(); // Actual object size, if spacing is zero the objects will fill the grid
+
+            fc.setSize(objectSize);
+        });
+
+        return frameConfigurations;
+    }
+
+    protected static List<FrameConfiguration> applyParameter(List<FrameConfiguration> frameConfigurations, List<Object> parameterValues, BiConsumer<FrameConfiguration, Object> c) throws Exception
+    {
+        List<FrameConfiguration> newFrameConfigurations = new ArrayList<>();
+
+        for (FrameConfiguration frameConfiguration : frameConfigurations)
         {
             for (Object parameterValue : parameterValues)
             {
-                Configuration newConfiguration = configuration.copy();
+                FrameConfiguration newFrameConfiguration = frameConfiguration.copy();
 
                 // Update parameter
-                c.accept(newConfiguration, parameterValue);
+                c.accept(newFrameConfiguration, parameterValue);
 
-                newConfigurations.add(newConfiguration);
+                newFrameConfigurations.add(newFrameConfiguration);
             }
         }
 
-        return newConfigurations;
+        return newFrameConfigurations;
     }
 }

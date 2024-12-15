@@ -1,24 +1,24 @@
 package eu.pmav.pxp0p.render;
 
-import eu.pmav.pxp0p.configuration.Configuration;
+import eu.pmav.pxp0p.configuration.FrameConfiguration;
 import eu.pmav.pxp0p.utils.ExitHandler;
 import processing.core.PApplet;
 
 public class Applet extends PApplet
 {
-    private final Configuration configuration;
+    private final FrameConfiguration frameConfiguration;
 
     private final ExitHandler exitHandler;
 
-    public Applet(Configuration configuration, ExitHandler exitHandler)
+    public Applet(FrameConfiguration frameConfiguration, ExitHandler exitHandler)
     {
-        this.configuration = configuration;
+        this.frameConfiguration = frameConfiguration;
         this.exitHandler = exitHandler;
     }
 
     public void settings()
     {
-        size(this.configuration.getCanvasWidth(), this.configuration.getCanvasHeight());
+        size(this.frameConfiguration.getCanvasWidth(), this.frameConfiguration.getCanvasHeight());
     }
 
     public void setup()
@@ -29,10 +29,10 @@ public class Applet extends PApplet
     public void draw()
     {
         // Render frame
-        (new Frame(this, configuration)).render();
+        (new Frame(this, frameConfiguration)).render();
 
         // Save from to disk
-        save(this.configuration.getFramePath());
+        save(this.frameConfiguration.getFramePath());
 
         // Notify Exit Handler that this Applet have finished
         this.exitHandler.notifyFinish(this);

@@ -2,7 +2,7 @@ package eu.pmav.pxp0p;
 
 import eu.pmav.pxp0p.configuration.manual.impl.*;
 import eu.pmav.pxp0p.render.Applet;
-import eu.pmav.pxp0p.configuration.Configuration;
+import eu.pmav.pxp0p.configuration.FrameConfiguration;
 import eu.pmav.pxp0p.utils.ExitHandler;
 import eu.pmav.pxp0p.utils.Utils;
 import processing.core.PApplet;
@@ -14,8 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Main
 {
     // Path to save each frame
-    //static final String SAVE_PATH = "/Users/pedro/Workspace/pxp0p/tmp";
-    static final String SAVE_PATH = "/mnt/Storage/pxp0p/";
+    static final String SAVE_PATH = "/Users/pedro/Workspace/pxp0p/tmp";
+    //static final String SAVE_PATH = "/mnt/Storage/pxp0p/";
 
 
     public static void main(String[] args) throws Exception
@@ -28,7 +28,7 @@ public class Main
         ExitHandler exitHandler = new ExitHandler();
 
         // Create configurations
-        List<Configuration> configurations = new ArrayList<>();
+        List<FrameConfiguration> frameConfigurations = new ArrayList<>();
 
         //configurations.addAll((new CuidadoComOCaoManualGenerator()).generateConfigurations());
         //configurations.addAll((new InstagramManualGenerator()).generateConfigurations());
@@ -37,20 +37,19 @@ public class Main
         //configurations.addAll((new RandomGenerator(1)).generateConfigurations(5));
         //configurations.addAll((new RandomGenerator(2)).generateConfigurations(5));
 
+        frameConfigurations.addAll((new NewManualGenerator()).generateConfigurations());
 
-        configurations.addAll((new NewManualGenerator()).generateConfigurations());
-
-        // Render each configuration on a new Applet
+        // Render each frame on a new Applet
         AtomicInteger frameNumber = new AtomicInteger(1);
 
-        configurations.forEach(configuration ->
+        frameConfigurations.forEach(frameConfiguration ->
         {
             // Add frame path
             final String framePath = String.format("%s/%d.png", saveDirectory, frameNumber.getAndIncrement());
-            configuration.setFramePath(framePath);
+            frameConfiguration.setFramePath(framePath);
 
             // Create Applet
-            Applet applet = new Applet(configuration, exitHandler);
+            Applet applet = new Applet(frameConfiguration, exitHandler);
 
             // Register applet
             exitHandler.registerApplet(applet);
