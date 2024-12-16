@@ -1,6 +1,6 @@
-package eu.pmav.pxp0p.frameconfiguration.manual;
+package eu.pmav.pxp0p.frameconfiguration;
 
-import eu.pmav.pxp0p.frameconfiguration.FrameConfiguration;
+import eu.pmav.pxp0p.frameconfiguration.model.FrameConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;

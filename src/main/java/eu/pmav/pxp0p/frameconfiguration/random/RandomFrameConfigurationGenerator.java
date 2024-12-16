@@ -1,6 +1,6 @@
 package eu.pmav.pxp0p.frameconfiguration.random;
 
-import eu.pmav.pxp0p.frameconfiguration.FrameConfiguration;
+import eu.pmav.pxp0p.frameconfiguration.model.FrameConfiguration;
 import eu.pmav.pxp0p.framerendered.forms.FormType;
 
 import java.util.ArrayList;

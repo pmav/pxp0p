@@ -1,4 +1,4 @@
-package eu.pmav.pxp0p.frameconfiguration;
+package eu.pmav.pxp0p.frameconfiguration.model;
 
 
 import eu.pmav.pxp0p.framerendered.forms.FormType;

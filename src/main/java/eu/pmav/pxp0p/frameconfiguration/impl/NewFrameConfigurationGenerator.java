@@ -1,7 +1,7 @@
-package eu.pmav.pxp0p.frameconfiguration.manual.impl;
+package eu.pmav.pxp0p.frameconfiguration.impl;
 
-import eu.pmav.pxp0p.frameconfiguration.FrameConfiguration;
-import eu.pmav.pxp0p.frameconfiguration.manual.FrameConfigurationGenerator;
+import eu.pmav.pxp0p.frameconfiguration.model.FrameConfiguration;
+import eu.pmav.pxp0p.frameconfiguration.FrameConfigurationGenerator;
 import eu.pmav.pxp0p.framerendered.forms.FormType;
 import eu.pmav.pxp0p.frameconfiguration.helpers.SerializableFunction;
 

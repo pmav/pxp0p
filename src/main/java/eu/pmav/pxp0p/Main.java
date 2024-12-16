@@ -1,7 +1,7 @@
 package eu.pmav.pxp0p;
 
-import eu.pmav.pxp0p.frameconfiguration.manual.impl.*;
-import eu.pmav.pxp0p.frameconfiguration.FrameConfiguration;
+import eu.pmav.pxp0p.frameconfiguration.impl.*;
+import eu.pmav.pxp0p.frameconfiguration.model.FrameConfiguration;
 import eu.pmav.pxp0p.utils.ExitHandler;
 import eu.pmav.pxp0p.utils.Utils;
 import processing.core.PApplet;
