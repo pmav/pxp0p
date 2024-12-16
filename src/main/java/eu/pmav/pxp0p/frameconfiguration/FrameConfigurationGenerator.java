@@ -15,11 +15,11 @@ public abstract class FrameConfigurationGenerator
         List<FrameConfiguration> frameConfigurations = this.generateConfigurationsInternal();
 
         frameConfigurations.forEach(fc -> {
-            final int objectSizeInGrid = Math.min(fc.getGridWidth() / fc.getObjectColumns(), fc.getGridHeight() / fc.getObjectLines()); // Size of the object in the grid
+            // Size of the object in the grid
+            final int objectSizeInGrid = Math.min(fc.getGridWidth() / fc.getObjectColumns(), fc.getGridHeight() / fc.getObjectLines());
 
-            final int objectSize = objectSizeInGrid - fc.getObjectSpacing(); // Actual object size, if spacing is zero the objects will fill the grid
-
-            fc.setSize(objectSize);
+            // Actual object size, if spacing is zero the objects will fill the grid
+            fc.setSize(objectSizeInGrid - fc.getObjectSpacing());
         });
 
         return frameConfigurations;

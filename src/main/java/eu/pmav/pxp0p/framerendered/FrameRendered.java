@@ -24,10 +24,12 @@ public class FrameRendered
         final int objectSizeInGrid = Math.min(frameConfiguration.getGridWidth() / frameConfiguration.getObjectColumns(), frameConfiguration.getGridHeight() / frameConfiguration.getObjectLines()); // Size of the object in the grid
 
         final int borderWidth = (frameConfiguration.getCanvasWidth() - frameConfiguration.getGridWidth()) / 2;
-        final int xInit = borderWidth + (frameConfiguration.getGridWidth() - (objectSizeInGrid * frameConfiguration.getObjectColumns())) / 2;
+        int xInit = borderWidth + (frameConfiguration.getGridWidth() - ((frameConfiguration.getSize() + frameConfiguration.getObjectSpacing()) * frameConfiguration.getObjectColumns())) / 2;
+        xInit = xInit + (objectSizeInGrid / 2);
 
         final int borderHeight = (frameConfiguration.getCanvasHeight() - frameConfiguration.getGridHeight()) / 2;
-        final int yInit = borderHeight + (frameConfiguration.getGridWidth() - (objectSizeInGrid * frameConfiguration.getObjectLines())) / 2;
+        int yInit = borderHeight + (frameConfiguration.getGridWidth() - ((frameConfiguration.getSize() + frameConfiguration.getObjectSpacing()) * frameConfiguration.getObjectLines())) / 2;
+        yInit = yInit + (objectSizeInGrid / 2);
 
         // Set deterministic behaviour
         applet.randomSeed(0);

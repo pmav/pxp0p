@@ -54,7 +54,7 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         // Layout
         fc = applyParameter(fc, List.of(4), (c, v) -> c.setObjectColumns((int) v));
         fc = applyParameter(fc, List.of(4), (c, v) -> c.setObjectLines((int) v));
-        fc = applyParameter(fc, List.of(8), (c, v) -> c.setObjectSpacing((int) v));
+        fc = applyParameter(fc, List.of(16), (c, v) -> c.setObjectSpacing((int) v));
 
         fc = applyParameter(fc, colorsBackground, (c, v) -> c.setColorBackground((int) v));
         fc = applyParameter(fc, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
