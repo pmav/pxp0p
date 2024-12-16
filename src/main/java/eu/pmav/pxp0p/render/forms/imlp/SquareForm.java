@@ -16,8 +16,14 @@ public class SquareForm extends Form
 
     public void draw(PApplet applet, FrameConfiguration frameConfiguration, ObjectConfiguration objectConfiguration)
     {
-        int x = objectConfiguration.getX();
-        int y = objectConfiguration.getY();
+        int x = frameConfiguration.getxVariation() != 0
+                ? objectConfiguration.getX() + Math.round((applet.random(-1, 1) * frameConfiguration.getxVariation()))
+                : objectConfiguration.getX();
+
+        int y = frameConfiguration.getyVariation() != 0
+                ? objectConfiguration.getY() + Math.round((applet.random(-1, 1) * frameConfiguration.getyVariation()))
+                : objectConfiguration.getY();
+
         final int objectSize = frameConfiguration.getSize();
 
         final int size = PApplet.parseInt(

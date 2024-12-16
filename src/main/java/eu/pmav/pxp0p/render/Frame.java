@@ -78,22 +78,6 @@ public class Frame
 
         // Draw object for each configuration
         objectConfigurations.forEach(objectConfiguration -> {
-            // TODO Move to each Form:
-            /*
-            int x = objectConfiguration.getX();
-            int y = objectConfiguration.getY();
-
-            if (configuration.getxVariation() != 0)
-            {
-                x = x + Math.round((applet.random(-1, 1) * configuration.getxVariation()));
-            }
-
-            if (configuration.getyVariation() != 0)
-            {
-                y = y + Math.round((applet.random(-1, 1) * configuration.getyVariation()));
-            }
-             */
-
             final FormType formType = frameConfiguration.getObjectTypes()[PApplet.parseInt(applet.random(frameConfiguration.getObjectTypes().length))];
 
             final Form form = switch (formType) {

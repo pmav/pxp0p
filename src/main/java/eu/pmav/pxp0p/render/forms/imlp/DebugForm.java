@@ -17,8 +17,14 @@ public class DebugForm extends Form
 
     public void draw(PApplet applet, FrameConfiguration frameConfiguration, ObjectConfiguration objectConfiguration)
     {
-        final int x = objectConfiguration.getX();
-        final int y = objectConfiguration.getY();
+        final int x = frameConfiguration.getxVariation() != 0
+                ? objectConfiguration.getX() + Math.round((applet.random(-1, 1) * frameConfiguration.getxVariation()))
+                : objectConfiguration.getX();
+
+        final int y = frameConfiguration.getyVariation() != 0
+                ? objectConfiguration.getY() + Math.round((applet.random(-1, 1) * frameConfiguration.getyVariation()))
+                : objectConfiguration.getY();
+
         final int size = frameConfiguration.getSize();
 
         System.out.printf("x: %s, y: %s, size: %s\n", x, y, size);
