@@ -1,4 +1,4 @@
-package eu.pmav.pxp0p.render.model;
+package eu.pmav.pxp0p.framerendered.model;
 
 public class ObjectConfiguration
 {

@@ -1,6 +1,6 @@
 package eu.pmav.pxp0p.utils;
 
-import eu.pmav.pxp0p.render.Applet;
+import eu.pmav.pxp0p.Applet;
 
 import java.util.ArrayList;
 import java.util.List;

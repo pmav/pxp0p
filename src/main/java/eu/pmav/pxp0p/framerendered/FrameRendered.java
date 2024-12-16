@@ -1,10 +1,10 @@
-package eu.pmav.pxp0p.render;
+package eu.pmav.pxp0p.framerendered;
 
-import eu.pmav.pxp0p.configuration.FrameConfiguration;
-import eu.pmav.pxp0p.render.forms.Form;
-import eu.pmav.pxp0p.render.forms.FormType;
-import eu.pmav.pxp0p.render.forms.imlp.*;
-import eu.pmav.pxp0p.render.model.ObjectConfiguration;
+import eu.pmav.pxp0p.frameconfiguration.FrameConfiguration;
+import eu.pmav.pxp0p.framerendered.forms.Form;
+import eu.pmav.pxp0p.framerendered.forms.FormType;
+import eu.pmav.pxp0p.framerendered.forms.imlp.*;
+import eu.pmav.pxp0p.framerendered.model.ObjectConfiguration;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
@@ -12,30 +12,25 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class Frame
+public class FrameRendered
 {
-    private final PApplet applet;
-    private final FrameConfiguration frameConfiguration;
-
-    // Internal state (defined after running calculate())
-    private int xIncrement;
-    private int xInit;
-    private int yIncrement;
-    private int yInit;
-
-    public Frame(PApplet applet, FrameConfiguration frameConfiguration)
+    private FrameRendered()
     {
-        this.applet = applet;
-        this.frameConfiguration = frameConfiguration;
     }
 
-    public void render()
+    public static void render(PApplet applet, FrameConfiguration frameConfiguration)
     {
+        // Create internal state needed for render
+        final int objectSizeInGrid = Math.min(frameConfiguration.getGridWidth() / frameConfiguration.getObjectColumns(), frameConfiguration.getGridHeight() / frameConfiguration.getObjectLines()); // Size of the object in the grid
+
+        final int borderWidth = (frameConfiguration.getCanvasWidth() - frameConfiguration.getGridWidth()) / 2;
+        final int xInit = borderWidth + (frameConfiguration.getGridWidth() - (objectSizeInGrid * frameConfiguration.getObjectColumns())) / 2;
+
+        final int borderHeight = (frameConfiguration.getCanvasHeight() - frameConfiguration.getGridHeight()) / 2;
+        final int yInit = borderHeight + (frameConfiguration.getGridWidth() - (objectSizeInGrid * frameConfiguration.getObjectLines())) / 2;
+
         // Set deterministic behaviour
         applet.randomSeed(0);
-
-        // Create internal state needed for render
-        calculate();
 
         // Generate stroke
         if (frameConfiguration.isHaveStroke())
@@ -55,8 +50,8 @@ public class Frame
         // Generate configuration for each object in Frame
         List<ObjectConfiguration> objectConfigurations = new ArrayList<>();
 
-        int x = this.xInit;
-        int y = this.yInit;
+        int x = xInit;
+        int y = yInit;
         int framePosition = 0;
 
         for (int line = 0; line < frameConfiguration.getObjectLines(); line++)
@@ -66,11 +61,11 @@ public class Frame
                 objectConfigurations.add(new ObjectConfiguration(x, y, framePosition));
 
                 framePosition++;
-                x += this.xIncrement;
+                x += objectSizeInGrid;
             }
 
-            x = this.xInit; // Reset x-axis position
-            y += this.yIncrement;
+            x = xInit; // Reset x-axis position
+            y += objectSizeInGrid;
         }
 
         // Randomize list of object configurations
@@ -93,18 +88,5 @@ public class Frame
         });
 
         applet.filter(PApplet.BLUR, frameConfiguration.getBlurValue());
-    }
-
-    public void calculate()
-    {
-        final int objectSizeInGrid = Math.min(this.frameConfiguration.getGridWidth() / this.frameConfiguration.getObjectColumns(), this.frameConfiguration.getGridHeight() / this.frameConfiguration.getObjectLines()); // Size of the object in the grid
-
-        xIncrement = objectSizeInGrid;
-        final int borderWidth = (this.frameConfiguration.getCanvasWidth() - this.frameConfiguration.getGridWidth()) / 2;
-        xInit = borderWidth + (this.frameConfiguration.getGridWidth() - (xIncrement * this.frameConfiguration.getObjectColumns())) / 2;
-
-        yIncrement = objectSizeInGrid;
-        final int borderHeight = (this.frameConfiguration.getCanvasHeight() - this.frameConfiguration.getGridHeight()) / 2;
-        yInit = borderHeight + (this.frameConfiguration.getGridWidth() - (yIncrement * this.frameConfiguration.getObjectLines())) / 2;
     }
 }

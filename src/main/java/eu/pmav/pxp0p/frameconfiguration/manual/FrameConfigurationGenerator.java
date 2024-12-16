@@ -1,13 +1,12 @@
-package eu.pmav.pxp0p.configuration.manual;
+package eu.pmav.pxp0p.frameconfiguration.manual;
 
-import eu.pmav.pxp0p.configuration.FrameConfiguration;
+import eu.pmav.pxp0p.frameconfiguration.FrameConfiguration;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
-public abstract class ManualGenerator
+public abstract class FrameConfigurationGenerator
 {
     protected abstract List<FrameConfiguration> generateConfigurationsInternal() throws Exception;
 

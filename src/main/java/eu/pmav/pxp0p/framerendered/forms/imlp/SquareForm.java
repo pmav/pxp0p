@@ -1,9 +1,9 @@
-package eu.pmav.pxp0p.render.forms.imlp;
+package eu.pmav.pxp0p.framerendered.forms.imlp;
 
-import eu.pmav.pxp0p.configuration.FrameConfiguration;
-import eu.pmav.pxp0p.render.forms.Form;
-import eu.pmav.pxp0p.render.forms.FormType;
-import eu.pmav.pxp0p.render.model.ObjectConfiguration;
+import eu.pmav.pxp0p.frameconfiguration.FrameConfiguration;
+import eu.pmav.pxp0p.framerendered.forms.Form;
+import eu.pmav.pxp0p.framerendered.forms.FormType;
+import eu.pmav.pxp0p.framerendered.model.ObjectConfiguration;
 import eu.pmav.pxp0p.utils.Utils;
 import processing.core.PApplet;
 

@@ -1,6 +1,6 @@
 # pxp0p
 
-### Run:
+### Run
 
 This project uses Maven to create an uber jar with all dependencies:
 ```
@@ -33,7 +33,10 @@ List of features supported by each type of object:
 | Center object color | Yes    | Yes    | No       |
 
 
-### Resources:
+### TODO
+- Remove `applet.random()` references
+
+### Resources
 
 * https://tilda.cc/colors/
 * https://usbrandcolors.com/

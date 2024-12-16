@@ -1,18 +1,18 @@
-package eu.pmav.pxp0p.configuration.random;
+package eu.pmav.pxp0p.frameconfiguration.random;
 
-import eu.pmav.pxp0p.configuration.FrameConfiguration;
-import eu.pmav.pxp0p.render.forms.FormType;
+import eu.pmav.pxp0p.frameconfiguration.FrameConfiguration;
+import eu.pmav.pxp0p.framerendered.forms.FormType;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomGenerator
+public class RandomFrameConfigurationGenerator
 {
 
     private final Random r;
 
-    public RandomGenerator(int seed)
+    public RandomFrameConfigurationGenerator(int seed)
     {
         this.r = new Random(seed);
     }

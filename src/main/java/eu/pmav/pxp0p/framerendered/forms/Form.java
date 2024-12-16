@@ -1,7 +1,7 @@
-package eu.pmav.pxp0p.render.forms;
+package eu.pmav.pxp0p.framerendered.forms;
 
-import eu.pmav.pxp0p.configuration.FrameConfiguration;
-import eu.pmav.pxp0p.render.model.ObjectConfiguration;
+import eu.pmav.pxp0p.frameconfiguration.FrameConfiguration;
+import eu.pmav.pxp0p.framerendered.model.ObjectConfiguration;
 import processing.core.PApplet;
 
 public abstract class Form

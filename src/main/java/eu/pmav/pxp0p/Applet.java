@@ -1,6 +1,7 @@
-package eu.pmav.pxp0p.render;
+package eu.pmav.pxp0p;
 
-import eu.pmav.pxp0p.configuration.FrameConfiguration;
+import eu.pmav.pxp0p.frameconfiguration.FrameConfiguration;
+import eu.pmav.pxp0p.framerendered.FrameRendered;
 import eu.pmav.pxp0p.utils.ExitHandler;
 import processing.core.PApplet;
 
@@ -29,7 +30,7 @@ public class Applet extends PApplet
     public void draw()
     {
         // Render frame
-        (new Frame(this, frameConfiguration)).render();
+        FrameRendered.render(this, this.frameConfiguration);
 
         // Save from to disk
         save(this.frameConfiguration.getFramePath());

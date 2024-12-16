@@ -1,8 +1,7 @@
 package eu.pmav.pxp0p;
 
-import eu.pmav.pxp0p.configuration.manual.impl.*;
-import eu.pmav.pxp0p.render.Applet;
-import eu.pmav.pxp0p.configuration.FrameConfiguration;
+import eu.pmav.pxp0p.frameconfiguration.manual.impl.*;
+import eu.pmav.pxp0p.frameconfiguration.FrameConfiguration;
 import eu.pmav.pxp0p.utils.ExitHandler;
 import eu.pmav.pxp0p.utils.Utils;
 import processing.core.PApplet;
@@ -27,7 +26,7 @@ public class Main
         // Create exit handler
         ExitHandler exitHandler = new ExitHandler();
 
-        // Create configurations
+        // Create frame configurations
         List<FrameConfiguration> frameConfigurations = new ArrayList<>();
 
         //configurations.addAll((new CuidadoComOCaoManualGenerator()).generateConfigurations());
@@ -37,7 +36,7 @@ public class Main
         //configurations.addAll((new RandomGenerator(1)).generateConfigurations(5));
         //configurations.addAll((new RandomGenerator(2)).generateConfigurations(5));
 
-        frameConfigurations.addAll((new NewManualGenerator()).generateConfigurations());
+        frameConfigurations.addAll((new NewFrameConfigurationGenerator()).generateConfigurations());
 
         // Render each frame on a new Applet
         AtomicInteger frameNumber = new AtomicInteger(1);

@@ -1,16 +1,15 @@
-package eu.pmav.pxp0p.configuration.manual.impl;
+package eu.pmav.pxp0p.frameconfiguration.manual.impl;
 
-import eu.pmav.pxp0p.configuration.FrameConfiguration;
-import eu.pmav.pxp0p.render.forms.FormType;
-import eu.pmav.pxp0p.render.helpers.SerializableFunction;
-import eu.pmav.pxp0p.configuration.manual.ManualGenerator;
+import eu.pmav.pxp0p.frameconfiguration.FrameConfiguration;
+import eu.pmav.pxp0p.framerendered.forms.FormType;
+import eu.pmav.pxp0p.frameconfiguration.helpers.SerializableFunction;
+import eu.pmav.pxp0p.frameconfiguration.manual.FrameConfigurationGenerator;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 
-public class CuidadoComOCaoManualGenerator extends ManualGenerator
+public class CuidadoComOCaoFrameConfigurationGenerator extends FrameConfigurationGenerator
 {
     protected List<FrameConfiguration> generateConfigurationsInternal() throws Exception
     {

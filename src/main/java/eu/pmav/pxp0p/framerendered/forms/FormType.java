@@ -1,4 +1,4 @@
-package eu.pmav.pxp0p.render.forms;
+package eu.pmav.pxp0p.framerendered.forms;
 
 public enum FormType
 {

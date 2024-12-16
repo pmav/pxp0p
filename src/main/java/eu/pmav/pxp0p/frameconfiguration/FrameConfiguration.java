@@ -1,7 +1,7 @@
-package eu.pmav.pxp0p.configuration;
+package eu.pmav.pxp0p.frameconfiguration;
 
 
-import eu.pmav.pxp0p.render.forms.FormType;
+import eu.pmav.pxp0p.framerendered.forms.FormType;
 
 import java.io.*;
 import java.util.HashMap;
