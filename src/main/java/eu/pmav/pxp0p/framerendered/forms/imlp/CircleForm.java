@@ -16,20 +16,21 @@ public class CircleForm extends Form
 
     public void draw(PApplet applet, FrameConfiguration frameConfiguration, ObjectConfiguration objectConfiguration)
     {
-        final int x = frameConfiguration.getxVariation() != 0
+        int x = frameConfiguration.getxVariation() != 0
                 ? objectConfiguration.getX() + Math.round((applet.random(-1, 1) * frameConfiguration.getxVariation()))
                 : objectConfiguration.getX();
 
-        final int y = frameConfiguration.getyVariation() != 0
+        int y = frameConfiguration.getyVariation() != 0
                 ? objectConfiguration.getY() + Math.round((applet.random(-1, 1) * frameConfiguration.getyVariation()))
                 : objectConfiguration.getY();
 
-        final int objectSize = frameConfiguration.getSize();
-
         final int size = PApplet.parseInt(
                 frameConfiguration.isHaveSizeTransform()
-                        ? objectSize * applet.random(frameConfiguration.getMinSizeTransform(), frameConfiguration.getMaxSizeTransform())
-                        : objectSize);
+                        ? frameConfiguration.getSize() * applet.random(frameConfiguration.getMinSizeTransform(), frameConfiguration.getMaxSizeTransform())
+                        : frameConfiguration.getSize());
+
+        x = x - (frameConfiguration.getSize() / 2);
+        y = y - (frameConfiguration.getSize() / 2);
 
         final boolean cut1 = frameConfiguration.isHaveCuts() && PApplet.parseInt(applet.random(0, 2)) == 1;
         final boolean cut2 = frameConfiguration.isHaveCuts() && PApplet.parseInt(applet.random(0, 2)) == 1;

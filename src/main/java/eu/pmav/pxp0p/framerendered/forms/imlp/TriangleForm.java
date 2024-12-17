@@ -24,14 +24,15 @@ public class TriangleForm extends Form
                 ? objectConfiguration.getY() + Math.round((applet.random(-1, 1) * frameConfiguration.getyVariation()))
                 : objectConfiguration.getY();
 
-        final int objectSize = frameConfiguration.getSize();
-        final int frameIndex = objectConfiguration.getFrameIndex();
-
         final int size = PApplet.parseInt(
                 frameConfiguration.isHaveSizeTransform()
-                        ? objectSize * applet.random(frameConfiguration.getMinSizeTransform(), frameConfiguration.getMaxSizeTransform())
-                        : objectSize);
+                        ? frameConfiguration.getSize() * applet.random(frameConfiguration.getMinSizeTransform(), frameConfiguration.getMaxSizeTransform())
+                        : frameConfiguration.getSize());
 
+        x = x - (frameConfiguration.getSize() / 2);
+        y = y - (frameConfiguration.getSize() / 2);
+
+        final int frameIndex = objectConfiguration.getFrameIndex();
         final boolean cut1 = frameConfiguration.isHaveCuts(); // && PApplet.parseInt(pApplet.random(0, 2)) == 1;
         final int cutSize = Math.round(size * frameConfiguration.getCutSize());
 

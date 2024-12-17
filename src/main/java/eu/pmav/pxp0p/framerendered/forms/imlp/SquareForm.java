@@ -24,16 +24,13 @@ public class SquareForm extends Form
                 ? objectConfiguration.getY() + Math.round((applet.random(-1, 1) * frameConfiguration.getyVariation()))
                 : objectConfiguration.getY();
 
-        final int objectSize = frameConfiguration.getSize();
-
         final int size = PApplet.parseInt(
                 frameConfiguration.isHaveSizeTransform()
-                        ? objectSize * applet.random(frameConfiguration.getMinSizeTransform(), frameConfiguration.getMaxSizeTransform())
-                        : objectSize);
+                        ? frameConfiguration.getSize() * applet.random(frameConfiguration.getMinSizeTransform(), frameConfiguration.getMaxSizeTransform())
+                        : frameConfiguration.getSize());
 
-        int offset = objectSize - size;
-        x = x + offset / 2;
-        y = y + offset / 2;
+        x = x - (frameConfiguration.getSize() / 2);
+        y = y - (frameConfiguration.getSize() / 2);
 
         final boolean cut1 = frameConfiguration.isHaveCuts() && PApplet.parseInt(applet.random(0, 2)) == 1;
         final boolean cut2 = frameConfiguration.isHaveCuts() && PApplet.parseInt(applet.random(0, 2)) == 1;
