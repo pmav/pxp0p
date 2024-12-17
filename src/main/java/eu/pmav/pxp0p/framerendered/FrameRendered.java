@@ -88,6 +88,7 @@ public class FrameRendered
             form.draw(applet, frameConfiguration, objectConfiguration);
         });
 
+        // Apply blur as "extra" antialiasing (antialiasing is handled by smooth() on settings())
         applet.filter(PApplet.BLUR, frameConfiguration.getBlurValue());
     }
 }

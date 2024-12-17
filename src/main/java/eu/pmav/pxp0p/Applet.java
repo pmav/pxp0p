@@ -20,6 +20,10 @@ public class Applet extends PApplet
     public void settings()
     {
         size(this.frameConfiguration.getCanvasWidth(), this.frameConfiguration.getCanvasHeight());
+
+        // Leve 3 applies bicubic smoothing
+        // Source: https://processing.org/reference/smooth_.html
+        smooth(3);
     }
 
     public void setup()

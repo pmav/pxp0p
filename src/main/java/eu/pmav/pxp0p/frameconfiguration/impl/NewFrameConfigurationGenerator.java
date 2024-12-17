@@ -57,14 +57,14 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         fc = applyParameter(fc, List.of(0, 1, 8, 16), (c, v) -> c.setObjectSpacing((int) v));
 
         fc = applyParameter(fc, colorsBackground, (c, v) -> c.setColorBackground((int) v));
-        fc = applyParameter(fc, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
-        fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.DEBUG}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        fc = applyParameter(fc, List.of(0f), (c, v) -> c.setBlurValue((float) v));
+        fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.TRIANGLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
 
         // Object Colors
         //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsCircle((int[]) v));
         //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsSquare((int[]) v));
         //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsTriangle((int[]) v));
-        fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.DEBUG, (int[]) v));
+        fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.TRIANGLE, (int[]) v));
 
         // Size
         fc = applyParameter(fc, List.of(false), (c, v) -> c.setHaveSizeTransform((boolean) v));
