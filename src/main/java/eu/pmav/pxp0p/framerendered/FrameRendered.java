@@ -38,13 +38,12 @@ public class FrameRendered
         if (frameConfiguration.isHaveStroke())
         {
             applet.stroke(frameConfiguration.getStrokeColor());
+            applet.strokeWeight(frameConfiguration.getStrokeSize());
         }
         else
         {
             applet.noStroke();
         }
-
-        applet.strokeWeight(frameConfiguration.getStrokeSize());
 
         // Set background color
         applet.background(frameConfiguration.getColorBackground());

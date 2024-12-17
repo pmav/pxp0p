@@ -42,7 +42,7 @@ public class DebugForm extends Form
         applet.vertex(x + size, y);
         applet.vertex(x + size, y + size);
         applet.vertex(x, y + size);
-        applet.endShape(PShape.OPEN);
+        applet.endShape(PShape.CLOSE);
 
         applet.popMatrix();
     }
