@@ -36,13 +36,13 @@ public class TriangleForm extends Form
         final boolean cut1 = frameConfiguration.isHaveCuts(); // && PApplet.parseInt(pApplet.random(0, 2)) == 1;
         final int cutSize = Math.round(size * frameConfiguration.getCutSize());
 
-        final int direction = frameConfiguration.isHaveDirection()
-                ? frameConfiguration.getCalculateDirection().apply(frameIndex) // PApplet.parseInt(pApplet.random(0, 4))
-                : 0;
-
         final int alpha = frameConfiguration.isHaveAlpha()
                 ? PApplet.parseInt(applet.random(frameConfiguration.getMinAlpha(), frameConfiguration.getMaxAlpha()))
                 : 255;
+
+        final int direction = frameConfiguration.isHaveDirection()
+                ? frameConfiguration.getCalculateDirection().apply(frameIndex) // PApplet.parseInt(pApplet.random(0, 4))
+                : 0;
 
         applet.pushMatrix();
         applet.fill(Utils.getRandomColor(applet, frameConfiguration.getColorsForm().get(FormType.TRIANGLE)), alpha);

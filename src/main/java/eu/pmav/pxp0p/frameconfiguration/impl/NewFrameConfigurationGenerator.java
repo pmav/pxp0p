@@ -57,17 +57,17 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         fc = applyParameter(fc, List.of(8), (c, v) -> c.setObjectSpacing((int) v));
 
         fc = applyParameter(fc, colorsBackground, (c, v) -> c.setColorBackground((int) v));
-        fc = applyParameter(fc, List.of(0f), (c, v) -> c.setBlurValue((float) v));
-        fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.TRIANGLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        fc = applyParameter(fc, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
+        fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.SEMICIRCLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
 
         // Object Colors
         //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsCircle((int[]) v));
         //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsSquare((int[]) v));
         //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsTriangle((int[]) v));
-        fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.TRIANGLE, (int[]) v));
+        fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.SEMICIRCLE, (int[]) v));
 
         // Size
-        fc = applyParameter(fc, List.of(false), (c, v) -> c.setHaveSizeTransform((boolean) v));
+        fc = applyParameter(fc, List.of(true), (c, v) -> c.setHaveSizeTransform((boolean) v));
         fc = applyParameter(fc, List.of(1.0f), (c, v) -> c.setMinSizeTransform((float) v));
         fc = applyParameter(fc, List.of(1.2f), (c, v) -> c.setMaxSizeTransform((float) v));
 
@@ -77,12 +77,12 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         fc = applyParameter(fc, List.of(150), (c, v) -> c.setMaxAlpha((int) v));
 
         // Variation (0 means no variation on the x,y position of the object)
-        fc = applyParameter(fc, List.of(0), (c, v) -> c.setxVariation((int) v));
-        fc = applyParameter(fc, List.of(0), (c, v) -> c.setyVariation((int) v));
+        fc = applyParameter(fc, List.of(10), (c, v) -> c.setxVariation((int) v));
+        fc = applyParameter(fc, List.of(10), (c, v) -> c.setyVariation((int) v));
 
         // Stroke
-        fc = applyParameter(fc, List.of(false, true), (c, v) -> c.setHaveStroke((boolean) v));
-        fc = applyParameter(fc, List.of(8), (c, v) -> c.setStrokeSize((int) v));
+        fc = applyParameter(fc, List.of(true), (c, v) -> c.setHaveStroke((boolean) v));
+        fc = applyParameter(fc, List.of(4), (c, v) -> c.setStrokeSize((int) v));
         fc = applyParameter(fc, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
 
         // Center Object
@@ -100,10 +100,7 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
 
         // Change direction (triangles only)
         fc = applyParameter(fc, List.of(true), (c, v) -> c.setHaveDirection((boolean) v));
-        SerializableFunction<Integer, Integer> f = (Integer i) ->
-        {
-            return 2;
-        };
+        SerializableFunction<Integer, Integer> f = (Integer i) -> 1;
         fc = applyParameter(fc, List.of(f), (c, v) -> c.setCalculateDirection((Function<Integer, Integer>) v));
 
         System.out.printf("Generated %s Frame configurations...%n", fc.size());
