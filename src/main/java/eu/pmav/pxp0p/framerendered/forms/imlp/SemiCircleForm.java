@@ -18,11 +18,11 @@ public class SemiCircleForm extends Form
     public void draw(PApplet applet, FrameConfiguration frameConfiguration, ObjectConfiguration objectConfiguration)
     {
         int x = frameConfiguration.getxVariation() != 0
-                ? objectConfiguration.getX() + Math.round((applet.random(-1, 1) * frameConfiguration.getxVariation()))
+                ? objectConfiguration.getX() + Math.round((Utils.getRandomFloat(-1, 1) * frameConfiguration.getxVariation()))
                 : objectConfiguration.getX();
 
         int y = frameConfiguration.getyVariation() != 0
-                ? objectConfiguration.getY() + Math.round((applet.random(-1, 1) * frameConfiguration.getyVariation()))
+                ? objectConfiguration.getY() + Math.round((Utils.getRandomFloat(-1, 1) * frameConfiguration.getyVariation()))
                 : objectConfiguration.getY();
 
         final int size = frameConfiguration.getSize();
@@ -54,7 +54,8 @@ public class SemiCircleForm extends Form
 
         applet.pushMatrix();
 
-        applet.fill(Utils.getRandomColor(applet, frameConfiguration.getColorsForm().get(FormType.SEMICIRCLE)));
+        int[] colors = frameConfiguration.getColorsForm().get(FormType.SEMICIRCLE);
+        applet.fill(colors[Utils.getRandomInt(colors.length)]);
         applet.arc(x + size / 2f, y + size / 2f, size, size, startAngle, stopAngle, PConstants.CHORD);
 
         applet.popMatrix();

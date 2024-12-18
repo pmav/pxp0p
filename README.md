@@ -33,10 +33,6 @@ List of features supported by each type of object:
 | Center object color     | Yes    | Yes    | No       | TBD         |
 | Center object direction | No     | No     | No       | TBD         |
 
-
-### TODO
-- Remove `applet.random()` references
-
 ### Resources
 
 * https://tilda.cc/colors/

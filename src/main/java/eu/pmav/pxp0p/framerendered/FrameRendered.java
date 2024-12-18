@@ -5,6 +5,7 @@ import eu.pmav.pxp0p.framerendered.forms.Form;
 import eu.pmav.pxp0p.framerendered.forms.FormType;
 import eu.pmav.pxp0p.framerendered.forms.imlp.*;
 import eu.pmav.pxp0p.framerendered.model.ObjectConfiguration;
+import eu.pmav.pxp0p.utils.Utils;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
@@ -31,23 +32,6 @@ public class FrameRendered
         int yInit = borderHeight + (frameConfiguration.getGridWidth() - ((frameConfiguration.getSize() + frameConfiguration.getObjectSpacing()) * frameConfiguration.getObjectLines())) / 2;
         yInit = yInit + (objectSizeInGrid / 2);
 
-        // Set deterministic behaviour
-        applet.randomSeed(0);
-
-        // Generate stroke
-        if (frameConfiguration.isHaveStroke())
-        {
-            applet.stroke(frameConfiguration.getStrokeColor());
-            applet.strokeWeight(frameConfiguration.getStrokeSize());
-        }
-        else
-        {
-            applet.noStroke();
-        }
-
-        // Set background color
-        applet.background(frameConfiguration.getColorBackground());
-
         // Generate configuration for each object in Frame
         List<ObjectConfiguration> objectConfigurations = new ArrayList<>();
 
@@ -72,9 +56,23 @@ public class FrameRendered
         // Randomize list of object configurations
         Collections.shuffle(objectConfigurations, new Random(0));
 
+        // Set background color
+        applet.background(frameConfiguration.getColorBackground());
+
+        // Generate stroke
+        if (frameConfiguration.isHaveStroke())
+        {
+            applet.stroke(frameConfiguration.getStrokeColor());
+            applet.strokeWeight(frameConfiguration.getStrokeSize());
+        }
+        else
+        {
+            applet.noStroke();
+        }
+
         // Draw object for each configuration
         objectConfigurations.forEach(objectConfiguration -> {
-            final FormType formType = frameConfiguration.getObjectTypes()[PApplet.parseInt(applet.random(frameConfiguration.getObjectTypes().length))];
+            final FormType formType = frameConfiguration.getObjectTypes()[Utils.getRandomInt(frameConfiguration.getObjectTypes().length)];
 
             final Form form = switch (formType) {
                 case SQUARE -> new SquareForm();

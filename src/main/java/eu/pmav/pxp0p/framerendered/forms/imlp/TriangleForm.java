@@ -17,35 +17,37 @@ public class TriangleForm extends Form
     public void draw(PApplet applet, FrameConfiguration frameConfiguration, ObjectConfiguration objectConfiguration)
     {
         int x = frameConfiguration.getxVariation() != 0
-                ? objectConfiguration.getX() + Math.round((applet.random(-1, 1) * frameConfiguration.getxVariation()))
+                ? objectConfiguration.getX() + Math.round((Utils.getRandomFloat(-1, 1) * frameConfiguration.getxVariation()))
                 : objectConfiguration.getX();
 
         int y = frameConfiguration.getyVariation() != 0
-                ? objectConfiguration.getY() + Math.round((applet.random(-1, 1) * frameConfiguration.getyVariation()))
+                ? objectConfiguration.getY() + Math.round((Utils.getRandomFloat(-1, 1) * frameConfiguration.getyVariation()))
                 : objectConfiguration.getY();
 
-        final int size = PApplet.parseInt(
+        final int size = (int)(
                 frameConfiguration.isHaveSizeTransform()
-                        ? frameConfiguration.getSize() * applet.random(frameConfiguration.getMinSizeTransform(), frameConfiguration.getMaxSizeTransform())
+                        ? frameConfiguration.getSize() * Utils.getRandomFloat(frameConfiguration.getMinSizeTransform(), frameConfiguration.getMaxSizeTransform())
                         : frameConfiguration.getSize());
 
         x = x - (frameConfiguration.getSize() / 2);
         y = y - (frameConfiguration.getSize() / 2);
 
         final int frameIndex = objectConfiguration.getFrameIndex();
-        final boolean cut1 = frameConfiguration.isHaveCuts(); // && PApplet.parseInt(pApplet.random(0, 2)) == 1;
+        final boolean cut1 = frameConfiguration.isHaveCuts(); // && (int)(Utils.getRandomFloat(0, 2)) == 1;
         final int cutSize = Math.round(size * frameConfiguration.getCutSize());
 
         final int alpha = frameConfiguration.isHaveAlpha()
-                ? PApplet.parseInt(applet.random(frameConfiguration.getMinAlpha(), frameConfiguration.getMaxAlpha()))
+                ? (int)(Utils.getRandomFloat(frameConfiguration.getMinAlpha(), frameConfiguration.getMaxAlpha()))
                 : 255;
 
         final int direction = frameConfiguration.isHaveDirection()
-                ? frameConfiguration.getCalculateDirection().apply(frameIndex) // PApplet.parseInt(pApplet.random(0, 4))
+                ? frameConfiguration.getCalculateDirection().apply(frameIndex) // (int)(Utils.getRandomFloat(0, 4))
                 : 0;
 
         applet.pushMatrix();
-        applet.fill(Utils.getRandomColor(applet, frameConfiguration.getColorsForm().get(FormType.TRIANGLE)), alpha);
+
+        int[] colors = frameConfiguration.getColorsForm().get(FormType.TRIANGLE);
+        applet.fill(colors[Utils.getRandomInt(colors.length)], alpha);
 
         switch (direction)
         {
@@ -55,7 +57,9 @@ public class TriangleForm extends Form
 
                 if (cut1)
                 {
-                    applet.fill(Utils.getRandomColor(applet, frameConfiguration.getColorsCutTriangle()));
+                    int[] cutColors = frameConfiguration.getColorsCutTriangle();
+                    applet.fill(cutColors[Utils.getRandomInt(cutColors.length)]);
+
                     x = x + size / 2 - cutSize / 2;
                     applet.triangle(x, y + cutSize, x + (cutSize / 2f), y, x + cutSize, y + cutSize);
                 }
@@ -66,7 +70,9 @@ public class TriangleForm extends Form
                 applet.triangle(x, y, x + size, y, x + (size / 2f), y + size);
                 if (cut1)
                 {
-                    applet.fill(Utils.getRandomColor(applet, frameConfiguration.getColorsCutTriangle()));
+                    int[] cutColors = frameConfiguration.getColorsCutTriangle();
+                    applet.fill(cutColors[Utils.getRandomInt(cutColors.length)]);
+
                     x = x + size / 2 - cutSize / 2;
                     y = y + size - cutSize;
                     applet.triangle(x, y, x + cutSize, y, x + (cutSize / 2f), y + cutSize);
@@ -78,7 +84,9 @@ public class TriangleForm extends Form
                 applet.triangle(x + size, y, x, y + (size / 2f), x + size, y + size);
                 if (cut1)
                 {
-                    applet.fill(Utils.getRandomColor(applet, frameConfiguration.getColorsCutTriangle()));
+                    int[] cutColors = frameConfiguration.getColorsCutTriangle();
+                    applet.fill(cutColors[Utils.getRandomInt(cutColors.length)]);
+
                     y = y + size / 2 - cutSize / 2;
                     applet.triangle(x + cutSize, y, x, y + (cutSize / 2f), x + cutSize, y + cutSize);
                 }
@@ -89,7 +97,9 @@ public class TriangleForm extends Form
                 applet.triangle(x, y, x, y + size, x + size, y + (size / 2f));
                 if (cut1)
                 {
-                    applet.fill(Utils.getRandomColor(applet, frameConfiguration.getColorsCutTriangle()));
+                    int[] cutColors = frameConfiguration.getColorsCutTriangle();
+                    applet.fill(cutColors[Utils.getRandomInt(cutColors.length)]);
+
                     x = x + size - cutSize;
                     y = y + size / 2 - cutSize / 2;
                     applet.triangle(x, y, x, y + cutSize, x + cutSize, y + (cutSize / 2f));

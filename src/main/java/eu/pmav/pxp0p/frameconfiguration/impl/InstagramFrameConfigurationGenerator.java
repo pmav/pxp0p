@@ -53,7 +53,7 @@ public class InstagramFrameConfigurationGenerator extends FrameConfigurationGene
         frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setHaveDirection((boolean) v));
         //configurations = applyParameter(configurations, List.of(), (c, v) -> c.setCalculateDirection((Function<Integer, Integer>) v));
 
-        //PApplet.parseInt(pApplet.random(0, 4))
+        //(int)(Utils.getRandomFloat(0, 4))
 
         // Object Colors
         //configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsCircle((int[]) v));

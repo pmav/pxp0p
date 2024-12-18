@@ -5,10 +5,14 @@ import processing.core.PApplet;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Random;
 
 import static processing.core.PApplet.*;
 
 public class Utils {
+
+    // Set deterministic behaviour
+    private static final Random random = new Random(0);
 
     // TODO Remove PApplet dependency
     public static String getTimestampID()
@@ -32,8 +36,11 @@ public class Utils {
         }
     }
 
-    public static int getRandomColor(PApplet applet, int[] colors)
-    {
-        return colors[PApplet.parseInt(applet.random(colors.length))];
+    public static int getRandomInt(int bound) {
+        return random.nextInt(bound);
+    }
+
+    public static float getRandomFloat(float low, float high) {
+        return random.nextFloat(low, high);
     }
 }

@@ -18,11 +18,11 @@ public class DebugForm extends Form
     public void draw(PApplet applet, FrameConfiguration frameConfiguration, ObjectConfiguration objectConfiguration)
     {
         int x = frameConfiguration.getxVariation() != 0
-                ? objectConfiguration.getX() + Math.round((applet.random(-1, 1) * frameConfiguration.getxVariation()))
+                ? objectConfiguration.getX() + Math.round((Utils.getRandomFloat(-1, 1) * frameConfiguration.getxVariation()))
                 : objectConfiguration.getX();
 
         int y = frameConfiguration.getyVariation() != 0
-                ? objectConfiguration.getY() + Math.round((applet.random(-1, 1) * frameConfiguration.getyVariation()))
+                ? objectConfiguration.getY() + Math.round((Utils.getRandomFloat(-1, 1) * frameConfiguration.getyVariation()))
                 : objectConfiguration.getY();
 
         final int size = frameConfiguration.getSize();
@@ -35,7 +35,8 @@ public class DebugForm extends Form
         applet.pushMatrix();
 
         // Create square
-        applet.fill(Utils.getRandomColor(applet, frameConfiguration.getColorsForm().get(FormType.DEBUG)));
+        int[] colors = frameConfiguration.getColorsForm().get(FormType.DEBUG);
+        applet.fill(colors[Utils.getRandomInt(colors.length)]);
 
         applet.beginShape();
         applet.vertex(x, y);

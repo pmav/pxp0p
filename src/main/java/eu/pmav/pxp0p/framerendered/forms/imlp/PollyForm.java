@@ -19,7 +19,8 @@ public class PollyForm extends Form
     {
         applet.pushMatrix();
 
-        applet.fill(Utils.getRandomColor(applet, frameConfiguration.getColorsForm().get(FormType.SQUARE)));
+        int[] colors = frameConfiguration.getColorsForm().get(FormType.SQUARE);
+        applet.fill(colors[Utils.getRandomInt(colors.length)]);
 
         applet.beginShape();
         applet.vertex(100,100);
