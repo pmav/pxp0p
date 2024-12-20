@@ -20,7 +20,7 @@ List of features supported by each type of object:
 |-------------------------|--------|--------|----------|-------------|
 | Size                    | Yes    | Yes    | Yes      | Yes         |
 | Fill color              | Yes    | Yes    | Yes      | Yes         |
-| Transparency            | Yes    | Yes    | Yes      | TBD         |
+| Transparency            | Yes    | Yes    | Yes      | Yes         |
 | Position variation      | Yes    | Yes    | Yes      | Yes         |
 | Direction               | No     | No     | Yes, 90º | Yes, 90º    |
 | Stroke size             | Yes    | Yes    | Yes      | Yes         |
@@ -28,10 +28,10 @@ List of features supported by each type of object:
 | Cuts                    | Yes    | Yes    | Yes, 1   | No          |
 | Cuts size               | Yes    | Yes    | Yes      | No          |
 | Cuts color              | Yes    | Yes    | Yes      | No          |
-| Center object           | Yes    | Yes    | No       | TBD         |
-| Center object size      | Yes    | Yes    | No       | TBD         |
-| Center object color     | Yes    | Yes    | No       | TBD         |
-| Center object direction | No     | No     | No       | TBD         |
+| Center object           | Yes    | Yes    | No       | Yes         |
+| Center object size      | Yes    | Yes    | No       | Yes         |
+| Center object color     | Yes    | Yes    | No       | Yes         |
+| Center object direction | No     | No     | No       | Yes         |
 
 ### Resources
 

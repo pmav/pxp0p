@@ -17,25 +17,54 @@ public class SemiCircleForm extends Form
 
     public void draw(PApplet applet, FrameConfiguration frameConfiguration, ObjectConfiguration objectConfiguration)
     {
-        int x = frameConfiguration.getxVariation() != 0
-                ? objectConfiguration.getX() + Math.round((Utils.getRandomFloat(-1, 1) * frameConfiguration.getxVariation()))
-                : objectConfiguration.getX();
+        final int x = objectConfiguration.getX() // Get center coordinate
+                - (frameConfiguration.getSize() / 2) // Offset coordinate to top left
+                + Math.round((Utils.getRandomFloat(-1, 1) * frameConfiguration.getxVariation())); // Position variation
 
-        int y = frameConfiguration.getyVariation() != 0
-                ? objectConfiguration.getY() + Math.round((Utils.getRandomFloat(-1, 1) * frameConfiguration.getyVariation()))
-                : objectConfiguration.getY();
+        final int y = objectConfiguration.getY() // Get center coordinate
+                - (frameConfiguration.getSize() / 2) // Offset coordinate to top left
+                + Math.round((Utils.getRandomFloat(-1, 1) * frameConfiguration.getyVariation())); // Position variation
 
         final int size = frameConfiguration.getSize();
 
-        x = x - (frameConfiguration.getSize() / 2);
-        y = y - (frameConfiguration.getSize() / 2);
-
         final int frameIndex = objectConfiguration.getFrameIndex();
 
+        // Transparency
+        final int alpha = frameConfiguration.isHaveAlpha()
+                ? (int)(Utils.getRandomFloat(frameConfiguration.getMinAlpha(), frameConfiguration.getMaxAlpha()))
+                : 255;
+
+        // Center object
+        final boolean haveCenterObject = frameConfiguration.haveCenterObject();
+        final int centerObjectSize = Math.round(size * frameConfiguration.getCenterObjectSize());
+
+        // Get anglesForObject for the main object based on direction
         final int direction = frameConfiguration.isHaveDirection()
                 ? frameConfiguration.getCalculateDirection().apply(frameIndex)
                 : 0;
+        Angles anglesForObject = getAngles(direction);
 
+        // Get anglesForObject for the center object
+        Angles anglesForCenterObject = getAngles((direction + 2) % 4);
+
+        // Draw
+        applet.pushMatrix();
+
+        int[] colors = frameConfiguration.getColorsForm().get(FormType.SEMICIRCLE);
+        applet.fill(colors[Utils.getRandomInt(colors.length)], alpha);
+        applet.arc(x + size / 2f, y + size / 2f, size, size, anglesForObject.startAngle(), anglesForObject.stopAngle(), PConstants.CHORD);
+
+        if (haveCenterObject)
+        {
+            int[] centerColors = frameConfiguration.getColorsCenterObject();
+            applet.fill(centerColors[Utils.getRandomInt(centerColors.length)]);
+            applet.arc(x + size / 2f, y + size / 2f, centerObjectSize, centerObjectSize, anglesForCenterObject.startAngle(), anglesForCenterObject.stopAngle(), PConstants.CHORD);
+        }
+
+        applet.popMatrix();
+    }
+
+    private static Angles getAngles(int direction) {
         final float startAngle = switch (direction) {
             case 0 -> 0;
             case 1 -> 1 * PConstants.HALF_PI;
@@ -52,12 +81,8 @@ public class SemiCircleForm extends Form
             default -> throw new IllegalStateException("Unexpected value: " + direction);
         };
 
-        applet.pushMatrix();
-
-        int[] colors = frameConfiguration.getColorsForm().get(FormType.SEMICIRCLE);
-        applet.fill(colors[Utils.getRandomInt(colors.length)]);
-        applet.arc(x + size / 2f, y + size / 2f, size, size, startAngle, stopAngle, PConstants.CHORD);
-
-        applet.popMatrix();
+        return new Angles(startAngle, stopAngle);
     }
+
+    private record Angles(float startAngle, float stopAngle) { }
 }

@@ -4,6 +4,7 @@ import eu.pmav.pxp0p.frameconfiguration.model.FrameConfiguration;
 import eu.pmav.pxp0p.frameconfiguration.FrameConfigurationGenerator;
 import eu.pmav.pxp0p.framerendered.forms.FormType;
 import eu.pmav.pxp0p.frameconfiguration.helpers.SerializableFunction;
+import eu.pmav.pxp0p.utils.Utils;
 
 import java.util.Collections;
 import java.util.List;
@@ -72,7 +73,7 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         fc = applyParameter(fc, List.of(1.2f), (c, v) -> c.setMaxSizeTransform((float) v));
 
         // Alpha
-        fc = applyParameter(fc, List.of(false), (c, v) -> c.setHaveAlpha((boolean) v));
+        fc = applyParameter(fc, List.of(true), (c, v) -> c.setHaveAlpha((boolean) v));
         fc = applyParameter(fc, List.of(0), (c, v) -> c.setMinAlpha((int) v));
         fc = applyParameter(fc, List.of(150), (c, v) -> c.setMaxAlpha((int) v));
 
@@ -86,8 +87,8 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         fc = applyParameter(fc, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
 
         // Center Object
-        fc = applyParameter(fc, List.of(false), (c, v) -> c.setHaveCenterObject((boolean) v));
-        fc = applyParameter(fc, List.of(0.5f), (c, v) -> c.setCenterObjectSize((float) v));
+        fc = applyParameter(fc, List.of(true), (c, v) -> c.setHaveCenterObject((boolean) v));
+        fc = applyParameter(fc, List.of(0.6f), (c, v) -> c.setCenterObjectSize((float) v));
         fc = applyParameter(fc, List.of(colorsBlue), (c, v) -> c.setColorsCenterObject((int[]) v));
 
         // Cuts
@@ -100,7 +101,7 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
 
         // Change direction (triangles only)
         fc = applyParameter(fc, List.of(true), (c, v) -> c.setHaveDirection((boolean) v));
-        SerializableFunction<Integer, Integer> f = (Integer i) -> 1;
+        SerializableFunction<Integer, Integer> f = (Integer i) -> Utils.getRandomInt(4);
         fc = applyParameter(fc, List.of(f), (c, v) -> c.setCalculateDirection((Function<Integer, Integer>) v));
 
         System.out.printf("Generated %s Frame configurations...%n", fc.size());
