@@ -25,23 +25,23 @@ public class CircleForm extends Form
                 : objectConfiguration.getY();
 
         final int size = (int)(
-                frameConfiguration.isHaveSizeTransform()
+                frameConfiguration.hasSizeTransform()
                         ? frameConfiguration.getSize() * Utils.getRandomFloat(frameConfiguration.getMinSizeTransform(), frameConfiguration.getMaxSizeTransform())
                         : frameConfiguration.getSize());
 
         x = x - (frameConfiguration.getSize() / 2);
         y = y - (frameConfiguration.getSize() / 2);
 
-        final boolean cut1 = frameConfiguration.isHaveCuts() && (int)(Utils.getRandomFloat(0, 2)) == 1;
-        final boolean cut2 = frameConfiguration.isHaveCuts() && (int)(Utils.getRandomFloat(0, 2)) == 1;
-        final boolean cut3 = frameConfiguration.isHaveCuts() && (int)(Utils.getRandomFloat(0, 2)) == 1;
-        final boolean cut4 = frameConfiguration.isHaveCuts() && (int)(Utils.getRandomFloat(0, 2)) == 1;
+        final boolean cut1 = frameConfiguration.hasCuts() && (int)(Utils.getRandomFloat(0, 2)) == 1;
+        final boolean cut2 = frameConfiguration.hasCuts() && (int)(Utils.getRandomFloat(0, 2)) == 1;
+        final boolean cut3 = frameConfiguration.hasCuts() && (int)(Utils.getRandomFloat(0, 2)) == 1;
+        final boolean cut4 = frameConfiguration.hasCuts() && (int)(Utils.getRandomFloat(0, 2)) == 1;
         final int cutSize = Math.round(size * frameConfiguration.getCutSize());
 
-        final boolean haveCenterObject = frameConfiguration.haveCenterObject();
+        final boolean haveCenterObject = frameConfiguration.hasCenterObject();
         final int centerObjectSize = Math.round(size * frameConfiguration.getCenterObjectSize());
 
-        final int alpha = frameConfiguration.isHaveAlpha() ? (int)(Utils.getRandomFloat(frameConfiguration.getMinAlpha(), frameConfiguration.getMaxAlpha())) : 255;
+        final int alpha = frameConfiguration.hasAlpha() ? (int)(Utils.getRandomFloat(frameConfiguration.getMinAlpha(), frameConfiguration.getMaxAlpha())) : 255;
 
         applet.pushMatrix();
         int[] colors = frameConfiguration.getColorsForm().get(FormType.CIRCLE);

@@ -25,7 +25,7 @@ public class TriangleForm extends Form
                 : objectConfiguration.getY();
 
         final int size = (int)(
-                frameConfiguration.isHaveSizeTransform()
+                frameConfiguration.hasSizeTransform()
                         ? frameConfiguration.getSize() * Utils.getRandomFloat(frameConfiguration.getMinSizeTransform(), frameConfiguration.getMaxSizeTransform())
                         : frameConfiguration.getSize());
 
@@ -33,14 +33,14 @@ public class TriangleForm extends Form
         y = y - (frameConfiguration.getSize() / 2);
 
         final int frameIndex = objectConfiguration.getFrameIndex();
-        final boolean cut1 = frameConfiguration.isHaveCuts(); // && (int)(Utils.getRandomFloat(0, 2)) == 1;
+        final boolean cut1 = frameConfiguration.hasCuts(); // && (int)(Utils.getRandomFloat(0, 2)) == 1;
         final int cutSize = Math.round(size * frameConfiguration.getCutSize());
 
-        final int alpha = frameConfiguration.isHaveAlpha()
+        final int alpha = frameConfiguration.hasAlpha()
                 ? (int)(Utils.getRandomFloat(frameConfiguration.getMinAlpha(), frameConfiguration.getMaxAlpha()))
                 : 255;
 
-        final int direction = frameConfiguration.isHaveDirection()
+        final int direction = frameConfiguration.hasDirection()
                 ? frameConfiguration.getCalculateDirection().apply(frameIndex) // (int)(Utils.getRandomFloat(0, 4))
                 : 0;
 

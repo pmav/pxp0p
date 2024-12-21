@@ -58,12 +58,12 @@ public class DevelopmentFrameConfigurationGenerator extends FrameConfigurationGe
         //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsTriangle((int[]) v));
 
         // Size
-        frameConfigurations = applyParameter(frameConfigurations, List.of(true), (c, v) -> c.setHaveSizeTransform((boolean) v));
+        frameConfigurations = applyParameter(frameConfigurations, List.of(true), (c, v) -> c.setSizeTransform((boolean) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(1.0f), (c, v) -> c.setMinSizeTransform((float) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(1.2f), (c, v) -> c.setMaxSizeTransform((float) v));
 
         // Alpha
-        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setHaveAlpha((boolean) v));
+        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setAlpha((boolean) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(0), (c, v) -> c.setMinAlpha((int) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(150), (c, v) -> c.setMaxAlpha((int) v));
 
@@ -72,17 +72,17 @@ public class DevelopmentFrameConfigurationGenerator extends FrameConfigurationGe
         frameConfigurations = applyParameter(frameConfigurations, List.of(10), (c, v) -> c.setyVariation((int) v));
 
         // Stroke
-        frameConfigurations = applyParameter(frameConfigurations, List.of(true), (c, v) -> c.setHaveStroke((boolean) v));
+        frameConfigurations = applyParameter(frameConfigurations, List.of(true), (c, v) -> c.setStroke((boolean) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(8), (c, v) -> c.setStrokeSize((int) v));
         frameConfigurations = applyParameter(frameConfigurations, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
 
         // Center Object
-        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setHaveCenterObject((boolean) v));
+        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setCenterObject((boolean) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(0.5f), (c, v) -> c.setCenterObjectSize((float) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(colorsBlue), (c, v) -> c.setColorsCenterObject((int[]) v));
 
         // Cuts
-        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setHaveCuts((boolean) v));
+        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setCuts((boolean) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(0.8f), (c, v) -> c.setCutSize((float) v));
 
         frameConfigurations = applyParameter(frameConfigurations, List.of(colorsBlue), (c, v) -> c.setColorsCutCircle((int[]) v));

@@ -48,22 +48,22 @@ public class FrameConfiguration implements Serializable
     private final Map<FormType, int[]> colorsForm = new HashMap<>();
 
     // Size Transform
-    private boolean haveSizeTransform;
+    private boolean sizeTransform;
     private float minSizeTransform;
     private float maxSizeTransform;
 
     // Alpha value
-    private boolean haveAlpha;
+    private boolean alpha;
     private int minAlpha;
     private int maxAlpha;
 
     // Stroke
-    private boolean haveStroke;
+    private boolean stroke;
     private int strokeSize;
     private int strokeColor;
 
     // Cuts
-    private boolean haveCuts;
+    private boolean cuts;
     private float cutSize;
 
     // TODO To be refactor and remove hardcoded reference to Forms
@@ -72,11 +72,11 @@ public class FrameConfiguration implements Serializable
     private int[] colorsCutTriangle;
 
     // Direction
-    private boolean haveDirection = false;
+    private boolean direction;
     private Function<Integer, Integer> calculateDirection;
 
     // Center object
-    private boolean haveCenterObject;
+    private boolean centerObject;
     private float centerObjectSize;
     private int[] colorsCenterObject;
 
@@ -95,7 +95,8 @@ public class FrameConfiguration implements Serializable
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Configuration{" +
                 "canvasWidth=" + canvasWidth +
                 ", canvasHeight=" + canvasHeight +
@@ -111,17 +112,19 @@ public class FrameConfiguration implements Serializable
 
     // General
 
-    public int getSize() {
-        return size;
+    public int getSize()
+    {
+        return this.size;
     }
 
-    public void setSize(int size) {
+    public void setSize(int size)
+    {
         this.size = size;
     }
 
     public String getFramePath()
     {
-        return framePath;
+        return this.framePath;
     }
 
     public void setFramePath(String framePath)
@@ -131,25 +134,27 @@ public class FrameConfiguration implements Serializable
 
     public int getCanvasWidth()
     {
-        return canvasWidth;
+        return this.canvasWidth;
     }
 
-    public void setCanvasWidth(int canvasWidth) {
+    public void setCanvasWidth(int canvasWidth)
+    {
         this.canvasWidth = canvasWidth;
     }
 
     public int getCanvasHeight()
     {
-        return canvasHeight;
+        return this.canvasHeight;
     }
 
-    public void setCanvasHeight(int canvasHeight) {
+    public void setCanvasHeight(int canvasHeight)
+    {
         this.canvasHeight = canvasHeight;
     }
 
     public int getGridWidth()
     {
-        return gridWidth;
+        return this.gridWidth;
     }
 
     public void setGridWidth(int gridWidth)
@@ -159,7 +164,7 @@ public class FrameConfiguration implements Serializable
 
     public int getGridHeight()
     {
-        return gridHeight;
+        return this.gridHeight;
     }
 
     public void setGridHeight(int gridHeight)
@@ -171,7 +176,7 @@ public class FrameConfiguration implements Serializable
 
     public int getObjectColumns()
     {
-        return objectColumns;
+        return this.objectColumns;
     }
 
     public void setObjectColumns(int objectColumns)
@@ -181,7 +186,7 @@ public class FrameConfiguration implements Serializable
 
     public int getObjectLines()
     {
-        return objectLines;
+        return this.objectLines;
     }
 
     public void setObjectLines(int objectLines)
@@ -191,7 +196,7 @@ public class FrameConfiguration implements Serializable
 
     public int getObjectSpacing()
     {
-        return objectSpacing;
+        return this.objectSpacing;
     }
 
     public void setObjectSpacing(int objectSpacing)
@@ -203,7 +208,7 @@ public class FrameConfiguration implements Serializable
 
     public FormType[] getObjectTypes()
     {
-        return formTypes;
+        return this.formTypes;
     }
 
     public void setObjectTypes(FormType[] formTypes)
@@ -215,7 +220,7 @@ public class FrameConfiguration implements Serializable
 
     public int getxVariation()
     {
-        return xVariation;
+        return this.xVariation;
     }
 
     public void setxVariation(int xVariation)
@@ -225,7 +230,7 @@ public class FrameConfiguration implements Serializable
 
     public int getyVariation()
     {
-        return yVariation;
+        return this.yVariation;
     }
 
     public void setyVariation(int yVariation)
@@ -237,7 +242,7 @@ public class FrameConfiguration implements Serializable
 
     public int getColorBackground()
     {
-        return colorBackground;
+        return this.colorBackground;
     }
 
     public void setColorBackground(int colorBackground)
@@ -247,6 +252,11 @@ public class FrameConfiguration implements Serializable
 
     // Blur
 
+    public float getBlurValue()
+    {
+        return this.blurValue;
+    }
+
     public void setBlurValue(float blurValue)
     {
         this.blurValue = blurValue;
@@ -254,19 +264,19 @@ public class FrameConfiguration implements Serializable
 
     // Size
 
-    public boolean isHaveSizeTransform()
+    public boolean hasSizeTransform()
     {
-        return haveSizeTransform;
+        return this.sizeTransform;
     }
 
-    public void setHaveSizeTransform(boolean haveSizeTransform)
+    public void setSizeTransform(boolean sizeTransform)
     {
-        this.haveSizeTransform = haveSizeTransform;
+        this.sizeTransform = sizeTransform;
     }
 
     public float getMinSizeTransform()
     {
-        return minSizeTransform;
+        return this.minSizeTransform;
     }
 
     public void setMinSizeTransform(float minSizeTransform)
@@ -276,7 +286,7 @@ public class FrameConfiguration implements Serializable
 
     public float getMaxSizeTransform()
     {
-        return maxSizeTransform;
+        return this.maxSizeTransform;
     }
 
     public void setMaxSizeTransform(float maxSizeTransform)
@@ -286,19 +296,19 @@ public class FrameConfiguration implements Serializable
 
     // Cuts
 
-    public boolean isHaveCuts()
+    public boolean hasCuts()
     {
-        return haveCuts;
+        return this.cuts;
     }
 
-    public void setHaveCuts(boolean haveCuts)
+    public void setCuts(boolean haveCuts)
     {
-        this.haveCuts = haveCuts;
+        this.cuts = haveCuts;
     }
 
     public float getCutSize()
     {
-        return cutSize;
+        return this.cutSize;
     }
 
     public void setCutSize(float cutSize)
@@ -310,7 +320,7 @@ public class FrameConfiguration implements Serializable
 
     public int[] getColorsCutCircle()
     {
-        return colorsCutCircle;
+        return this.colorsCutCircle;
     }
 
     public void setColorsCutCircle(int[] colorsCutCircle)
@@ -320,7 +330,7 @@ public class FrameConfiguration implements Serializable
 
     public int[] getColorsCutSquare()
     {
-        return colorsCutSquare;
+        return this.colorsCutSquare;
     }
 
     public void setColorsCutSquare(int[] colorsCutSquare)
@@ -330,7 +340,7 @@ public class FrameConfiguration implements Serializable
 
     public int[] getColorsCutTriangle()
     {
-        return colorsCutTriangle;
+        return this.colorsCutTriangle;
     }
 
     public void setColorsCutTriangle(int[] colorsCutTriangle)
@@ -340,19 +350,19 @@ public class FrameConfiguration implements Serializable
 
     // Alpha
 
-    public boolean isHaveAlpha()
+    public boolean hasAlpha()
     {
-        return haveAlpha;
+        return this.alpha;
     }
 
-    public void setHaveAlpha(boolean haveAlpha)
+    public void setAlpha(boolean haveAlpha)
     {
-        this.haveAlpha = haveAlpha;
+        this.alpha = haveAlpha;
     }
 
     public int getMinAlpha()
     {
-        return minAlpha;
+        return this.minAlpha;
     }
 
     public void setMinAlpha(int minAlpha)
@@ -362,7 +372,7 @@ public class FrameConfiguration implements Serializable
 
     public int getMaxAlpha()
     {
-        return maxAlpha;
+        return this.maxAlpha;
     }
 
     public void setMaxAlpha(int maxAlpha)
@@ -372,19 +382,19 @@ public class FrameConfiguration implements Serializable
 
     // Stroke
 
-    public boolean isHaveStroke()
+    public boolean hasStroke()
     {
-        return haveStroke;
+        return this.stroke;
     }
 
-    public void setHaveStroke(boolean haveStroke)
+    public void setStroke(boolean haveStroke)
     {
-        this.haveStroke = haveStroke;
+        this.stroke = haveStroke;
     }
 
     public int getStrokeColor()
     {
-        return strokeColor;
+        return this.strokeColor;
     }
 
     public void setStrokeColor(int strokeColor)
@@ -394,7 +404,7 @@ public class FrameConfiguration implements Serializable
 
     public int getStrokeSize()
     {
-        return strokeSize;
+        return this.strokeSize;
     }
 
     public void setStrokeSize(int strokeSize)
@@ -402,34 +412,31 @@ public class FrameConfiguration implements Serializable
         this.strokeSize = strokeSize;
     }
 
-    public float getBlurValue()
+    public Map<FormType, int[]> getColorsForm()
     {
-        return blurValue;
+        return this.colorsForm;
     }
 
-    public Map<FormType, int[]> getColorsForm() {
-        return colorsForm;
-    }
-
-    public void addColorsForm(FormType formType, int[] colors) {
+    public void addColorsForm(FormType formType, int[] colors)
+    {
         this.colorsForm.put(formType, colors);
     }
 
     // Center object
 
-    public boolean haveCenterObject()
+    public boolean hasCenterObject()
     {
-        return haveCenterObject;
+        return this.centerObject;
     }
 
-    public void setHaveCenterObject(boolean haveCenterObject)
+    public void setCenterObject(boolean haveCenterObject)
     {
-        this.haveCenterObject = haveCenterObject;
+        this.centerObject = haveCenterObject;
     }
 
     public float getCenterObjectSize()
     {
-        return centerObjectSize;
+        return this.centerObjectSize;
     }
 
     public void setCenterObjectSize(float centerObjectSize)
@@ -439,7 +446,7 @@ public class FrameConfiguration implements Serializable
 
     public int[] getColorsCenterObject()
     {
-        return colorsCenterObject;
+        return this.colorsCenterObject;
     }
 
     public void setColorsCenterObject(int[] colorsCenterObject)
@@ -449,19 +456,19 @@ public class FrameConfiguration implements Serializable
 
     // Direction
 
-    public boolean isHaveDirection()
+    public boolean hasDirection()
     {
-        return haveDirection;
+        return this.direction;
     }
 
-    public void setHaveDirection(boolean haveDirection)
+    public void setDirection(boolean haveDirection)
     {
-        this.haveDirection = haveDirection;
+        this.direction = haveDirection;
     }
 
     public Function<Integer, Integer> getCalculateDirection()
     {
-        return calculateDirection;
+        return this.calculateDirection;
     }
 
     public void setCalculateDirection(Function<Integer, Integer> calculateDirection)
