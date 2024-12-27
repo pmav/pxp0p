@@ -2,6 +2,7 @@ package eu.pmav.pxp0p.frameconfiguration.random;
 
 import eu.pmav.pxp0p.frameconfiguration.model.FrameConfiguration;
 import eu.pmav.pxp0p.framerendered.forms.FormType;
+import eu.pmav.pxp0p.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,12 +69,15 @@ public class RandomFrameConfigurationGenerator
 
             // Alpha
             frameConfiguration.setHaveAlpha(getRandomBoolean());
-            frameConfiguration.setMinAlpha(getRandomInt(0, 127));
-            frameConfiguration.setMaxAlpha(getRandomInt(128, 255));
+            FrameConfiguration.IntFunction alphaFunction = (frameIndex) -> (int) Utils.getRandomFloat(0, 150);
+            frameConfiguration.setAlphaFunction(alphaFunction);
 
             // Variation
-            frameConfiguration.setxVariation(getRandomInt(0, 10));
-            frameConfiguration.setyVariation(getRandomInt(0, 10));
+            FrameConfiguration.IntFunction xVariationFunction = (v) -> getRandomInt(0, 10);
+            frameConfiguration.setxVariationFunction(xVariationFunction);
+
+            FrameConfiguration.IntFunction yVariationFunction = (v) -> getRandomInt(0, 10);
+            frameConfiguration.setyVariationFunction(yVariationFunction);
 
             // Stroke
             frameConfiguration.setHaveStroke(getRandomBoolean());

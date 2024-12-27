@@ -17,21 +17,35 @@ public class SemiCircleForm extends Form
 
     public void draw(PApplet applet, FrameConfiguration frameConfiguration, ObjectConfiguration objectConfiguration)
     {
+        // Frame index
+        final int frameIndex = objectConfiguration.getFrameIndex();
+
+        // Get initial X position variation
+        final int xVariation = frameConfiguration.getxVariationFunction() != null
+                ? frameConfiguration.getxVariationFunction().run(frameIndex)
+                : 0;
+
+        // Get initial Y position variation
+        final int yVariation = frameConfiguration.getyVariationFunction() != null
+                ? frameConfiguration.getyVariationFunction().run(frameIndex)
+                : 0;
+
         final int x = objectConfiguration.getX() // Get center coordinate
                 - (frameConfiguration.getSize() / 2) // Offset coordinate to top left
-                + Math.round((Utils.getRandomFloat(-1, 1) * frameConfiguration.getxVariation())); // Position variation
+                + xVariation; // Position variation
 
         final int y = objectConfiguration.getY() // Get center coordinate
                 - (frameConfiguration.getSize() / 2) // Offset coordinate to top left
-                + Math.round((Utils.getRandomFloat(-1, 1) * frameConfiguration.getyVariation())); // Position variation
+                + yVariation; // Position variation
 
-        final int size = frameConfiguration.getSize();
-
-        final int frameIndex = objectConfiguration.getFrameIndex();
+        final int size = (int)(
+                frameConfiguration.isHaveSizeTransform()
+                        ? frameConfiguration.getSize() * Utils.getRandomFloat(frameConfiguration.getMinSizeTransform(), frameConfiguration.getMaxSizeTransform())
+                        : frameConfiguration.getSize());
 
         // Transparency
         final int alpha = frameConfiguration.isHaveAlpha()
-                ? (int)(Utils.getRandomFloat(frameConfiguration.getMinAlpha(), frameConfiguration.getMaxAlpha()))
+                ? frameConfiguration.getAlphaFunction().run(objectConfiguration.getFrameIndex())
                 : 255;
 
         // Center object

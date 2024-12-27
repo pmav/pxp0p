@@ -3,6 +3,7 @@ package eu.pmav.pxp0p.frameconfiguration.impl;
 import eu.pmav.pxp0p.framerendered.forms.FormType;
 import eu.pmav.pxp0p.frameconfiguration.model.FrameConfiguration;
 import eu.pmav.pxp0p.frameconfiguration.FrameConfigurationGenerator;
+import eu.pmav.pxp0p.utils.Utils;
 
 import java.util.Collections;
 import java.util.List;
@@ -48,12 +49,15 @@ public class OlympicsFrameConfigurationGenerator extends FrameConfigurationGener
 
         // Alpha
         frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setHaveAlpha((boolean) v));
-        frameConfigurations = applyParameter(frameConfigurations, List.of(0), (c, v) -> c.setMinAlpha((int) v));
-        frameConfigurations = applyParameter(frameConfigurations, List.of(150), (c, v) -> c.setMaxAlpha((int) v));
+        FrameConfiguration.IntFunction alphaFunction = (frameIndex) -> (int) Utils.getRandomFloat(0, 150);
+        frameConfigurations = applyParameter(frameConfigurations, List.of(alphaFunction), (c, v) -> c.setAlphaFunction((FrameConfiguration.IntFunction) v));
 
         // Variation
-        frameConfigurations = applyParameter(frameConfigurations, List.of(0), (c, v) -> c.setxVariation((int) v));
-        frameConfigurations = applyParameter(frameConfigurations, List.of(0), (c, v) -> c.setyVariation((int) v));
+        FrameConfiguration.IntFunction xVariationFunction = (v) -> 0;
+        frameConfigurations = applyParameter(frameConfigurations, List.of(xVariationFunction), (c, v) -> c.setxVariationFunction((FrameConfiguration.IntFunction) v));
+
+        FrameConfiguration.IntFunction yVariationFunction = (v) -> 0;
+        frameConfigurations = applyParameter(frameConfigurations, List.of(yVariationFunction), (c, v) -> c.setyVariationFunction((FrameConfiguration.IntFunction) v));
 
         // Stroke
         frameConfigurations = applyParameter(frameConfigurations, List.of(true), (c, v) -> c.setHaveStroke((boolean) v));

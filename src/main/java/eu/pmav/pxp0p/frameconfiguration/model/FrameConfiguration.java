@@ -35,8 +35,8 @@ public class FrameConfiguration implements Serializable
     private FormType[] formTypes;
 
     // Initial Position variation
-    private int xVariation;
-    private int yVariation;
+    private IntFunction xVariationFunction = null;
+    private IntFunction yVariationFunction = null;
 
     // Background color
     private int colorBackground;
@@ -49,13 +49,12 @@ public class FrameConfiguration implements Serializable
 
     // Size Transform
     private boolean haveSizeTransform;
-    private float minSizeTransform;
+    private float minSizeTransform; // TODO Move to function
     private float maxSizeTransform;
 
     // Alpha value
     private boolean haveAlpha;
-    private int minAlpha;
-    private int maxAlpha;
+    private IntFunction alphaFunction = null;
 
     // Stroke
     private boolean haveStroke;
@@ -73,12 +72,17 @@ public class FrameConfiguration implements Serializable
 
     // Direction
     private boolean haveDirection = false;
-    private Function<Integer, Integer> calculateDirection;
+    private Function<Integer, Integer> calculateDirection; // TODO Move to function
 
     // Center object
     private boolean haveCenterObject;
     private float centerObjectSize;
     private int[] colorsCenterObject;
+
+    // Lambda functions
+    public interface IntFunction extends Serializable {
+        int run(int frameIndex);
+    }
 
     public FrameConfiguration()
     {
@@ -213,24 +217,20 @@ public class FrameConfiguration implements Serializable
 
     // Initial Position variation
 
-    public int getxVariation()
-    {
-        return xVariation;
+    public IntFunction getxVariationFunction() {
+        return xVariationFunction;
     }
 
-    public void setxVariation(int xVariation)
-    {
-        this.xVariation = xVariation;
+    public void setxVariationFunction(IntFunction xVariationFunction) {
+        this.xVariationFunction = xVariationFunction;
     }
 
-    public int getyVariation()
-    {
-        return yVariation;
+    public IntFunction getyVariationFunction() {
+        return yVariationFunction;
     }
 
-    public void setyVariation(int yVariation)
-    {
-        this.yVariation = yVariation;
+    public void setyVariationFunction(IntFunction yVariationFunction) {
+        this.yVariationFunction = yVariationFunction;
     }
 
     // Background color
@@ -350,24 +350,12 @@ public class FrameConfiguration implements Serializable
         this.haveAlpha = haveAlpha;
     }
 
-    public int getMinAlpha()
-    {
-        return minAlpha;
+    public IntFunction getAlphaFunction() {
+        return alphaFunction;
     }
 
-    public void setMinAlpha(int minAlpha)
-    {
-        this.minAlpha = minAlpha;
-    }
-
-    public int getMaxAlpha()
-    {
-        return maxAlpha;
-    }
-
-    public void setMaxAlpha(int maxAlpha)
-    {
-        this.maxAlpha = maxAlpha;
+    public void setAlphaFunction(IntFunction alphaFunction) {
+        this.alphaFunction = alphaFunction;
     }
 
     // Stroke

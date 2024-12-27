@@ -16,21 +16,28 @@ public class SquareForm extends Form
 
     public void draw(PApplet applet, FrameConfiguration frameConfiguration, ObjectConfiguration objectConfiguration)
     {
-        int x = frameConfiguration.getxVariation() != 0
-                ? objectConfiguration.getX() + Math.round((Utils.getRandomFloat(-1, 1) * frameConfiguration.getxVariation()))
-                : objectConfiguration.getX();
+        // Get initial X position variation
+        final int xVariation = frameConfiguration.getxVariationFunction() != null
+                ? frameConfiguration.getxVariationFunction().run(0)
+                : 0;
 
-        int y = frameConfiguration.getyVariation() != 0
-                ? objectConfiguration.getY() + Math.round((Utils.getRandomFloat(-1, 1) * frameConfiguration.getyVariation()))
-                : objectConfiguration.getY();
+        // Get initial Y position variation
+        final int yVariation = frameConfiguration.getyVariationFunction() != null
+                ? frameConfiguration.getyVariationFunction().run(0)
+                : 0;
+
+        final int x = objectConfiguration.getX()
+                + Math.round((Utils.getRandomFloat(-1, 1) * xVariation))
+                - (frameConfiguration.getSize() / 2);
+
+        final int y = objectConfiguration.getY()
+                + Math.round((Utils.getRandomFloat(-1, 1) * yVariation))
+                - (frameConfiguration.getSize() / 2);
 
         final int size = (int)(
                 frameConfiguration.isHaveSizeTransform()
                         ? frameConfiguration.getSize() * Utils.getRandomFloat(frameConfiguration.getMinSizeTransform(), frameConfiguration.getMaxSizeTransform())
                         : frameConfiguration.getSize());
-
-        x = x - (frameConfiguration.getSize() / 2);
-        y = y - (frameConfiguration.getSize() / 2);
 
         final boolean cut1 = frameConfiguration.isHaveCuts() && (int)(Utils.getRandomFloat(0, 2)) == 1;
         final boolean cut2 = frameConfiguration.isHaveCuts() && (int)(Utils.getRandomFloat(0, 2)) == 1;
@@ -42,7 +49,7 @@ public class SquareForm extends Form
         final int centerObjectSize = Math.round(size * frameConfiguration.getCenterObjectSize());
 
         final int alpha = frameConfiguration.isHaveAlpha()
-                ? (int)(Utils.getRandomFloat(frameConfiguration.getMinAlpha(), frameConfiguration.getMaxAlpha()))
+                ? frameConfiguration.getAlphaFunction().run(objectConfiguration.getFrameIndex())
                 : 255;
 
         applet.pushMatrix();
