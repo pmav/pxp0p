@@ -110,7 +110,7 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         fc = applyParameter(fc, List.of(colorsBlue), (c, v) -> c.setColorsCutTriangle((int[]) v));
 
         // Change direction (triangles and semicircles only)
-        fc = applyParameter(fc, List.of(true), (c, v) -> c.setHaveDirection((boolean) v));
+        fc = applyParameter(fc, List.of(true), (c, v) -> c.setDirection((boolean) v));
         //SerializableFunction<Integer, Integer> f = (Integer i) -> Utils.getRandomInt(4);
         SerializableFunction<Integer, Integer> f = (Integer i) -> 2;
         fc = applyParameter(fc, List.of(f), (c, v) -> c.setCalculateDirection((Function<Integer, Integer>) v));

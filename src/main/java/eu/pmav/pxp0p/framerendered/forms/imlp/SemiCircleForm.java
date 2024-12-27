@@ -39,7 +39,7 @@ public class SemiCircleForm extends Form
                 + yVariation; // Position variation
 
         final int size = (int)(
-                frameConfiguration.isHaveSizeTransform()
+                frameConfiguration.hasSizeTransform()
                         ? frameConfiguration.getSize() * Utils.getRandomFloat(frameConfiguration.getMinSizeTransform(), frameConfiguration.getMaxSizeTransform())
                         : frameConfiguration.getSize());
 
