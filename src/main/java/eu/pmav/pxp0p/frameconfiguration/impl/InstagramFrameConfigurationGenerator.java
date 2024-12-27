@@ -51,7 +51,7 @@ public class InstagramFrameConfigurationGenerator extends FrameConfigurationGene
         frameConfigurations = applyParameter(frameConfigurations, Collections.singletonList(new FormType[]{FormType.TRIANGLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
 
         // Direction
-        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setHaveDirection((boolean) v));
+        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setDirection((boolean) v));
         //configurations = applyParameter(configurations, List.of(), (c, v) -> c.setCalculateDirection((Function<Integer, Integer>) v));
 
         //(int)(Utils.getRandomFloat(0, 4))
@@ -62,12 +62,12 @@ public class InstagramFrameConfigurationGenerator extends FrameConfigurationGene
         //configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsTriangle((int[]) v));
 
         // Size Transform
-        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setHaveSizeTransform((boolean) v));
+        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setSizeTransform((boolean) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(1.0f), (c, v) -> c.setMinSizeTransform((float) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(1.2f), (c, v) -> c.setMaxSizeTransform((float) v));
 
         // Alpha
-        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setHaveAlpha((boolean) v));
+        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setAlpha((boolean) v));
         FrameConfiguration.IntFunction alphaFunction = (frameIndex) -> (int) Utils.getRandomFloat(0, 150);
         frameConfigurations = applyParameter(frameConfigurations, List.of(alphaFunction), (c, v) -> c.setAlphaFunction((FrameConfiguration.IntFunction) v));
 
@@ -79,17 +79,17 @@ public class InstagramFrameConfigurationGenerator extends FrameConfigurationGene
         frameConfigurations = applyParameter(frameConfigurations, List.of(yVariationFunction), (c, v) -> c.setyVariationFunction((FrameConfiguration.IntFunction) v));
 
         // Stroke
-        frameConfigurations = applyParameter(frameConfigurations, List.of(true), (c, v) -> c.setHaveStroke((boolean) v));
+        frameConfigurations = applyParameter(frameConfigurations, List.of(true), (c, v) -> c.setStroke((boolean) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(4), (c, v) -> c.setStrokeSize((int) v));
         frameConfigurations = applyParameter(frameConfigurations, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
 
         // Center Object
-        frameConfigurations = applyParameter(frameConfigurations, List.of(true), (c, v) -> c.setHaveCenterObject((boolean) v));
+        frameConfigurations = applyParameter(frameConfigurations, List.of(true), (c, v) -> c.setCenterObject((boolean) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(0.5f), (c, v) -> c.setCenterObjectSize((float) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(colorsBlue), (c, v) -> c.setColorsCenterObject((int[]) v));
 
         // Cuts
-        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setHaveCuts((boolean) v));
+        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setCuts((boolean) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(0.8f), (c, v) -> c.setCutSize((float) v));
 
         frameConfigurations = applyParameter(frameConfigurations, List.of(colorsBlue), (c, v) -> c.setColorsCutCircle((int[]) v));
@@ -101,11 +101,11 @@ public class InstagramFrameConfigurationGenerator extends FrameConfigurationGene
 //        configurations = applyParameter(configurations, List.of(16), (c, v) -> c.setObjectLines((int) v));
 //        configurations = applyParameter(configurations, List.of(10), (c, v) -> c.setObjectSpacing((int) v));
 //
-//        configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setHaveStroke((boolean) v));
+//        configurations = applyParameter(configurations, List.of(true), (c, v) -> c.setStroke((boolean) v));
 //        configurations = applyParameter(configurations, List.of(4), (c, v) -> c.setStrokeSize((int) v));
 //        configurations = applyParameter(configurations, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
 //
-//        configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setHaveCuts((boolean) v));
+//        configurations = applyParameter(configurations, List.of(false), (c, v) -> c.setCuts((boolean) v));
 //        configurations = applyParameter(configurations, List.of(0.4f), (c, v) -> c.setCutSize((float) v));
 //
 //        configurations = applyParameter(configurations, colorsBackground, (c, v) -> c.setColorBackground((int) v));

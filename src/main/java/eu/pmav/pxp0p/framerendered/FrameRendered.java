@@ -60,7 +60,7 @@ public class FrameRendered
         applet.background(frameConfiguration.getColorBackground());
 
         // Generate stroke
-        if (frameConfiguration.isHaveStroke())
+        if (frameConfiguration.hasStroke())
         {
             applet.stroke(frameConfiguration.getStrokeColor());
             applet.strokeWeight(frameConfiguration.getStrokeSize());

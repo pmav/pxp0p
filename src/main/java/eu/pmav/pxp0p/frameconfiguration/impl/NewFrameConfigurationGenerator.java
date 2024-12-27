@@ -70,12 +70,12 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         //fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.SQUARE, (int[]) v));
 
         // Size
-        fc = applyParameter(fc, List.of(false), (c, v) -> c.setHaveSizeTransform((boolean) v));
+        fc = applyParameter(fc, List.of(false), (c, v) -> c.setSizeTransform((boolean) v));
         fc = applyParameter(fc, List.of(1.0f), (c, v) -> c.setMinSizeTransform((float) v));
         fc = applyParameter(fc, List.of(2.0f), (c, v) -> c.setMaxSizeTransform((float) v));
 
         // Alpha
-        fc = applyParameter(fc, List.of(true), (c, v) -> c.setHaveAlpha((boolean) v));
+        fc = applyParameter(fc, List.of(true), (c, v) -> c.setAlpha((boolean) v));
         FrameConfiguration.IntFunction alphaFunction = (frameIndex) -> (int) Utils.getRandomFloat(0, 150);
         fc = applyParameter(fc, List.of(alphaFunction), (c, v) -> c.setAlphaFunction((FrameConfiguration.IntFunction) v));
 
@@ -87,17 +87,22 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         fc = applyParameter(fc, List.of(yVariationFunction), (c, v) -> c.setyVariationFunction((FrameConfiguration.IntFunction) v));
 
         // Stroke
-        fc = applyParameter(fc, List.of(true), (c, v) -> c.setHaveStroke((boolean) v));
+        fc = applyParameter(fc, List.of(true), (c, v) -> c.setStroke((boolean) v));
         fc = applyParameter(fc, List.of(4), (c, v) -> c.setStrokeSize((int) v));
         fc = applyParameter(fc, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
 
+        // Change direction
+        fc = applyParameter(fc, List.of(true), (c, v) -> c.setDirection((boolean) v));
+        SerializableFunction<Integer, Integer> calculateDirection = (Integer i) -> Utils.getRandomInt(4);
+        fc = applyParameter(fc, List.of(calculateDirection), (c, v) -> c.setCalculateDirection((Function<Integer, Integer>) v));
+
         // Center Object
-        fc = applyParameter(fc, List.of(false), (c, v) -> c.setHaveCenterObject((boolean) v));
+        fc = applyParameter(fc, List.of(false), (c, v) -> c.setCenterObject((boolean) v));
         fc = applyParameter(fc, List.of(0.6f), (c, v) -> c.setCenterObjectSize((float) v));
         fc = applyParameter(fc, List.of(colorsBlue), (c, v) -> c.setColorsCenterObject((int[]) v));
 
         // Cuts
-        fc = applyParameter(fc, List.of(false), (c, v) -> c.setHaveCuts((boolean) v));
+        fc = applyParameter(fc, List.of(false), (c, v) -> c.setCuts((boolean) v));
         fc = applyParameter(fc, List.of(0.2f), (c, v) -> c.setCutSize((float) v));
 
         fc = applyParameter(fc, List.of(colorsBlue), (c, v) -> c.setColorsCutCircle((int[]) v));

@@ -32,7 +32,7 @@ public class CuidadoComOCaoFrameConfigurationGenerator extends FrameConfiguratio
         frameConfigurations = applyParameter(frameConfigurations, Collections.singletonList(new FormType[]{FormType.SQUARE}), (c, v) -> c.setObjectTypes((FormType[]) v));
 
         // Direction
-        frameConfigurations = applyParameter(frameConfigurations, List.of(true), (c, v) -> c.setHaveDirection((boolean) v));
+        frameConfigurations = applyParameter(frameConfigurations, List.of(true), (c, v) -> c.setDirection((boolean) v));
         SerializableFunction<Integer, Integer> f = (Integer i) ->
         {
             return 1;
@@ -45,12 +45,12 @@ public class CuidadoComOCaoFrameConfigurationGenerator extends FrameConfiguratio
         //configurations = applyParameter(configurations, List.of(new int[]{colorWhite}), (c, v) -> c.setColorsTriangle((int[]) v));
 
         // Size Transform
-        frameConfigurations = applyParameter(frameConfigurations, List.of(true), (c, v) -> c.setHaveSizeTransform((boolean) v));
+        frameConfigurations = applyParameter(frameConfigurations, List.of(true), (c, v) -> c.setSizeTransform((boolean) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(0.5f), (c, v) -> c.setMinSizeTransform((float) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(0.5f), (c, v) -> c.setMaxSizeTransform((float) v));
 
         // Alpha
-        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setHaveAlpha((boolean) v));
+        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setAlpha((boolean) v));
         FrameConfiguration.IntFunction alphaFunction = (frameIndex) -> (int) Utils.getRandomFloat(0, 150);
         frameConfigurations = applyParameter(frameConfigurations, List.of(alphaFunction), (c, v) -> c.setAlphaFunction((FrameConfiguration.IntFunction) v));
 
@@ -62,17 +62,17 @@ public class CuidadoComOCaoFrameConfigurationGenerator extends FrameConfiguratio
         frameConfigurations = applyParameter(frameConfigurations, List.of(yVariationFunction), (c, v) -> c.setyVariationFunction((FrameConfiguration.IntFunction) v));
 
         // Stroke
-        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setHaveStroke((boolean) v));
+        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setStroke((boolean) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(16), (c, v) -> c.setStrokeSize((int) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(colorWhite), (c, v) -> c.setStrokeColor((int) v));
 
         // Center Object
-        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setHaveCenterObject((boolean) v));
+        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setCenterObject((boolean) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(0.6f), (c, v) -> c.setCenterObjectSize((float) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(new int[]{colorYellow}), (c, v) -> c.setColorsCenterObject((int[]) v));
 
         // Cuts
-        frameConfigurations = applyParameter(frameConfigurations, List.of(true), (c, v) -> c.setHaveCuts((boolean) v));
+        frameConfigurations = applyParameter(frameConfigurations, List.of(true), (c, v) -> c.setCuts((boolean) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(0.4f), (c, v) -> c.setCutSize((float) v));
 
         frameConfigurations = applyParameter(frameConfigurations, List.of(new int[]{colorYellow}), (c, v) -> c.setColorsCutCircle((int[]) v));

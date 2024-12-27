@@ -63,12 +63,12 @@ public class RandomFrameConfigurationGenerator
             //configuration.setColorsTriangle(colors);
 
             // Size
-            frameConfiguration.setHaveSizeTransform(getRandomBoolean());
+            frameConfiguration.setSizeTransform(getRandomBoolean());
             frameConfiguration.setMinSizeTransform(geRandomFloat(0, 1));
             frameConfiguration.setMaxSizeTransform(geRandomFloat(1, 2));
 
             // Alpha
-            frameConfiguration.setHaveAlpha(getRandomBoolean());
+            frameConfiguration.setAlpha(getRandomBoolean());
             FrameConfiguration.IntFunction alphaFunction = (frameIndex) -> (int) Utils.getRandomFloat(0, 150);
             frameConfiguration.setAlphaFunction(alphaFunction);
 
@@ -80,17 +80,17 @@ public class RandomFrameConfigurationGenerator
             frameConfiguration.setyVariationFunction(yVariationFunction);
 
             // Stroke
-            frameConfiguration.setHaveStroke(getRandomBoolean());
+            frameConfiguration.setStroke(getRandomBoolean());
             frameConfiguration.setStrokeSize(getRandomInt(0, 16));
             frameConfiguration.setStrokeColor(strokeColor);
 
             // Center Object
-            frameConfiguration.setHaveCenterObject(getRandomBoolean());
+            frameConfiguration.setCenterObject(getRandomBoolean());
             frameConfiguration.setCenterObjectSize(geRandomFloat(0, 1));
             frameConfiguration.setColorsCenterObject(colors);
 
             // Cuts
-            frameConfiguration.setHaveCuts(getRandomBoolean());
+            frameConfiguration.setCuts(getRandomBoolean());
             frameConfiguration.setCutSize(geRandomFloat(0, 1));
 
             frameConfiguration.setColorsCutCircle(colors);
