@@ -3,13 +3,10 @@ package eu.pmav.pxp0p.frameconfiguration.impl;
 import eu.pmav.pxp0p.frameconfiguration.model.FrameConfiguration;
 import eu.pmav.pxp0p.frameconfiguration.FrameConfigurationGenerator;
 import eu.pmav.pxp0p.framerendered.forms.FormType;
-import eu.pmav.pxp0p.frameconfiguration.helpers.SerializableFunction;
 import eu.pmav.pxp0p.utils.Utils;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Function;
-import java.util.function.IntFunction;
 
 public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
 {
