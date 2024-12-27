@@ -49,14 +49,16 @@ public class SemiCircleForm extends Form
                 ? frameConfiguration.getAlphaFunction().run(objectConfiguration.getFrameIndex())
                 : 255;
 
+        // Direction
+        final int direction = frameConfiguration.getDirectionFunction() != null
+                ? frameConfiguration.getDirectionFunction().run(frameIndex)
+                : 0;
+
         // Center object
         final boolean haveCenterObject = frameConfiguration.hasCenterObject();
         final int centerObjectSize = Math.round(size * frameConfiguration.getCenterObjectSize());
 
         // Get anglesForObject for the main object based on direction
-        final int direction = frameConfiguration.hasDirection()
-                ? frameConfiguration.getCalculateDirection().apply(frameIndex)
-                : 0;
         Angles anglesForObject = getAngles(direction);
 
         // Get anglesForObject for the center object

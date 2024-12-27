@@ -48,12 +48,13 @@ public class TriangleForm extends Form
                 ? frameConfiguration.getAlphaFunction().run(objectConfiguration.getFrameIndex())
                 : 255;
 
+        // Direction
+        final int direction = frameConfiguration.getDirectionFunction() != null
+                ? frameConfiguration.getDirectionFunction().run(frameIndex)
+                : 0;
+
         final boolean cut1 = frameConfiguration.hasCuts(); // && (int)(Utils.getRandomFloat(0, 2)) == 1;
         final int cutSize = Math.round(size * frameConfiguration.getCutSize());
-
-        final int direction = frameConfiguration.hasDirection()
-                ? frameConfiguration.getCalculateDirection().apply(frameIndex) // (int)(Utils.getRandomFloat(0, 4))
-                : 0;
 
         applet.pushMatrix();
 

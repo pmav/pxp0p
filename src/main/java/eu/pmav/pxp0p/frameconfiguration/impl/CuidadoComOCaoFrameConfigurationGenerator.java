@@ -31,13 +31,10 @@ public class CuidadoComOCaoFrameConfigurationGenerator extends FrameConfiguratio
         frameConfigurations = applyParameter(frameConfigurations, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
         frameConfigurations = applyParameter(frameConfigurations, Collections.singletonList(new FormType[]{FormType.SQUARE}), (c, v) -> c.setObjectTypes((FormType[]) v));
 
-        // Direction
-        frameConfigurations = applyParameter(frameConfigurations, List.of(true), (c, v) -> c.setDirection((boolean) v));
-        SerializableFunction<Integer, Integer> f = (Integer i) ->
-        {
-            return 1;
-        };
-        frameConfigurations = applyParameter(frameConfigurations, List.of(f), (c, v) -> c.setCalculateDirection((Function<Integer, Integer>) v));
+        // Change direction (triangles and semicircles only)
+        //FrameConfiguration.IntFunction directionFunction = (frameIndex) -> Utils.getRandomInt(4);
+        FrameConfiguration.IntFunction directionFunction = (frameIndex) -> 2;
+        frameConfigurations = applyParameter(frameConfigurations, List.of(directionFunction), (c, v) -> c.setDirectionFunction((FrameConfiguration.IntFunction) v));
 
         // Object Colors
         //configurations = applyParameter(configurations, List.of(new int[]{colorWhite}), (c, v) -> c.setColorsCircle((int[]) v));

@@ -50,11 +50,10 @@ public class InstagramFrameConfigurationGenerator extends FrameConfigurationGene
         frameConfigurations = applyParameter(frameConfigurations, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
         frameConfigurations = applyParameter(frameConfigurations, Collections.singletonList(new FormType[]{FormType.TRIANGLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
 
-        // Direction
-        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setDirection((boolean) v));
-        //configurations = applyParameter(configurations, List.of(), (c, v) -> c.setCalculateDirection((Function<Integer, Integer>) v));
-
-        //(int)(Utils.getRandomFloat(0, 4))
+        // Change direction (triangles and semicircles only)
+        //FrameConfiguration.IntFunction directionFunction = (frameIndex) -> Utils.getRandomInt(4);
+        FrameConfiguration.IntFunction directionFunction = (frameIndex) -> 2;
+        frameConfigurations = applyParameter(frameConfigurations, List.of(directionFunction), (c, v) -> c.setDirectionFunction((FrameConfiguration.IntFunction) v));
 
         // Object Colors
         //configurations = applyParameter(configurations, List.of(colorsInstagram), (c, v) -> c.setColorsCircle((int[]) v));

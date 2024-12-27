@@ -68,8 +68,7 @@ public class FrameConfiguration implements Serializable
     private int[] colorsCutTriangle;
 
     // Direction
-    private boolean direction;
-    private Function<Integer, Integer> calculateDirection; // TODO Move to function
+    private IntFunction directionFunction = null;
 
     // Center object
     private boolean centerObject;
@@ -413,24 +412,12 @@ public class FrameConfiguration implements Serializable
 
     // Direction
 
-    public boolean hasDirection()
-    {
-        return this.direction;
+    public IntFunction getDirectionFunction() {
+        return directionFunction;
     }
 
-    public void setDirection(boolean haveDirection)
-    {
-        this.direction = haveDirection;
-    }
-
-    public Function<Integer, Integer> getCalculateDirection()
-    {
-        return this.calculateDirection;
-    }
-
-    public void setCalculateDirection(Function<Integer, Integer> calculateDirection)
-    {
-        this.calculateDirection = calculateDirection;
+    public void setDirectionFunction(IntFunction directionFunction) {
+        this.directionFunction = directionFunction;
     }
 
     //endregion

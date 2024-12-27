@@ -9,6 +9,7 @@ import eu.pmav.pxp0p.utils.Utils;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.IntFunction;
 
 public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
 {
@@ -89,11 +90,6 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         fc = applyParameter(fc, List.of(4), (c, v) -> c.setStrokeSize((int) v));
         fc = applyParameter(fc, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
 
-        // Change direction
-        fc = applyParameter(fc, List.of(true), (c, v) -> c.setDirection((boolean) v));
-        SerializableFunction<Integer, Integer> calculateDirection = (Integer i) -> Utils.getRandomInt(4);
-        fc = applyParameter(fc, List.of(calculateDirection), (c, v) -> c.setCalculateDirection((Function<Integer, Integer>) v));
-
         // Center Object
         fc = applyParameter(fc, List.of(false), (c, v) -> c.setCenterObject((boolean) v));
         fc = applyParameter(fc, List.of(0.6f), (c, v) -> c.setCenterObjectSize((float) v));
@@ -108,10 +104,9 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         fc = applyParameter(fc, List.of(colorsBlue), (c, v) -> c.setColorsCutTriangle((int[]) v));
 
         // Change direction (triangles and semicircles only)
-        fc = applyParameter(fc, List.of(true), (c, v) -> c.setDirection((boolean) v));
-        //SerializableFunction<Integer, Integer> f = (Integer i) -> Utils.getRandomInt(4);
-        SerializableFunction<Integer, Integer> f = (Integer i) -> 2;
-        fc = applyParameter(fc, List.of(f), (c, v) -> c.setCalculateDirection((Function<Integer, Integer>) v));
+        //FrameConfiguration.IntFunction directionFunction = (frameIndex) -> Utils.getRandomInt(4);
+        FrameConfiguration.IntFunction directionFunction = (frameIndex) -> 1;
+        fc = applyParameter(fc, List.of(directionFunction), (c, v) -> c.setDirectionFunction((FrameConfiguration.IntFunction) v));
 
         System.out.printf("Generated %s Frame configurations...%n", fc.size());
 
