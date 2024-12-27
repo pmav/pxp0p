@@ -70,12 +70,10 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         //fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.SQUARE, (int[]) v));
 
         // Size
-        fc = applyParameter(fc, List.of(false), (c, v) -> c.setSizeTransform((boolean) v));
-        fc = applyParameter(fc, List.of(1.0f), (c, v) -> c.setMinSizeTransform((float) v));
-        fc = applyParameter(fc, List.of(2.0f), (c, v) -> c.setMaxSizeTransform((float) v));
+        FrameConfiguration.FloatFunction sizeTransformFunction = (frameIndex) -> Utils.getRandomFloat(1.0f, 2.5f);
+        fc = applyParameter(fc, List.of(sizeTransformFunction), (c, v) -> c.setSizeTransformFunction((FrameConfiguration.FloatFunction) v));
 
         // Alpha
-        fc = applyParameter(fc, List.of(true), (c, v) -> c.setAlpha((boolean) v));
         FrameConfiguration.IntFunction alphaFunction = (frameIndex) -> (int) Utils.getRandomFloat(0, 150);
         fc = applyParameter(fc, List.of(alphaFunction), (c, v) -> c.setAlphaFunction((FrameConfiguration.IntFunction) v));
 

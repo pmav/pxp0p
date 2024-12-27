@@ -16,6 +16,9 @@ public class SquareForm extends Form
 
     public void draw(PApplet applet, FrameConfiguration frameConfiguration, ObjectConfiguration objectConfiguration)
     {
+        // Frame index
+        final int frameIndex = objectConfiguration.getFrameIndex();
+
         // Get initial X position variation
         final int xVariation = frameConfiguration.getxVariationFunction() != null
                 ? frameConfiguration.getxVariationFunction().run(0)
@@ -34,10 +37,16 @@ public class SquareForm extends Form
                 + Math.round((Utils.getRandomFloat(-1, 1) * yVariation))
                 - (frameConfiguration.getSize() / 2);
 
+        // Size transform
         final int size = (int)(
-                frameConfiguration.hasSizeTransform()
-                        ? frameConfiguration.getSize() * Utils.getRandomFloat(frameConfiguration.getMinSizeTransform(), frameConfiguration.getMaxSizeTransform())
+                frameConfiguration.getSizeTransformFunction() != null
+                        ? frameConfiguration.getSize() * frameConfiguration.getSizeTransformFunction().run(frameIndex)
                         : frameConfiguration.getSize());
+
+        // Transparency
+        final int alpha = frameConfiguration.getAlphaFunction() != null
+                ? frameConfiguration.getAlphaFunction().run(objectConfiguration.getFrameIndex())
+                : 255;
 
         final boolean cut1 = frameConfiguration.hasCuts() && (int)(Utils.getRandomFloat(0, 2)) == 1;
         final boolean cut2 = frameConfiguration.hasCuts() && (int)(Utils.getRandomFloat(0, 2)) == 1;
@@ -47,10 +56,6 @@ public class SquareForm extends Form
 
         final boolean haveCenterObject = frameConfiguration.hasCenterObject();
         final int centerObjectSize = Math.round(size * frameConfiguration.getCenterObjectSize());
-
-        final int alpha = frameConfiguration.hasAlpha()
-                ? frameConfiguration.getAlphaFunction().run(objectConfiguration.getFrameIndex())
-                : 255;
 
         applet.pushMatrix();
 

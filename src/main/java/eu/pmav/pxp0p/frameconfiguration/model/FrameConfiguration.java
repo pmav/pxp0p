@@ -48,12 +48,9 @@ public class FrameConfiguration implements Serializable
     private final Map<FormType, int[]> colorsForm = new HashMap<>();
 
     // Size Transform
-    private boolean sizeTransform;
-    private float minSizeTransform; // TODO Move to function
-    private float maxSizeTransform;
+    private FloatFunction sizeTransformFunction = null;
 
     // Alpha value
-    private boolean alpha;
     private IntFunction alphaFunction = null;
 
     // Stroke
@@ -82,6 +79,10 @@ public class FrameConfiguration implements Serializable
     // Lambda functions
     public interface IntFunction extends Serializable {
         int run(int frameIndex);
+    }
+
+    public interface FloatFunction extends Serializable {
+        float run(int frameIndex);
     }
 
     public FrameConfiguration()
@@ -264,34 +265,12 @@ public class FrameConfiguration implements Serializable
 
     // Size
 
-    public boolean hasSizeTransform()
-    {
-        return this.sizeTransform;
+    public FloatFunction getSizeTransformFunction() {
+        return sizeTransformFunction;
     }
 
-    public void setSizeTransform(boolean sizeTransform)
-    {
-        this.sizeTransform = sizeTransform;
-    }
-
-    public float getMinSizeTransform()
-    {
-        return this.minSizeTransform;
-    }
-
-    public void setMinSizeTransform(float minSizeTransform)
-    {
-        this.minSizeTransform = minSizeTransform;
-    }
-
-    public float getMaxSizeTransform()
-    {
-        return this.maxSizeTransform;
-    }
-
-    public void setMaxSizeTransform(float maxSizeTransform)
-    {
-        this.maxSizeTransform = maxSizeTransform;
+    public void setSizeTransformFunction(FloatFunction sizeTransformFunction) {
+        this.sizeTransformFunction = sizeTransformFunction;
     }
 
     // Cuts
@@ -349,16 +328,6 @@ public class FrameConfiguration implements Serializable
     }
 
     // Alpha
-
-    public boolean hasAlpha()
-    {
-        return this.alpha;
-    }
-
-    public void setAlpha(boolean haveAlpha)
-    {
-        this.alpha = haveAlpha;
-    }
 
     public IntFunction getAlphaFunction() {
         return alphaFunction;

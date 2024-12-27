@@ -59,12 +59,10 @@ public class DevelopmentFrameConfigurationGenerator extends FrameConfigurationGe
         //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsTriangle((int[]) v));
 
         // Size
-        frameConfigurations = applyParameter(frameConfigurations, List.of(true), (c, v) -> c.setSizeTransform((boolean) v));
-        frameConfigurations = applyParameter(frameConfigurations, List.of(1.0f), (c, v) -> c.setMinSizeTransform((float) v));
-        frameConfigurations = applyParameter(frameConfigurations, List.of(1.2f), (c, v) -> c.setMaxSizeTransform((float) v));
+        FrameConfiguration.FloatFunction sizeTransformFunction = (frameIndex) -> Utils.getRandomFloat(1.0f, 2.5f);
+        frameConfigurations = applyParameter(frameConfigurations, List.of(sizeTransformFunction), (c, v) -> c.setSizeTransformFunction((FrameConfiguration.FloatFunction) v));
 
         // Alpha
-        frameConfigurations = applyParameter(frameConfigurations, List.of(false), (c, v) -> c.setAlpha((boolean) v));
         FrameConfiguration.IntFunction alphaFunction = (frameIndex) -> (int) Utils.getRandomFloat(0, 150);
         frameConfigurations = applyParameter(frameConfigurations, List.of(alphaFunction), (c, v) -> c.setAlphaFunction((FrameConfiguration.IntFunction) v));
 

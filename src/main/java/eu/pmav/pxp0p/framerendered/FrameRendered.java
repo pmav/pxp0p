@@ -37,15 +37,15 @@ public class FrameRendered
 
         int x = xInit;
         int y = yInit;
-        int framePosition = 0;
+        int frameIndex = 0;
 
         for (int line = 0; line < frameConfiguration.getObjectLines(); line++)
         {
             for (int column = 0; column < frameConfiguration.getObjectColumns(); column++)
             {
-                objectConfigurations.add(new ObjectConfiguration(x, y, framePosition));
+                objectConfigurations.add(new ObjectConfiguration(x, y, frameIndex));
 
-                framePosition++;
+                frameIndex++;
                 x += objectSizeInGrid;
             }
 

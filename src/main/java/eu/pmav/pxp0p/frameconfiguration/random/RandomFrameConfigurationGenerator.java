@@ -63,12 +63,10 @@ public class RandomFrameConfigurationGenerator
             //configuration.setColorsTriangle(colors);
 
             // Size
-            frameConfiguration.setSizeTransform(getRandomBoolean());
-            frameConfiguration.setMinSizeTransform(geRandomFloat(0, 1));
-            frameConfiguration.setMaxSizeTransform(geRandomFloat(1, 2));
+            FrameConfiguration.FloatFunction sizeTransformFunction = (frameIndex) -> Utils.getRandomFloat(1.0f, 2.0f);
+            frameConfiguration.setSizeTransformFunction(sizeTransformFunction);
 
             // Alpha
-            frameConfiguration.setAlpha(getRandomBoolean());
             FrameConfiguration.IntFunction alphaFunction = (frameIndex) -> (int) Utils.getRandomFloat(0, 150);
             frameConfiguration.setAlphaFunction(alphaFunction);
 

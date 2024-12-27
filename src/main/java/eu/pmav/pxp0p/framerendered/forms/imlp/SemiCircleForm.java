@@ -38,13 +38,14 @@ public class SemiCircleForm extends Form
                 - (frameConfiguration.getSize() / 2) // Offset coordinate to top left
                 + yVariation; // Position variation
 
+        // Size transform
         final int size = (int)(
-                frameConfiguration.hasSizeTransform()
-                        ? frameConfiguration.getSize() * Utils.getRandomFloat(frameConfiguration.getMinSizeTransform(), frameConfiguration.getMaxSizeTransform())
+                frameConfiguration.getSizeTransformFunction() != null
+                        ? frameConfiguration.getSize() * frameConfiguration.getSizeTransformFunction().run(frameIndex)
                         : frameConfiguration.getSize());
 
         // Transparency
-        final int alpha = frameConfiguration.hasAlpha()
+        final int alpha = frameConfiguration.getAlphaFunction() != null
                 ? frameConfiguration.getAlphaFunction().run(objectConfiguration.getFrameIndex())
                 : 255;
 
