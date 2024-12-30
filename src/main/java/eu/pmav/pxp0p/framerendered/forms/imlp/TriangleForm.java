@@ -56,6 +56,14 @@ public class TriangleForm extends Form
 
         applet.pushMatrix();
 
+        // Rotate (first translate to center of object)
+        final int xCenter = x + size / 2;
+        final int yCenter = y + size / 2;
+        applet.translate(xCenter, yCenter);
+        applet.rotate(PApplet.radians(1f * objectConfiguration.getFrameIndex()));
+        x = x - xCenter; // Offset x based on translation
+        y = y - yCenter; // Offset y based on translation
+
         int[] colors = frameConfiguration.getColorsForm().get(FormType.TRIANGLE);
         applet.fill(colors[Utils.getRandomInt(colors.length)], alpha);
 

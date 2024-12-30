@@ -51,8 +51,8 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         fc = applyParameter(fc, List.of(800), (c, v) -> c.setGridHeight((int) v));
 
         // Layout
-        fc = applyParameter(fc, List.of(4), (c, v) -> c.setObjectColumns((int) v));
-        fc = applyParameter(fc, List.of(4), (c, v) -> c.setObjectLines((int) v));
+        fc = applyParameter(fc, List.of(1, 2, 3, 4), (c, v) -> c.setObjectColumns((int) v));
+        fc = applyParameter(fc, List.of(1, 2, 3, 4), (c, v) -> c.setObjectLines((int) v));
         fc = applyParameter(fc, List.of(8), (c, v) -> c.setObjectSpacing((int) v));
 
         fc = applyParameter(fc, colorsBackground, (c, v) -> c.setColorBackground((int) v));
@@ -68,11 +68,11 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.TRIANGLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
         //fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.TRIANGLE, (int[]) v));
 
-        //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.DEBUG}), (c, v) -> c.setObjectTypes((FormType[]) v));
-        //fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.DEBUG, (int[]) v));
+        fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.DEBUG}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.DEBUG, (int[]) v));
 
-        fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.SEMICIRCLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
-        fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.SEMICIRCLE, (int[]) v));
+        //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.SEMICIRCLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        //fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.SEMICIRCLE, (int[]) v));
 
         // Size
         //FrameConfiguration.FloatFunction sizeTransformFunction = (frameIndex) -> Utils.getRandomFloat(1.0f, 2.5f);
@@ -90,17 +90,17 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         fc = applyParameter(fc, List.of(yVariationFunction), (c, v) -> c.setyVariationFunction((FrameConfiguration.IntFunction) v));
 
         // Stroke
-        fc = applyParameter(fc, List.of(true), (c, v) -> c.setStroke((boolean) v));
+        fc = applyParameter(fc, List.of(false), (c, v) -> c.setStroke((boolean) v));
         fc = applyParameter(fc, List.of(4), (c, v) -> c.setStrokeSize((int) v));
         fc = applyParameter(fc, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
 
         // Center Object
-        fc = applyParameter(fc, List.of(false), (c, v) -> c.setCenterObject((boolean) v));
+        fc = applyParameter(fc, List.of(true), (c, v) -> c.setCenterObject((boolean) v));
         fc = applyParameter(fc, List.of(0.6f), (c, v) -> c.setCenterObjectSize((float) v));
         fc = applyParameter(fc, List.of(colorsBlue), (c, v) -> c.setColorsCenterObject((int[]) v));
 
         // Cuts
-        fc = applyParameter(fc, List.of(false), (c, v) -> c.setCuts((boolean) v));
+        fc = applyParameter(fc, List.of(true), (c, v) -> c.setCuts((boolean) v));
         fc = applyParameter(fc, List.of(0.2f), (c, v) -> c.setCutSize((float) v));
 
         fc = applyParameter(fc, List.of(colorsBlue), (c, v) -> c.setColorsCutCircle((int[]) v));

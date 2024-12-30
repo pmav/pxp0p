@@ -29,10 +29,10 @@ public class SquareForm extends Form
                 ? frameConfiguration.getyVariationFunction().run(frameIndex)
                 : 0;
 
-        final int x = objectConfiguration.getX() // Get top left coordinate
+        int x = objectConfiguration.getX() // Get top left coordinate
                 + xVariation; // Position variation
 
-        final int y = objectConfiguration.getY() // Get top left coordinate
+        int y = objectConfiguration.getY() // Get top left coordinate
                 + yVariation; // Position variation
 
         // Size transform
@@ -56,6 +56,14 @@ public class SquareForm extends Form
         final int centerObjectSize = Math.round(size * frameConfiguration.getCenterObjectSize());
 
         applet.pushMatrix();
+
+        // Rotate (first translate to center of object)
+        final int xCenter = x + size / 2;
+        final int yCenter = y + size / 2;
+        applet.translate(xCenter, yCenter);
+        applet.rotate(PApplet.radians(1f * objectConfiguration.getFrameIndex()));
+        x = x - xCenter; // Offset x based on translation
+        y = y - yCenter; // Offset y based on translation
 
         int[] colors = frameConfiguration.getColorsForm().get(FormType.SQUARE);
         applet.fill(colors[Utils.getRandomInt(colors.length)], alpha);

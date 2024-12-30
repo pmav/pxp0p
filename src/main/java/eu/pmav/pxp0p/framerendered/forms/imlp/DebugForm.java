@@ -27,10 +27,10 @@ public class DebugForm extends Form
                 ? frameConfiguration.getyVariationFunction().run(0)
                 : 0;
 
-        final int x = objectConfiguration.getX()
+        int x = objectConfiguration.getX()
                 + Math.round((Utils.getRandomFloat(-1, 1) * xVariation));
 
-        final int y = objectConfiguration.getY()
+        int y = objectConfiguration.getY()
                 + Math.round((Utils.getRandomFloat(-1, 1) * yVariation));
 
         final int size = objectConfiguration.getSize();
@@ -39,10 +39,23 @@ public class DebugForm extends Form
 
         applet.pushMatrix();
 
-        // Create square
+        // Point
+        //applet.stroke(0xffffff00);
+        //applet.strokeWeight(8);
+        //applet.point(xCenter, yCenter);
+
+        // Rotate (first translate to center of object)
+        final int xCenter = x + size / 2;
+        final int yCenter = y + size / 2;
+        applet.translate(xCenter, yCenter);
+        applet.rotate(PApplet.radians(1f * objectConfiguration.getFrameIndex()));
+        x = x - xCenter; // Offset x based on translation
+        y = y - yCenter; // Offset y based on translation
+
         int[] colors = frameConfiguration.getColorsForm().get(FormType.DEBUG);
         applet.fill(colors[Utils.getRandomInt(colors.length)]);
 
+        // Create square
         applet.beginShape();
         applet.vertex(x, y);
         applet.vertex(x + size, y);

@@ -32,8 +32,9 @@ public class FrameRendered
         );
 
         // Calculate X and Y initial position
-        final int xInit = borderWidth + (frameConfiguration.getObjectSpacing() / 2);
-        final int yInit = borderHeight + (frameConfiguration.getObjectSpacing() / 2);
+        //final int xInit = borderWidth + (frameConfiguration.getObjectSpacing() / 2);
+        final int xInit = (frameConfiguration.getCanvasWidth() / 2) - (frameConfiguration.getObjectColumns()*(size + frameConfiguration.getObjectSpacing()) / 2);
+        final int yInit = (frameConfiguration.getCanvasHeight() / 2) - (frameConfiguration.getObjectLines()*(size + frameConfiguration.getObjectSpacing()) / 2);
 
         // Generate configuration for each object in Frame
         List<ObjectConfiguration> objectConfigurations = new ArrayList<>();
