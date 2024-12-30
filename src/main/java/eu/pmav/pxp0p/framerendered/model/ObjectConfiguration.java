@@ -6,12 +6,15 @@ public class ObjectConfiguration
 
     private final int y;
 
+    private final int size;
+
     private final int frameIndex;
 
-    public ObjectConfiguration(int x, int y, int frameIndex)
+    public ObjectConfiguration(int x, int y, int size, int frameIndex)
     {
         this.x = x;
         this.y = y;
+        this.size = size;
         this.frameIndex = frameIndex;
     }
 
@@ -23,6 +26,10 @@ public class ObjectConfiguration
     public int getY()
     {
         return y;
+    }
+
+    public int getSize() {
+        return size;
     }
 
     public int getFrameIndex()

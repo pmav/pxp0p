@@ -28,14 +28,12 @@ public class DebugForm extends Form
                 : 0;
 
         final int x = objectConfiguration.getX()
-                + Math.round((Utils.getRandomFloat(-1, 1) * xVariation))
-                - (frameConfiguration.getSize() / 2);
+                + Math.round((Utils.getRandomFloat(-1, 1) * xVariation));
 
         final int y = objectConfiguration.getY()
-                + Math.round((Utils.getRandomFloat(-1, 1) * yVariation))
-                - (frameConfiguration.getSize() / 2);
+                + Math.round((Utils.getRandomFloat(-1, 1) * yVariation));
 
-        final int size = frameConfiguration.getSize();
+        final int size = objectConfiguration.getSize();
 
         System.out.printf("x: %s, y: %s, size: %s\n", x, y, size);
 

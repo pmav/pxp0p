@@ -10,7 +10,7 @@ import java.util.List;
 
 public class OlympicsFrameConfigurationGenerator extends FrameConfigurationGenerator
 {
-    public List<FrameConfiguration> generateConfigurationsInternal() throws Exception
+    public List<FrameConfiguration> generateConfigurations() throws Exception
     {
         // Set colors
         int colorWhite = 0xffDCDCDC;

@@ -10,9 +10,6 @@ import java.util.function.Function;
 
 public class FrameConfiguration implements Serializable
 {
-    // Size: this value is defined on the Frame
-    private int size;
-
     // Frame path
     private String framePath;
 
@@ -115,16 +112,6 @@ public class FrameConfiguration implements Serializable
     //region Getters and setters
 
     // General
-
-    public int getSize()
-    {
-        return this.size;
-    }
-
-    public void setSize(int size)
-    {
-        this.size = size;
-    }
 
     public String getFramePath()
     {

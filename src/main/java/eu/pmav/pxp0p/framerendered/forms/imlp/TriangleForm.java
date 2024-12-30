@@ -21,27 +21,25 @@ public class TriangleForm extends Form
 
         // Get initial X position variation
         final int xVariation = frameConfiguration.getxVariationFunction() != null
-                ? frameConfiguration.getxVariationFunction().run(0)
+                ? frameConfiguration.getxVariationFunction().run(frameIndex)
                 : 0;
 
         // Get initial Y position variation
         final int yVariation = frameConfiguration.getyVariationFunction() != null
-                ? frameConfiguration.getyVariationFunction().run(0)
+                ? frameConfiguration.getyVariationFunction().run(frameIndex)
                 : 0;
 
-        int x = objectConfiguration.getX()
-                + Math.round((Utils.getRandomFloat(-1, 1) * xVariation))
-                - (frameConfiguration.getSize() / 2);
+        int x = objectConfiguration.getX() // Get top left coordinate
+                + xVariation; // Position variation
 
-        int y = objectConfiguration.getY()
-                + Math.round((Utils.getRandomFloat(-1, 1) * yVariation))
-                - (frameConfiguration.getSize() / 2);
+        int y = objectConfiguration.getY() // Get top left coordinate
+                + yVariation; // Position variation
 
         // Size transform
         final int size = (int)(
                 frameConfiguration.getSizeTransformFunction() != null
-                        ? frameConfiguration.getSize() * frameConfiguration.getSizeTransformFunction().run(frameIndex)
-                        : frameConfiguration.getSize());
+                        ? objectConfiguration.getSize() * frameConfiguration.getSizeTransformFunction().run(frameIndex)
+                        : objectConfiguration.getSize());
 
         // Transparency
         final int alpha = frameConfiguration.getAlphaFunction() != null

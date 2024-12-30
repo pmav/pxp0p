@@ -21,20 +21,22 @@ public class FrameRendered
 
     public static void render(PApplet applet, FrameConfiguration frameConfiguration)
     {
-        // Create internal state needed for render
-        final int objectSizeInGrid = Math.min(frameConfiguration.getGridWidth() / frameConfiguration.getObjectColumns(), frameConfiguration.getGridHeight() / frameConfiguration.getObjectLines()); // Size of the object in the grid
-
+        // Calculate border size
         final int borderWidth = (frameConfiguration.getCanvasWidth() - frameConfiguration.getGridWidth()) / 2;
-        int xInit = borderWidth + (frameConfiguration.getGridWidth() - ((frameConfiguration.getSize() + frameConfiguration.getObjectSpacing()) * frameConfiguration.getObjectColumns())) / 2;
-        xInit = xInit + (objectSizeInGrid / 2);
-
         final int borderHeight = (frameConfiguration.getCanvasHeight() - frameConfiguration.getGridHeight()) / 2;
-        int yInit = borderHeight + (frameConfiguration.getGridWidth() - ((frameConfiguration.getSize() + frameConfiguration.getObjectSpacing()) * frameConfiguration.getObjectLines())) / 2;
-        yInit = yInit + (objectSizeInGrid / 2);
+
+        // Calculate size of each object
+        int size = Math.min(
+                (frameConfiguration.getGridWidth() - (frameConfiguration.getObjectColumns() * frameConfiguration.getObjectSpacing())) / frameConfiguration.getObjectColumns(),
+                (frameConfiguration.getGridHeight() - (frameConfiguration.getObjectLines() * frameConfiguration.getObjectSpacing())) / frameConfiguration.getObjectLines()
+        );
+
+        // Calculate X and Y initial position
+        final int xInit = borderWidth + (frameConfiguration.getObjectSpacing() / 2);
+        final int yInit = borderHeight + (frameConfiguration.getObjectSpacing() / 2);
 
         // Generate configuration for each object in Frame
         List<ObjectConfiguration> objectConfigurations = new ArrayList<>();
-
         int x = xInit;
         int y = yInit;
         int frameIndex = 0;
@@ -43,14 +45,14 @@ public class FrameRendered
         {
             for (int column = 0; column < frameConfiguration.getObjectColumns(); column++)
             {
-                objectConfigurations.add(new ObjectConfiguration(x, y, frameIndex));
+                objectConfigurations.add(new ObjectConfiguration(x, y, size, frameIndex));
 
+                x += size + frameConfiguration.getObjectSpacing();
                 frameIndex++;
-                x += objectSizeInGrid;
             }
 
             x = xInit; // Reset x-axis position
-            y += objectSizeInGrid;
+            y += size + frameConfiguration.getObjectSpacing();
         }
 
         // Randomize list of object configurations

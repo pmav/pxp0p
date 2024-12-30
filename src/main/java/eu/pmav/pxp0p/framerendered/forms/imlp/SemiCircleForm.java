@@ -30,19 +30,17 @@ public class SemiCircleForm extends Form
                 ? frameConfiguration.getyVariationFunction().run(frameIndex)
                 : 0;
 
-        final int x = objectConfiguration.getX() // Get center coordinate
-                - (frameConfiguration.getSize() / 2) // Offset coordinate to top left
+        final int x = objectConfiguration.getX() // Get top left coordinate
                 + xVariation; // Position variation
 
-        final int y = objectConfiguration.getY() // Get center coordinate
-                - (frameConfiguration.getSize() / 2) // Offset coordinate to top left
+        final int y = objectConfiguration.getY() // Get top left coordinate
                 + yVariation; // Position variation
 
         // Size transform
         final int size = (int)(
                 frameConfiguration.getSizeTransformFunction() != null
-                        ? frameConfiguration.getSize() * frameConfiguration.getSizeTransformFunction().run(frameIndex)
-                        : frameConfiguration.getSize());
+                        ? objectConfiguration.getSize() * frameConfiguration.getSizeTransformFunction().run(frameIndex)
+                        : objectConfiguration.getSize());
 
         // Transparency
         final int alpha = frameConfiguration.getAlphaFunction() != null

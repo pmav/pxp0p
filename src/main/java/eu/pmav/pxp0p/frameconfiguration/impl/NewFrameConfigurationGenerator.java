@@ -10,7 +10,7 @@ import java.util.List;
 
 public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
 {
-    protected List<FrameConfiguration> generateConfigurationsInternal() throws Exception {
+    public List<FrameConfiguration> generateConfigurations() throws Exception {
         // Set colors
         int colorWhite = 0xffDCDCDC;
         int colorBlack = 0xff101010;
@@ -57,19 +57,26 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
 
         fc = applyParameter(fc, colorsBackground, (c, v) -> c.setColorBackground((int) v));
         fc = applyParameter(fc, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
-        fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.SEMICIRCLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
-        //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.SQUARE}), (c, v) -> c.setObjectTypes((FormType[]) v));
 
-        // Object Colors
-        //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsCircle((int[]) v));
-        //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsSquare((int[]) v));
-        //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsTriangle((int[]) v));
-        fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.SEMICIRCLE, (int[]) v));
+        // Object and colors
+        //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.SQUARE}), (c, v) -> c.setObjectTypes((FormType[]) v));
         //fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.SQUARE, (int[]) v));
 
+        //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.CIRCLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        //fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.CIRCLE, (int[]) v));
+
+        //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.TRIANGLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        //fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.TRIANGLE, (int[]) v));
+
+        //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.DEBUG}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        //fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.DEBUG, (int[]) v));
+
+        fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.SEMICIRCLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.SEMICIRCLE, (int[]) v));
+
         // Size
-        FrameConfiguration.FloatFunction sizeTransformFunction = (frameIndex) -> Utils.getRandomFloat(1.0f, 2.5f);
-        fc = applyParameter(fc, List.of(sizeTransformFunction), (c, v) -> c.setSizeTransformFunction((FrameConfiguration.FloatFunction) v));
+        //FrameConfiguration.FloatFunction sizeTransformFunction = (frameIndex) -> Utils.getRandomFloat(1.0f, 2.5f);
+        //fc = applyParameter(fc, List.of(sizeTransformFunction), (c, v) -> c.setSizeTransformFunction((FrameConfiguration.FloatFunction) v));
 
         // Alpha
         FrameConfiguration.IntFunction alphaFunction = (frameIndex) -> (int) Utils.getRandomFloat(0, 150);
@@ -102,7 +109,7 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
 
         // Change direction (triangles and semicircles only)
         //FrameConfiguration.IntFunction directionFunction = (frameIndex) -> Utils.getRandomInt(4);
-        FrameConfiguration.IntFunction directionFunction = (frameIndex) -> 1;
+        FrameConfiguration.IntFunction directionFunction = (frameIndex) -> 0;
         fc = applyParameter(fc, List.of(directionFunction), (c, v) -> c.setDirectionFunction((FrameConfiguration.IntFunction) v));
 
         System.out.printf("Generated %s Frame configurations...%n", fc.size());
