@@ -19,21 +19,11 @@ public class CircleForm extends Form
         // Frame index
         final int frameIndex = objectConfiguration.getFrameIndex();
 
-        // Get initial X position variation
-        final int xVariation = frameConfiguration.getxVariationFunction() != null
-                ? frameConfiguration.getxVariationFunction().run(frameIndex)
-                : 0;
-
-        // Get initial Y position variation
-        final int yVariation = frameConfiguration.getyVariationFunction() != null
-                ? frameConfiguration.getyVariationFunction().run(frameIndex)
-                : 0;
-
         int x = objectConfiguration.getX() // Get top left coordinate
-                + xVariation; // Position variation
+                + (frameConfiguration.getxVariationFunction() != null ? frameConfiguration.getxVariationFunction().run(frameIndex) : 0); // Position variation
 
         int y = objectConfiguration.getY() // Get top left coordinate
-                + yVariation; // Position variation
+                + (frameConfiguration.getyVariationFunction() != null ? frameConfiguration.getyVariationFunction().run(frameIndex) : 0); // Position variation
 
         // Size transform
         final int size = (int)(

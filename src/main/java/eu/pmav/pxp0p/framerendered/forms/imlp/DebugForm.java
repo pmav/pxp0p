@@ -17,23 +17,20 @@ public class DebugForm extends Form
 
     public void draw(PApplet applet, FrameConfiguration frameConfiguration, ObjectConfiguration objectConfiguration)
     {
-        // Get initial X position variation
-        final int xVariation = frameConfiguration.getxVariationFunction() != null
-                ? frameConfiguration.getxVariationFunction().run(0)
-                : 0;
+        // Frame index
+        final int frameIndex = objectConfiguration.getFrameIndex();
 
-        // Get initial Y position variation
-        final int yVariation = frameConfiguration.getyVariationFunction() != null
-                ? frameConfiguration.getyVariationFunction().run(0)
-                : 0;
+        int x = objectConfiguration.getX() // Get top left coordinate
+                + (frameConfiguration.getxVariationFunction() != null ? frameConfiguration.getxVariationFunction().run(frameIndex) : 0); // Position variation
 
-        int x = objectConfiguration.getX()
-                + Math.round((Utils.getRandomFloat(-1, 1) * xVariation));
+        int y = objectConfiguration.getY() // Get top left coordinate
+                + (frameConfiguration.getyVariationFunction() != null ? frameConfiguration.getyVariationFunction().run(frameIndex) : 0); // Position variation
 
-        int y = objectConfiguration.getY()
-                + Math.round((Utils.getRandomFloat(-1, 1) * yVariation));
-
-        final int size = objectConfiguration.getSize();
+        // Size transform
+        final int size = (int)(
+                frameConfiguration.getSizeTransformFunction() != null
+                        ? objectConfiguration.getSize() * frameConfiguration.getSizeTransformFunction().run(frameIndex)
+                        : objectConfiguration.getSize());
 
         System.out.printf("x: %s, y: %s, size: %s\n", x, y, size);
 
