@@ -44,15 +44,19 @@ public class TriangleForm extends Form
         final boolean cut1 = frameConfiguration.hasCuts(); // && (int)(Utils.getRandomFloat(0, 2)) == 1;
         final int cutSize = Math.round(size * frameConfiguration.getCutSize());
 
+        // Draw
         applet.pushMatrix();
 
         // Rotate (first translate to center of object)
-        final int xCenter = x + size / 2;
-        final int yCenter = y + size / 2;
-        applet.translate(xCenter, yCenter);
-        applet.rotate(PApplet.radians(1f * objectConfiguration.getFrameIndex()));
-        x = x - xCenter; // Offset x based on translation
-        y = y - yCenter; // Offset y based on translation
+        if (frameConfiguration.getRotateFunction() != null)
+        {
+            final int xCenter = x + size / 2;
+            final int yCenter = y + size / 2;
+            applet.translate(xCenter, yCenter);
+            applet.rotate(PApplet.radians(frameConfiguration.getRotateFunction().run(frameIndex)));
+            x = x - xCenter; // Offset x based on translation
+            y = y - yCenter; // Offset y based on translation
+        }
 
         int[] colors = frameConfiguration.getColorsForm().get(FormType.TRIANGLE);
         applet.fill(colors[Utils.getRandomInt(colors.length)], alpha);

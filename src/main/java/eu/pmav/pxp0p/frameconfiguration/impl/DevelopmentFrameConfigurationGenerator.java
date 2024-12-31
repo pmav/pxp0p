@@ -51,7 +51,7 @@ public class DevelopmentFrameConfigurationGenerator extends FrameConfigurationGe
 
         frameConfigurations = applyParameter(frameConfigurations, colorsBackground, (c, v) -> c.setColorBackground((int) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
-        frameConfigurations = applyParameter(frameConfigurations, Collections.singletonList(new FormType[]{FormType.SQUARE, FormType.CIRCLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        frameConfigurations = applyParameter(frameConfigurations, Collections.singletonList(new FormType[]{FormType.SQUARE, FormType.CIRCLE}), (c, v) -> c.setFormTypes((FormType[]) v));
 
         // Object Colors
         //configurations = applyParameter(configurations, List.of(colorsRedStrong), (c, v) -> c.setColorsCircle((int[]) v));

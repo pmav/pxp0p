@@ -55,7 +55,7 @@ public class RandomFrameConfigurationGenerator
             frameConfiguration.setColorBackground(backgroundColor);
             frameConfiguration.setBlurValue(geRandomFloat(0, 1));
             //configuration.setObjectTypes(getRandomFormTypes());
-            frameConfiguration.setObjectTypes(new FormType[]{FormType.CIRCLE});
+            frameConfiguration.setFormTypes(new FormType[]{FormType.CIRCLE});
 
             // Object Colors
             //configuration.setColorsCircle(colors);

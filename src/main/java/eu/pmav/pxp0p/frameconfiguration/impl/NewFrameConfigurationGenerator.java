@@ -51,8 +51,8 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         fc = applyParameter(fc, List.of(800), (c, v) -> c.setGridHeight((int) v));
 
         // Layout
-        fc = applyParameter(fc, List.of(1, 2, 3, 4), (c, v) -> c.setObjectColumns((int) v));
-        fc = applyParameter(fc, List.of(1, 2, 3, 4), (c, v) -> c.setObjectLines((int) v));
+        fc = applyParameter(fc, List.of(4), (c, v) -> c.setObjectColumns((int) v));
+        fc = applyParameter(fc, List.of(4), (c, v) -> c.setObjectLines((int) v));
         fc = applyParameter(fc, List.of(8), (c, v) -> c.setObjectSpacing((int) v));
 
         fc = applyParameter(fc, colorsBackground, (c, v) -> c.setColorBackground((int) v));
@@ -68,7 +68,7 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.TRIANGLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
         //fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.TRIANGLE, (int[]) v));
 
-        fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.DEBUG}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.DEBUG}), (c, v) -> c.setFormTypes((FormType[]) v));
         fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.DEBUG, (int[]) v));
 
         //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.SEMICIRCLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
@@ -77,6 +77,10 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         // Size
         //FrameConfiguration.FloatFunction sizeTransformFunction = (frameIndex) -> Utils.getRandomFloat(1.0f, 2.5f);
         //fc = applyParameter(fc, List.of(sizeTransformFunction), (c, v) -> c.setSizeTransformFunction((FrameConfiguration.FloatFunction) v));
+
+        // Rotation
+        FrameConfiguration.FloatFunction rotationFunction = (frameIndex) -> 1f * frameIndex;
+        fc = applyParameter(fc, List.of(rotationFunction), (c, v) -> c.setRotateFunction((FrameConfiguration.FloatFunction) v));
 
         // Alpha
         FrameConfiguration.IntFunction alphaFunction = (frameIndex) -> (int) Utils.getRandomFloat(0, 150);
@@ -90,7 +94,7 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         fc = applyParameter(fc, List.of(yVariationFunction), (c, v) -> c.setyVariationFunction((FrameConfiguration.IntFunction) v));
 
         // Stroke
-        fc = applyParameter(fc, List.of(false), (c, v) -> c.setStroke((boolean) v));
+        fc = applyParameter(fc, List.of(true), (c, v) -> c.setStroke((boolean) v));
         fc = applyParameter(fc, List.of(4), (c, v) -> c.setStrokeSize((int) v));
         fc = applyParameter(fc, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
 
@@ -107,7 +111,7 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         fc = applyParameter(fc, List.of(colorsBlue), (c, v) -> c.setColorsCutSquare((int[]) v));
         fc = applyParameter(fc, List.of(colorsBlue), (c, v) -> c.setColorsCutTriangle((int[]) v));
 
-        // Change direction (triangles and semicircles only)
+        // Direction (triangles and semicircles only)
         //FrameConfiguration.IntFunction directionFunction = (frameIndex) -> Utils.getRandomInt(4);
         FrameConfiguration.IntFunction directionFunction = (frameIndex) -> 0;
         fc = applyParameter(fc, List.of(directionFunction), (c, v) -> c.setDirectionFunction((FrameConfiguration.IntFunction) v));

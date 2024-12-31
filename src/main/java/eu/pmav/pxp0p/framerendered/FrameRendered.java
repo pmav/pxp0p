@@ -21,10 +21,6 @@ public class FrameRendered
 
     public static void render(PApplet applet, FrameConfiguration frameConfiguration)
     {
-        // Calculate border size
-        final int borderWidth = (frameConfiguration.getCanvasWidth() - frameConfiguration.getGridWidth()) / 2;
-        final int borderHeight = (frameConfiguration.getCanvasHeight() - frameConfiguration.getGridHeight()) / 2;
-
         // Calculate size of each object
         int size = Math.min(
                 (frameConfiguration.getGridWidth() - (frameConfiguration.getObjectColumns() * frameConfiguration.getObjectSpacing())) / frameConfiguration.getObjectColumns(),
@@ -32,11 +28,10 @@ public class FrameRendered
         );
 
         // Calculate X and Y initial position
-        //final int xInit = borderWidth + (frameConfiguration.getObjectSpacing() / 2);
         final int xInit = (frameConfiguration.getCanvasWidth() / 2) - (frameConfiguration.getObjectColumns()*(size + frameConfiguration.getObjectSpacing()) / 2);
         final int yInit = (frameConfiguration.getCanvasHeight() / 2) - (frameConfiguration.getObjectLines()*(size + frameConfiguration.getObjectSpacing()) / 2);
 
-        // Generate configuration for each object in Frame
+        // Create configuration for each object in Frame
         List<ObjectConfiguration> objectConfigurations = new ArrayList<>();
         int x = xInit;
         int y = yInit;
@@ -68,14 +63,10 @@ public class FrameRendered
             applet.stroke(frameConfiguration.getStrokeColor());
             applet.strokeWeight(frameConfiguration.getStrokeSize());
         }
-        else
-        {
-            applet.noStroke();
-        }
 
         // Draw object for each configuration
         objectConfigurations.forEach(objectConfiguration -> {
-            final FormType formType = frameConfiguration.getObjectTypes()[Utils.getRandomInt(frameConfiguration.getObjectTypes().length)];
+            final FormType formType = frameConfiguration.getFormTypes()[Utils.getRandomInt(frameConfiguration.getFormTypes().length)];
 
             final Form form = switch (formType) {
                 case SQUARE -> new SquareForm();

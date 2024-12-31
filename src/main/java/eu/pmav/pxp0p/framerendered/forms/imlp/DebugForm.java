@@ -42,12 +42,15 @@ public class DebugForm extends Form
         //applet.point(xCenter, yCenter);
 
         // Rotate (first translate to center of object)
-        final int xCenter = x + size / 2;
-        final int yCenter = y + size / 2;
-        applet.translate(xCenter, yCenter);
-        applet.rotate(PApplet.radians(1f * objectConfiguration.getFrameIndex()));
-        x = x - xCenter; // Offset x based on translation
-        y = y - yCenter; // Offset y based on translation
+        if (frameConfiguration.getRotateFunction() != null)
+        {
+            final int xCenter = x + size / 2;
+            final int yCenter = y + size / 2;
+            applet.translate(xCenter, yCenter);
+            applet.rotate(PApplet.radians(frameConfiguration.getRotateFunction().run(frameIndex)));
+            x = x - xCenter; // Offset x based on translation
+            y = y - yCenter; // Offset y based on translation
+        }
 
         int[] colors = frameConfiguration.getColorsForm().get(FormType.DEBUG);
         applet.fill(colors[Utils.getRandomInt(colors.length)]);

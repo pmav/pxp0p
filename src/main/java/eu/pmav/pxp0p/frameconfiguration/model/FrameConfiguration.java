@@ -6,7 +6,6 @@ import eu.pmav.pxp0p.framerendered.forms.FormType;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 public class FrameConfiguration implements Serializable
 {
@@ -66,6 +65,9 @@ public class FrameConfiguration implements Serializable
 
     // Direction
     private IntFunction directionFunction = null;
+
+    // Rotate
+    private FloatFunction rotateFunction = null;
 
     // Center object
     private boolean centerObject;
@@ -197,13 +199,11 @@ public class FrameConfiguration implements Serializable
 
     // Object types
 
-    public FormType[] getObjectTypes()
-    {
-        return this.formTypes;
+    public FormType[] getFormTypes() {
+        return formTypes;
     }
 
-    public void setObjectTypes(FormType[] formTypes)
-    {
+    public void setFormTypes(FormType[] formTypes) {
         this.formTypes = formTypes;
     }
 
@@ -405,6 +405,16 @@ public class FrameConfiguration implements Serializable
 
     public void setDirectionFunction(IntFunction directionFunction) {
         this.directionFunction = directionFunction;
+    }
+
+    // Rotate
+
+    public FloatFunction getRotateFunction() {
+        return rotateFunction;
+    }
+
+    public void setRotateFunction(FloatFunction rotateFunction) {
+        this.rotateFunction = rotateFunction;
     }
 
     //endregion
