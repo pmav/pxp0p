@@ -2,6 +2,7 @@ package eu.pmav.pxp0p;
 
 import eu.pmav.pxp0p.frameconfiguration.impl.*;
 import eu.pmav.pxp0p.frameconfiguration.model.FrameConfiguration;
+import eu.pmav.pxp0p.frameconfiguration.model.Frame;
 import eu.pmav.pxp0p.utils.ExitHandler;
 import eu.pmav.pxp0p.utils.Utils;
 import processing.core.PApplet;
@@ -28,7 +29,6 @@ public class Main
         ExitHandler exitHandler = new ExitHandler();
 
         // Create frame configurations
-        List<FrameConfiguration> frameConfigurations = new ArrayList<>();
 
         //configurations.addAll((new CuidadoComOCaoManualGenerator()).generateConfigurations());
         //configurations.addAll((new InstagramManualGenerator()).generateConfigurations());
@@ -37,19 +37,20 @@ public class Main
         //configurations.addAll((new RandomGenerator(1)).generateConfigurations(5));
         //configurations.addAll((new RandomGenerator(2)).generateConfigurations(5));
 
-        frameConfigurations.addAll((new NewFrameConfigurationGenerator()).generateConfigurations());
+        List<FrameConfiguration> frameConfigurations = new ArrayList<>((new NewFrameConfigurationGenerator()).generateConfigurations());
 
         // Render each frame on a new Applet
         AtomicInteger frameNumber = new AtomicInteger(1);
 
-        frameConfigurations.forEach(frameConfiguration ->
-        {
+        List<Frame> frames = List.of(new Frame(frameConfigurations));
+
+        frames.forEach(frame -> {
             // Add frame path
             final String framePath = String.format("%s/%d.png", saveDirectory, frameNumber.getAndIncrement());
-            frameConfiguration.setFramePath(framePath);
+            frame.getFrameConfigurations().getFirst().setFramePath(framePath);
 
             // Create Applet
-            Applet applet = new Applet(frameConfiguration, exitHandler);
+            Applet applet = new Applet(frame, exitHandler);
 
             // Register applet
             exitHandler.registerApplet(applet);
@@ -57,5 +58,23 @@ public class Main
             // Run Applet
             PApplet.runSketch(new String[]{applet.getClass().getName()}, applet);
         });
+
+
+//        frameConfigurations.forEach(frameConfiguration ->
+//        {
+//            // Add frame path
+//            final String framePath = String.format("%s/%d.png", saveDirectory, frameNumber.getAndIncrement());
+//            frameConfiguration.setFramePath(framePath);
+//
+//            // Create Applet
+//            FrameGroup frameGroup = new FrameGroup(List.of(frameConfiguration));
+//            Applet applet = new Applet(frameGroup, exitHandler);
+//
+//            // Register applet
+//            exitHandler.registerApplet(applet);
+//
+//            // Run Applet
+//            PApplet.runSketch(new String[]{applet.getClass().getName()}, applet);
+//        });
     }
 }

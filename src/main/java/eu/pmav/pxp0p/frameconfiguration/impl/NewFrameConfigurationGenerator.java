@@ -75,10 +75,9 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
 
         List<FormType> l1 = new ArrayList<>();
         l1.add(FormType.SQUARE);
-        l1.add(FormType.CIRCLE);
 
         List<FormType> l2 = new ArrayList<>();
-        l2.add(FormType.SQUARE);
+        l2.add(FormType.CIRCLE);
 
         fc = applyParameter(fc, List.of(l1, l2), (c, v) -> c.setFormTypes((List<FormType>) v));
         fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.CIRCLE, (int[]) v));

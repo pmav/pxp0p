@@ -55,7 +55,7 @@ public class FrameRendered
         Collections.shuffle(objectConfigurations, new Random(0));
 
         // Set background color
-        applet.background(frameConfiguration.getColorBackground());
+        //applet.background(frameConfiguration.getColorBackground());
 
         // Generate stroke
         if (frameConfiguration.hasStroke())

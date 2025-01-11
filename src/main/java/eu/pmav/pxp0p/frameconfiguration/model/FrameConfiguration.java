@@ -11,30 +11,6 @@ import java.util.Set;
 
 public class FrameConfiguration implements Serializable
 {
-    // Frame path
-    private String framePath;
-
-    // Canvas size
-    private int canvasWidth;
-    private int canvasHeight;
-
-    // Space used inside canvas
-    private int gridWidth;
-    private int gridHeight;
-
-    // Objects in the grid
-    private int objectColumns;
-    private int objectLines;
-
-    // Space between objects in px
-    private int objectSpacing;
-
-    // Background color
-    private int colorBackground;
-
-    // Blur value
-    private float blurValue;
-
     // Forms to be generated
     private List<FormType> formTypes;
 
@@ -98,20 +74,6 @@ public class FrameConfiguration implements Serializable
         ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
         ObjectInputStream objInputStream = new ObjectInputStream(inputStream);
         return (FrameConfiguration) objInputStream.readObject();
-    }
-
-    @Override
-    public String toString()
-    {
-        return "Configuration{" +
-                "canvasWidth=" + canvasWidth +
-                ", canvasHeight=" + canvasHeight +
-                ", gridWidth=" + gridWidth +
-                ", gridHeight=" + gridHeight +
-                ", objectColumns=" + objectColumns +
-                ", objectLines=" + objectLines +
-                ", objectSpacing=" + objectSpacing +
-                "}\n";
     }
 
     //region Getters and setters
