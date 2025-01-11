@@ -8,10 +8,7 @@ import eu.pmav.pxp0p.framerendered.model.ObjectConfiguration;
 import eu.pmav.pxp0p.utils.Utils;
 import processing.core.PApplet;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class FrameRendered
 {
@@ -43,6 +40,9 @@ public class FrameRendered
             {
                 objectConfigurations.add(new ObjectConfiguration(x, y, size, frameIndex));
 
+                // TODO Add random FormType to object configuration
+                // TODO Add multiple formType to object configuration based on new configuration feature: e.g.: overlap forms
+
                 x += size + frameConfiguration.getObjectSpacing();
                 frameIndex++;
             }
@@ -66,18 +66,24 @@ public class FrameRendered
 
         // Draw object for each configuration
         objectConfigurations.forEach(objectConfiguration -> {
-            final FormType formType = frameConfiguration.getFormTypes()[Utils.getRandomInt(frameConfiguration.getFormTypes().length)];
+            // TODO Get form type from object configuration
+            List<Set<FormType>> forms = frameConfiguration.getFormTypes();
 
-            final Form form = switch (formType) {
-                case SQUARE -> new SquareForm();
-                case CIRCLE -> new CircleForm();
-                case TRIANGLE -> new TriangleForm();
-                case POLLY -> new PollyForm();
-                case SEMICIRCLE -> new SemiCircleForm();
-                case DEBUG -> new DebugForm();
-            };
+            forms.forEach(set -> {
+                List<FormType> list = new ArrayList<>(set);
+                final FormType formType = list.get(Utils.getRandomInt(list.size()));
 
-            form.draw(applet, frameConfiguration, objectConfiguration);
+                final Form form = switch (formType) {
+                    case SQUARE -> new SquareForm();
+                    case CIRCLE -> new CircleForm();
+                    case TRIANGLE -> new TriangleForm();
+                    case POLLY -> new PollyForm();
+                    case SEMICIRCLE -> new SemiCircleForm();
+                    case DEBUG -> new DebugForm();
+                };
+
+                form.draw(applet, frameConfiguration, objectConfiguration);
+            });
         });
 
         // Apply blur as "extra" antialiasing (antialiasing is handled by smooth() on settings())

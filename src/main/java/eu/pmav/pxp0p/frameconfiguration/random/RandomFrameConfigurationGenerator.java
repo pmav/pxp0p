@@ -7,6 +7,7 @@ import eu.pmav.pxp0p.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class RandomFrameConfigurationGenerator
 {
@@ -55,7 +56,7 @@ public class RandomFrameConfigurationGenerator
             frameConfiguration.setColorBackground(backgroundColor);
             frameConfiguration.setBlurValue(geRandomFloat(0, 1));
             //configuration.setObjectTypes(getRandomFormTypes());
-            frameConfiguration.setFormTypes(new FormType[]{FormType.CIRCLE});
+            frameConfiguration.setFormTypes(List.of(Set.of(FormType.CIRCLE)));
 
             // Object Colors
             //configuration.setColorsCircle(colors);

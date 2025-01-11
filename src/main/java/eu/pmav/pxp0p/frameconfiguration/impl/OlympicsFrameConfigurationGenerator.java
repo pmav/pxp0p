@@ -7,6 +7,7 @@ import eu.pmav.pxp0p.utils.Utils;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class OlympicsFrameConfigurationGenerator extends FrameConfigurationGenerator
 {
@@ -35,7 +36,7 @@ public class OlympicsFrameConfigurationGenerator extends FrameConfigurationGener
 
         frameConfigurations = applyParameter(frameConfigurations, colorsBackground, (c, v) -> c.setColorBackground((int) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
-        frameConfigurations = applyParameter(frameConfigurations, Collections.singletonList(new FormType[]{FormType.CIRCLE}), (c, v) -> c.setFormTypes((FormType[]) v));
+        frameConfigurations = applyParameter(frameConfigurations, Collections.singletonList(Set.of(FormType.CIRCLE)), (c, v) -> c.setFormTypes((List<Set<FormType>>) v));
 
         // Object Colors
         //configurations = applyParameter(configurations, List.of(colorsOlympics), (c, v) -> c.setColorsCircle((int[]) v));

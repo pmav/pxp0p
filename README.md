@@ -37,6 +37,7 @@ List of features supported by each type of object:
 ### TODO
 - Abstract common code in Forms
 - Add save path to command line args
+- Add unit tests based on image hashs
 
 ### Resources
 

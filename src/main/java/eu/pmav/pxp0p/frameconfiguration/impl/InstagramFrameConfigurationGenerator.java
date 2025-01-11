@@ -7,6 +7,7 @@ import eu.pmav.pxp0p.utils.Utils;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class InstagramFrameConfigurationGenerator extends FrameConfigurationGenerator
 {
@@ -48,7 +49,7 @@ public class InstagramFrameConfigurationGenerator extends FrameConfigurationGene
 
         frameConfigurations = applyParameter(frameConfigurations, colorsBackground, (c, v) -> c.setColorBackground((int) v));
         frameConfigurations = applyParameter(frameConfigurations, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
-        frameConfigurations = applyParameter(frameConfigurations, Collections.singletonList(new FormType[]{FormType.TRIANGLE}), (c, v) -> c.setFormTypes((FormType[]) v));
+        frameConfigurations = applyParameter(frameConfigurations, Collections.singletonList(Set.of(FormType.TRIANGLE)), (c, v) -> c.setFormTypes((List<Set<FormType>>) v));
 
         // Change direction (triangles and semicircles only)
         //FrameConfiguration.IntFunction directionFunction = (frameIndex) -> Utils.getRandomInt(4);

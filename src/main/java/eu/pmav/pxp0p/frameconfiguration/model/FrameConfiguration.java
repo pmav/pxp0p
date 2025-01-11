@@ -5,7 +5,9 @@ import eu.pmav.pxp0p.framerendered.forms.FormType;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class FrameConfiguration implements Serializable
 {
@@ -27,21 +29,21 @@ public class FrameConfiguration implements Serializable
     // Space between objects in px
     private int objectSpacing;
 
-    // Forms to be generated
-    private FormType[] formTypes;
-
-    // Initial Position variation
-    private IntFunction xVariationFunction = null;
-    private IntFunction yVariationFunction = null;
-
     // Background color
     private int colorBackground;
 
     // Blur value
     private float blurValue;
 
-    // Object colors
+    // Forms to be generated
+    private List<FormType> formTypes;
+
+    // Forms colors
     private final Map<FormType, int[]> colorsForm = new HashMap<>();
+
+    // Initial Position variation
+    private IntFunction xVariationFunction = null;
+    private IntFunction yVariationFunction = null;
 
     // Size Transform
     private FloatFunction sizeTransformFunction = null;
@@ -83,6 +85,7 @@ public class FrameConfiguration implements Serializable
         float run(int frameIndex);
     }
 
+    // Constructor
     public FrameConfiguration()
     {
     }
@@ -197,13 +200,13 @@ public class FrameConfiguration implements Serializable
         this.objectSpacing = objectSpacing;
     }
 
-    // Object types
+    // Form types
 
-    public FormType[] getFormTypes() {
+    public List<FormType> getFormTypes() {
         return formTypes;
     }
 
-    public void setFormTypes(FormType[] formTypes) {
+    public void setFormTypes(List<FormType> formTypes) {
         this.formTypes = formTypes;
     }
 

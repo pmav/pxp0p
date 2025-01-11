@@ -5,8 +5,10 @@ import eu.pmav.pxp0p.frameconfiguration.FrameConfigurationGenerator;
 import eu.pmav.pxp0p.framerendered.forms.FormType;
 import eu.pmav.pxp0p.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
 {
@@ -59,19 +61,30 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         fc = applyParameter(fc, List.of(0.6f), (c, v) -> c.setBlurValue((float) v));
 
         // Object and colors
-        //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.SQUARE}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.SQUARE}), (c, v) -> c.setFormTypes((FormType[]) v));
         //fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.SQUARE, (int[]) v));
 
-        //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.CIRCLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.CIRCLE}), (c, v) -> c.setFormTypes((FormType[]) v));
         //fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.CIRCLE, (int[]) v));
 
-        //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.TRIANGLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.TRIANGLE}), (c, v) -> c.setFormTypes((FormType[]) v));
         //fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.TRIANGLE, (int[]) v));
 
-        fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.DEBUG}), (c, v) -> c.setFormTypes((FormType[]) v));
-        fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.DEBUG, (int[]) v));
+        //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.DEBUG}), (c, v) -> c.setFormTypes((FormType[]) v));
+        //fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.DEBUG, (int[]) v));
 
-        //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.SEMICIRCLE}), (c, v) -> c.setObjectTypes((FormType[]) v));
+        List<FormType> l1 = new ArrayList<>();
+        l1.add(FormType.SQUARE);
+        l1.add(FormType.CIRCLE);
+
+        List<FormType> l2 = new ArrayList<>();
+        l2.add(FormType.SQUARE);
+
+        fc = applyParameter(fc, List.of(l1, l2), (c, v) -> c.setFormTypes((List<FormType>) v));
+        fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.CIRCLE, (int[]) v));
+        fc = applyParameter(fc, List.of(colorsBlue), (c, v) -> c.addColorsForm(FormType.SQUARE, (int[]) v));
+
+        //fc = applyParameter(fc, Collections.singletonList(new FormType[]{FormType.SEMICIRCLE}), (c, v) -> c.setFormTypes((FormType[]) v));
         //fc = applyParameter(fc, List.of(colorsRedStrong), (c, v) -> c.addColorsForm(FormType.SEMICIRCLE, (int[]) v));
 
         // Size
@@ -83,8 +96,8 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         fc = applyParameter(fc, List.of(rotationFunction), (c, v) -> c.setRotateFunction((FrameConfiguration.FloatFunction) v));
 
         // Alpha
-        FrameConfiguration.IntFunction alphaFunction = (frameIndex) -> (int) Utils.getRandomFloat(0, 150);
-        fc = applyParameter(fc, List.of(alphaFunction), (c, v) -> c.setAlphaFunction((FrameConfiguration.IntFunction) v));
+        //FrameConfiguration.IntFunction alphaFunction = (frameIndex) -> (int) Utils.getRandomFloat(0, 150);
+        //fc = applyParameter(fc, List.of(alphaFunction), (c, v) -> c.setAlphaFunction((FrameConfiguration.IntFunction) v));
 
         // Variation (0 means no variation on the x,y position of the object)
         FrameConfiguration.IntFunction xVariationFunction = (frameIndex) -> 0; // Math.round((Utils.getRandomFloat(-1, 1) * ))
