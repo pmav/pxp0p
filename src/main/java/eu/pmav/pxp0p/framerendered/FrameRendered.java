@@ -66,24 +66,19 @@ public class FrameRendered
 
         // Draw object for each configuration
         objectConfigurations.forEach(objectConfiguration -> {
-            // TODO Get form type from object configuration
-            List<Set<FormType>> forms = frameConfiguration.getFormTypes();
+            List<FormType> forms = frameConfiguration.getFormTypes();
+            final FormType formType = forms.get(Utils.getRandomInt(forms.size()));
 
-            forms.forEach(set -> {
-                List<FormType> list = new ArrayList<>(set);
-                final FormType formType = list.get(Utils.getRandomInt(list.size()));
+            final Form form = switch (formType) {
+                case SQUARE -> new SquareForm();
+                case CIRCLE -> new CircleForm();
+                case TRIANGLE -> new TriangleForm();
+                case POLLY -> new PollyForm();
+                case SEMICIRCLE -> new SemiCircleForm();
+                case DEBUG -> new DebugForm();
+            };
 
-                final Form form = switch (formType) {
-                    case SQUARE -> new SquareForm();
-                    case CIRCLE -> new CircleForm();
-                    case TRIANGLE -> new TriangleForm();
-                    case POLLY -> new PollyForm();
-                    case SEMICIRCLE -> new SemiCircleForm();
-                    case DEBUG -> new DebugForm();
-                };
-
-                form.draw(applet, frameConfiguration, objectConfiguration);
-            });
+            form.draw(applet, frameConfiguration, objectConfiguration);
         });
 
         // Apply blur as "extra" antialiasing (antialiasing is handled by smooth() on settings())
