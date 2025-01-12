@@ -50,7 +50,7 @@ public class SemiCircleForm extends Form
         Angles anglesForObject = getAngles(direction);
 
         // Get anglesForObject for the center object
-        Angles anglesForCenterObject = getAngles((direction + 2) % 4);
+        Angles anglesForCenterObject = anglesForObject;
 
         // Draw
         applet.pushMatrix();
@@ -73,7 +73,7 @@ public class SemiCircleForm extends Form
         if (haveCenterObject)
         {
             int[] centerColors = frameConfiguration.getColorsCenterObject();
-            applet.fill(centerColors[Utils.getRandomInt(centerColors.length)]);
+            applet.fill(centerColors[Utils.getRandomInt(centerColors.length)], alpha);
             applet.arc(x + size / 2f, y + size / 2f, centerObjectSize, centerObjectSize, anglesForCenterObject.startAngle(), anglesForCenterObject.stopAngle(), PConstants.CHORD);
         }
 

@@ -40,9 +40,6 @@ public class FrameRendered
             {
                 objectConfigurations.add(new ObjectConfiguration(x, y, size, frameIndex));
 
-                // TODO Add random FormType to object configuration
-                // TODO Add multiple formType to object configuration based on new configuration feature: e.g.: overlap forms
-
                 x += size + frameConfiguration.getObjectSpacing();
                 frameIndex++;
             }
@@ -62,6 +59,8 @@ public class FrameRendered
         {
             applet.stroke(frameConfiguration.getStrokeColor());
             applet.strokeWeight(frameConfiguration.getStrokeSize());
+        } else {
+            applet.noStroke();
         }
 
         // Draw object for each configuration

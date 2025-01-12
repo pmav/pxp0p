@@ -28,7 +28,6 @@ public class Main
         ExitHandler exitHandler = new ExitHandler();
 
         // Create frame configurations
-        List<FrameConfiguration> frameConfigurations = new ArrayList<>();
 
         //configurations.addAll((new CuidadoComOCaoManualGenerator()).generateConfigurations());
         //configurations.addAll((new InstagramManualGenerator()).generateConfigurations());
@@ -37,7 +36,7 @@ public class Main
         //configurations.addAll((new RandomGenerator(1)).generateConfigurations(5));
         //configurations.addAll((new RandomGenerator(2)).generateConfigurations(5));
 
-        frameConfigurations.addAll((new NewFrameConfigurationGenerator()).generateConfigurations());
+        List<FrameConfiguration> frameConfigurations = new ArrayList<>((new SemiCircleFrameConfigurationGenerator()).generateConfigurations());
 
         // Render each frame on a new Applet
         AtomicInteger frameNumber = new AtomicInteger(1);
