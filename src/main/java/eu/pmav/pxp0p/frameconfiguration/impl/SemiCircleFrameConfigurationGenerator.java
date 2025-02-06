@@ -15,8 +15,9 @@ public class SemiCircleFrameConfigurationGenerator extends FrameConfigurationGen
         int colorWhite = 0xffDCDCDC;
         int colorBlack = 0xff101010;
 
-        int[] colorsRainbow = {0xff9400D3, 0xff4B0082, 0xff0000FF, 0xff00FF00, 0xffFFFF00, 0xffFF7F00, 0xffFF0000};
-        int[] colorsGrey = {0xffDCDCDC, 0xffD3D3D3, 0xffC0C0C0, 0xffA9A9A9, 0xff808080, 0xff696969, 0xff778899, 0xff708090, 0xff2F4F4F, 0xff000000};
+        //int[] colorsRainbow = {0xff9400D3, 0xff4B0082, 0xff0000FF, 0xff00FF00, 0xffFFFF00, 0xffFF7F00, 0xffFF0000};
+        //int[] colorsGrey = {0xffDCDCDC, 0xffD3D3D3, 0xffC0C0C0, 0xffA9A9A9, 0xff808080, 0xff696969, 0xff778899, 0xff708090, 0xff2F4F4F, 0xff000000};
+        int[] colors1 = {0xffDCDCDC};
 
         List<Object> colorsStroke = List.of(colorBlack);
         List<Object> colorsBackground = List.of(colorBlack);
@@ -33,8 +34,8 @@ public class SemiCircleFrameConfigurationGenerator extends FrameConfigurationGen
 
         // Layout
         fc = applyParameter(fc, List.of(12), (c, v) -> c.setObjectColumns((int) v));
-        fc = applyParameter(fc, List.of(4), (c, v) -> c.setObjectLines((int) v));
-        fc = applyParameter(fc, List.of(8), (c, v) -> c.setObjectSpacing((int) v));
+        fc = applyParameter(fc, List.of(12), (c, v) -> c.setObjectLines((int) v));
+        fc = applyParameter(fc, List.of(0), (c, v) -> c.setObjectSpacing((int) v));
 
         // Background color
         fc = applyParameter(fc, colorsBackground, (c, v) -> c.setColorBackground((int) v));
@@ -46,10 +47,10 @@ public class SemiCircleFrameConfigurationGenerator extends FrameConfigurationGen
         List<FormType> l1 = List.of(FormType.SEMICIRCLE);
 
         fc = applyParameter(fc, List.of(l1), (c, v) -> c.setFormTypes((List<FormType>) v));
-        fc = applyParameter(fc, List.of(colorsGrey, colorsRainbow), (c, v) -> c.addColorsForm(FormType.SEMICIRCLE, (int[]) v));
+        fc = applyParameter(fc, List.of(colors1), (c, v) -> c.addColorsForm(FormType.SEMICIRCLE, (int[]) v));
 
         // Size
-        FrameConfiguration.FloatFunction sizeTransformFunction = (frameIndex) -> 1.8f; // Utils.getRandomFloat(1.0f, 1.2f)
+        FrameConfiguration.FloatFunction sizeTransformFunction = (frameIndex) -> 1.1f; // Utils.getRandomFloat(1.0f, 1.2f)
         fc = applyParameter(fc, List.of(sizeTransformFunction), (c, v) -> c.setSizeTransformFunction((FrameConfiguration.FloatFunction) v));
 
         // Rotation
@@ -59,7 +60,7 @@ public class SemiCircleFrameConfigurationGenerator extends FrameConfigurationGen
         // Alpha
         FrameConfiguration.IntFunction alphaFunction1 = (frameIndex) -> (int) Utils.getRandomFloat(0, 150);
         FrameConfiguration.IntFunction alphaFunction2 = (frameIndex) -> 255;
-        fc = applyParameter(fc, List.of(alphaFunction1, alphaFunction2), (c, v) -> c.setAlphaFunction((FrameConfiguration.IntFunction) v));
+        fc = applyParameter(fc, List.of(alphaFunction2), (c, v) -> c.setAlphaFunction((FrameConfiguration.IntFunction) v));
 
         // Variation (0 means no variation on the x,y position of the object)
         FrameConfiguration.IntFunction xVariationFunction = (frameIndex) -> 0; // Math.round((Utils.getRandomFloat(-1, 1) * ))
@@ -69,17 +70,17 @@ public class SemiCircleFrameConfigurationGenerator extends FrameConfigurationGen
         fc = applyParameter(fc, List.of(yVariationFunction), (c, v) -> c.setyVariationFunction((FrameConfiguration.IntFunction) v));
 
         // Stroke
-        fc = applyParameter(fc, List.of(true, false), (c, v) -> c.setStroke((boolean) v));
-        fc = applyParameter(fc, List.of(2, 4, 8), (c, v) -> c.setStrokeSize((int) v));
+        fc = applyParameter(fc, List.of(true), (c, v) -> c.setStroke((boolean) v));
+        fc = applyParameter(fc, List.of(2), (c, v) -> c.setStrokeSize((int) v));
         fc = applyParameter(fc, colorsStroke, (c, v) -> c.setStrokeColor((int) v));
 
         // Center Object
         fc = applyParameter(fc, List.of(true), (c, v) -> c.setCenterObject((boolean) v));
-        fc = applyParameter(fc, List.of(0.6f), (c, v) -> c.setCenterObjectSize((float) v));
-        fc = applyParameter(fc, List.of(colorsGrey, colorsRainbow), (c, v) -> c.setColorsCenterObject((int[]) v));
+        fc = applyParameter(fc, List.of(0.8f, 0.9f), (c, v) -> c.setCenterObjectSize((float) v));
+        fc = applyParameter(fc, List.of(colors1), (c, v) -> c.setColorsCenterObject((int[]) v));
 
         // Direction (triangles and semicircles only)
-        FrameConfiguration.IntFunction directionFunction = (frameIndex) -> 2; // Utils.getRandomInt(4)
+        FrameConfiguration.IntFunction directionFunction = (frameIndex) -> (frameIndex % 2) * 2; // Utils.getRandomInt(4)
         fc = applyParameter(fc, List.of(directionFunction), (c, v) -> c.setDirectionFunction((FrameConfiguration.IntFunction) v));
 
         System.out.printf("Generated %s Frame configurations...%n", fc.size());
