@@ -19,7 +19,7 @@ public class CuidadoComOCaoFrameConfigurationGenerator extends FrameConfiguratio
         int colorWhite = 0xffFEFCFE;
 
         // Initial configuration
-        List<FrameConfiguration> frameConfigurations = Collections.singletonList(new FrameConfiguration());
+        List<FrameConfiguration> frameConfigurations = Collections.singletonList(new FrameConfiguration(this.getClass().getSimpleName()));
 
         // Layout
         frameConfigurations = applyParameter(frameConfigurations, List.of(1), (c, v) -> c.setObjectColumns((int) v));

@@ -43,7 +43,7 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         List<Object> colorsBackground = List.of(colorBlack);
 
         // Initial configuration
-        List<FrameConfiguration> fc = Collections.singletonList(new FrameConfiguration());
+        List<FrameConfiguration> fc = Collections.singletonList(new FrameConfiguration(this.getClass().getSimpleName()));
 
         // Canvas and grid
         fc = applyParameter(fc, List.of(1000), (c, v) -> c.setCanvasWidth((int) v));

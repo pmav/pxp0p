@@ -11,6 +11,9 @@ import java.util.Set;
 
 public class FrameConfiguration implements Serializable
 {
+    // Frame id
+    private String id;
+
     // Frame path
     private String framePath;
 
@@ -86,8 +89,9 @@ public class FrameConfiguration implements Serializable
     }
 
     // Constructor
-    public FrameConfiguration()
+    public FrameConfiguration(String id)
     {
+        this.id = id;
     }
 
     public FrameConfiguration copy() throws IOException, ClassNotFoundException
@@ -117,6 +121,10 @@ public class FrameConfiguration implements Serializable
     //region Getters and setters
 
     // General
+
+    public String getId() {
+        return id;
+    }
 
     public String getFramePath()
     {

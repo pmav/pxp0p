@@ -27,7 +27,7 @@ public class OlympicsFrameConfigurationGenerator extends FrameConfigurationGener
         List<Object> colorsBackground = List.of(colorWhite);
 
         // Initial configuration
-        List<FrameConfiguration> frameConfigurations = Collections.singletonList(new FrameConfiguration());
+        List<FrameConfiguration> frameConfigurations = Collections.singletonList(new FrameConfiguration(this.getClass().getSimpleName()));
 
         // Layout
         frameConfigurations = applyParameter(frameConfigurations, List.of(5), (c, v) -> c.setObjectColumns((int) v));

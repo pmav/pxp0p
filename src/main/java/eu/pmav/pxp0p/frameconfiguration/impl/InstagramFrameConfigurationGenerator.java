@@ -40,7 +40,7 @@ public class InstagramFrameConfigurationGenerator extends FrameConfigurationGene
         List<Object> colorsBackground = List.of(colorBlack);
 
         // Initial configuration
-        List<FrameConfiguration> frameConfigurations = Collections.singletonList(new FrameConfiguration());
+        List<FrameConfiguration> frameConfigurations = Collections.singletonList(new FrameConfiguration(this.getClass().getSimpleName()));
 
         // Layout
         frameConfigurations = applyParameter(frameConfigurations, List.of(16), (c, v) -> c.setObjectColumns((int) v));

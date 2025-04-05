@@ -47,7 +47,7 @@ public class RandomFrameConfigurationGenerator
             int backgroundColor = 0xff000000; //getRandomColor();
             int strokeColor = getRandomColor();
 
-            FrameConfiguration frameConfiguration = new FrameConfiguration();
+            FrameConfiguration frameConfiguration = new FrameConfiguration(this.getClass().getSimpleName());
 
             frameConfiguration.setObjectColumns(getRandomInt(1, 16));
             frameConfiguration.setObjectLines(getRandomInt(1, 16));

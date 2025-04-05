@@ -14,8 +14,8 @@ public class Main
 {
     // Path to save each frame
     // TODO: read from command line
-    //static final String SAVE_PATH = "/Users/pedro/Workspace/pxp0p/tmp";
-    static final String SAVE_PATH = "/mnt/Storage/pxp0p/";
+    static final String SAVE_PATH = "/Users/pedro/Workspace/pxp0p/tmp";
+    //static final String SAVE_PATH = "/mnt/Storage/pxp0p/";
 
 
     public static void main(String[] args) throws Exception
@@ -44,7 +44,7 @@ public class Main
         frameConfigurations.forEach(frameConfiguration ->
         {
             // Add frame path
-            final String framePath = String.format("%s/%d.png", saveDirectory, frameNumber.getAndIncrement());
+            final String framePath = String.format("%s/%d-%s.png", saveDirectory, frameNumber.getAndIncrement(), frameConfiguration.getId());
             frameConfiguration.setFramePath(framePath);
 
             // Create Applet
