@@ -8,8 +8,10 @@ import eu.pmav.pxp0p.utils.Utils;
 import java.util.Collections;
 import java.util.List;
 
-public class SemiCircleFrameConfigurationGenerator extends FrameConfigurationGenerator
+public class SemiCircle01FrameConfigurationGenerator extends FrameConfigurationGenerator
 {
+    private final String ID = "Semi_Circle_Waves_Black_and_White";
+
     public List<FrameConfiguration> generateConfigurations() throws Exception {
         // Set colors
         int colorWhite = 0xffDCDCDC;
@@ -23,7 +25,7 @@ public class SemiCircleFrameConfigurationGenerator extends FrameConfigurationGen
         List<Object> colorsBackground = List.of(colorBlack);
 
         // Initial configuration
-        List<FrameConfiguration> fc = Collections.singletonList(new FrameConfiguration(this.getClass().getSimpleName()));
+        List<FrameConfiguration> fc = Collections.singletonList(new FrameConfiguration(ID));
 
         // Canvas and grid
         fc = applyParameter(fc, List.of(1000), (c, v) -> c.setCanvasWidth((int) v));

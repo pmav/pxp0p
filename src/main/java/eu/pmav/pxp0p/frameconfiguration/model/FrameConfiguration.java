@@ -12,7 +12,7 @@ import java.util.Set;
 public class FrameConfiguration implements Serializable
 {
     // Frame id
-    private String id;
+    private final String id;
 
     // Frame path
     private String framePath;
