@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Utils
@@ -41,4 +43,15 @@ public class Utils
     {
         return random.nextFloat(low, high);
     }
+
+    public static List<Object> convertArrayToList(int[] array) {
+        List<Object> list = new ArrayList<>();
+
+        for (int j : array) {
+            list.add(j);
+        }
+
+        return list;
+    }
+
 }

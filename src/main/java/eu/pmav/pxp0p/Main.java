@@ -1,6 +1,8 @@
 package eu.pmav.pxp0p;
 
-import eu.pmav.pxp0p.frameconfiguration.impl.*;
+import eu.pmav.pxp0p.frameconfiguration.impl.semicircle.SemiCircleWavesBlackAndWhiteFrameConfigurationGenerator;
+import eu.pmav.pxp0p.frameconfiguration.impl.semicircle.SemiCircleWatermelonFrameConfigurationGenerator;
+import eu.pmav.pxp0p.frameconfiguration.impl.semicircle.SemiCircleTestsFrameConfigurationGenerator;
 import eu.pmav.pxp0p.frameconfiguration.model.FrameConfiguration;
 import eu.pmav.pxp0p.utils.ExitHandler;
 import eu.pmav.pxp0p.utils.Utils;
@@ -42,8 +44,10 @@ public class Main
 
         List<FrameConfiguration> frameConfigurations = new ArrayList<>();
 
-        //frameConfigurations.addAll((new SemiCircle01FrameConfigurationGenerator()).generateConfigurations());
-        frameConfigurations.addAll((new SemiCircle02FrameConfigurationGenerator()).generateConfigurations());
+        // Semi-circle
+        //frameConfigurations.addAll((new SemiCircleWavesBlackAndWhiteFrameConfigurationGenerator()).generateConfigurations());
+        //frameConfigurations.addAll((new SemiCircleWatermelonFrameConfigurationGenerator()).generateConfigurations());
+        frameConfigurations.addAll((new SemiCircleTestsFrameConfigurationGenerator()).generateConfigurations());
 
         // Render each frame on a new Applet
         AtomicInteger frameNumber = new AtomicInteger(1);
