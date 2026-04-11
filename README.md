@@ -34,6 +34,10 @@ List of features supported by each type of object:
 | Center object color     | Yes    | Yes    | No       | Yes         |
 | Center object direction | No     | No     | No       | Yes         |
 
+### Examples
+Examples of features being applied to each form:
+- [Square](examples/square/README.md)
+
 ### TODO
 - Abstract common code in Forms
 - Add save path to command line args

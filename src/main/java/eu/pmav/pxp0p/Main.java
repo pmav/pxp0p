@@ -1,8 +1,6 @@
 package eu.pmav.pxp0p;
 
-import eu.pmav.pxp0p.frameconfiguration.impl.semicircle.SemiCircleWavesBlackAndWhiteFrameConfigurationGenerator;
-import eu.pmav.pxp0p.frameconfiguration.impl.semicircle.SemiCircleWatermelonFrameConfigurationGenerator;
-import eu.pmav.pxp0p.frameconfiguration.impl.semicircle.SemiCircleTestsFrameConfigurationGenerator;
+import eu.pmav.pxp0p.frameconfiguration.impl.square.*;
 import eu.pmav.pxp0p.frameconfiguration.model.FrameConfiguration;
 import eu.pmav.pxp0p.utils.ExitHandler;
 import eu.pmav.pxp0p.utils.Utils;
@@ -44,10 +42,21 @@ public class Main
 
         List<FrameConfiguration> frameConfigurations = new ArrayList<>();
 
+        // Square variations
+        frameConfigurations.addAll((new Square01ConfigurationGenerator()).generateConfigurations());
+        frameConfigurations.addAll((new Square02ConfigurationGenerator()).generateConfigurations());
+        frameConfigurations.addAll((new Square03ConfigurationGenerator()).generateConfigurations());
+        frameConfigurations.addAll((new Square04ConfigurationGenerator()).generateConfigurations());
+        frameConfigurations.addAll((new Square05ConfigurationGenerator()).generateConfigurations());
+        frameConfigurations.addAll((new Square06ConfigurationGenerator()).generateConfigurations());
+        frameConfigurations.addAll((new Square07ConfigurationGenerator()).generateConfigurations());
+        frameConfigurations.addAll((new Square08ConfigurationGenerator()).generateConfigurations());
+        frameConfigurations.addAll((new Square09ConfigurationGenerator()).generateConfigurations());
+
         // Semi-circle
         //frameConfigurations.addAll((new SemiCircleWavesBlackAndWhiteFrameConfigurationGenerator()).generateConfigurations());
         //frameConfigurations.addAll((new SemiCircleWatermelonFrameConfigurationGenerator()).generateConfigurations());
-        frameConfigurations.addAll((new SemiCircleTestsFrameConfigurationGenerator()).generateConfigurations());
+        //frameConfigurations.addAll((new SemiCircleTestsFrameConfigurationGenerator()).generateConfigurations());
 
         // Render each frame on a new Applet
         AtomicInteger frameNumber = new AtomicInteger(1);
