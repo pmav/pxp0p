@@ -37,6 +37,7 @@ List of features supported by each type of object:
 ### Examples
 Examples of features being applied to each form:
 - [Square](examples/square/README.md)
+- [Circle](examples/circle/README.md)
 
 ### TODO
 - Abstract common code in Forms
