@@ -1,16 +1,13 @@
 # pxp0p
 
-### Run
+### What?
+pxp0p is an art generator. Based on a Java configuration file the project creates an image as output.
 
-This project uses Maven to create an uber jar with all dependencies:
-```
-make build
-```
+The configuration file describes the image generated based on the forms and features that the creator wants to use with some deterministic randomness in the mix.
 
-After building the uber jar you can run it:
-```
-make run
-```
+Below is the list of features supported by each form and a list of examples for each form.
+
+For max fun mix all of them.
 
 ### Features
 
@@ -39,6 +36,17 @@ Examples of features being applied to each form:
 - [Square](examples/square/README.md)
 - [Circle](examples/circle/README.md)
 - [Triangle](examples/triangle/README.md)
+
+### Run
+This project uses Maven to create an uber jar with all dependencies:
+```
+make build
+```
+
+After building the uber jar you can run it:
+```
+make run
+```
 
 ### TODO
 - Abstract common code in Forms
