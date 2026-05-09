@@ -36,7 +36,7 @@ public class Applet extends PApplet
         // Render frame
         FrameRendered.render(this, this.frameConfiguration);
 
-        // Save from to disk
+        // Save frame to disk
         save(this.frameConfiguration.getFramePath());
 
         // Notify Exit Handler that this Applet have finished
