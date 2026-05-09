@@ -38,9 +38,10 @@ public class SemiCircleForm extends Form
                 : 255;
 
         // Direction
-        final int direction = frameConfiguration.getDirectionFunction() != null
-                ? frameConfiguration.getDirectionFunction().run(frameIndex)
-                : 0;
+        //final int direction = frameConfiguration.getDirectionFunction() != null
+        //        ? frameConfiguration.getDirectionFunction().run(frameIndex)
+        //        : 0;
+        final int direction = 0;
 
         // Center object
         final boolean haveCenterObject = frameConfiguration.hasCenterObject();

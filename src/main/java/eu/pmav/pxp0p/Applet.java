@@ -21,7 +21,7 @@ public class Applet extends PApplet
     {
         size(this.frameConfiguration.getCanvasWidth(), this.frameConfiguration.getCanvasHeight());
 
-        // Leve 3 applies bicubic smoothing
+        // Level 3 applies bicubic smoothing
         // Source: https://processing.org/reference/smooth_.html
         smooth(3);
     }

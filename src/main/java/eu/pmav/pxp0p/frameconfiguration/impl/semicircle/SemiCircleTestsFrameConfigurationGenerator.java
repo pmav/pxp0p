@@ -113,7 +113,7 @@ public class SemiCircleTestsFrameConfigurationGenerator extends FrameConfigurati
         // Direction (triangles and semicircles only)
         //FrameConfiguration.IntFunction directionFunction = (frameIndex) -> (frameIndex % 2) * 2; // Utils.getRandomInt(4)
         FrameConfiguration.IntFunction directionFunction = (frameIndex) -> 2;
-        fc = applyParameter(fc, List.of(directionFunction), (c, v) -> c.setDirectionFunction((FrameConfiguration.IntFunction) v));
+        //fc = applyParameter(fc, List.of(directionFunction), (c, v) -> c.setDirectionFunction((FrameConfiguration.IntFunction) v));
 
         System.out.printf("Generated %s Frame configurations...%n", fc.size());
         fc.forEach(c -> System.out.printf(c.toString()));

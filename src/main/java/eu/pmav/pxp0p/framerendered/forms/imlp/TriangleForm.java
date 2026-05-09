@@ -36,13 +36,11 @@ public class TriangleForm extends Form
                 ? frameConfiguration.getAlphaFunction().run(objectConfiguration.getFrameIndex())
                 : 255;
 
-        // Direction
-        final int direction = frameConfiguration.getDirectionFunction() != null
-                ? frameConfiguration.getDirectionFunction().run(frameIndex)
-                : 0;
-
-        final boolean cut1 = frameConfiguration.hasCuts(); // && (int)(Utils.getRandomFloat(0, 2)) == 1;
+        final boolean hasCuts = frameConfiguration.hasCuts();
         final int cutSize = Math.round(size * frameConfiguration.getCutSize());
+
+        final boolean hasCenterObject = frameConfiguration.hasCenterObject();
+        final int centerObjectSize = Math.round(size * frameConfiguration.getCenterObjectSize());
 
         // Draw
         applet.pushMatrix();
@@ -61,62 +59,49 @@ public class TriangleForm extends Form
         int[] colors = frameConfiguration.getColorsForm().get(FormType.TRIANGLE);
         applet.fill(colors[Utils.getRandomInt(colors.length)], alpha);
 
-        switch (direction)
+        applet.triangle(x, y + size, x + (size / 2f), y, x + size, y + size);
+
+        if (hasCuts)
         {
-            case 0:
-                // Pointing up
-                applet.triangle(x, y + size, x + (size / 2f), y, x + size, y + size);
+            int[] cutColors = frameConfiguration.getColorsCutTriangle();
 
-                if (cut1)
-                {
-                    int[] cutColors = frameConfiguration.getColorsCutTriangle();
-                    applet.fill(cutColors[Utils.getRandomInt(cutColors.length)]);
+            // Top cut
+            applet.fill(cutColors[Utils.getRandomInt(cutColors.length)]);
+            applet.triangle(
+                    x + size / 2f - cutSize / 2f, y + cutSize,
+                    x + size / 2f, y,
+                    x + size / 2f + cutSize / 2f, y + cutSize);
 
-                    x = x + size / 2 - cutSize / 2;
-                    applet.triangle(x, y + cutSize, x + (cutSize / 2f), y, x + cutSize, y + cutSize);
-                }
-                break;
+            // Left cut
+            applet.fill(cutColors[Utils.getRandomInt(cutColors.length)]);
+            applet.triangle(
+                    x, y + size,
+                    x + cutSize / 2f, y + size - cutSize,
+                    x + cutSize, y + size);
 
-            case 2:
-                // Pointing down
-                applet.triangle(x, y, x + size, y, x + (size / 2f), y + size);
-                if (cut1)
-                {
-                    int[] cutColors = frameConfiguration.getColorsCutTriangle();
-                    applet.fill(cutColors[Utils.getRandomInt(cutColors.length)]);
+            // Right cut
+            applet.fill(cutColors[Utils.getRandomInt(cutColors.length)]);
+            applet.triangle(
+                    x + size - cutSize, y + size,
+                    x + size - cutSize / 2f, y + size - cutSize,
+                    x + size, y + size);
+        }
 
-                    x = x + size / 2 - cutSize / 2;
-                    y = y + size - cutSize;
-                    applet.triangle(x, y, x + cutSize, y, x + (cutSize / 2f), y + cutSize);
-                }
-                break;
+        if (hasCenterObject)
+        {
+            int[] centerColors = frameConfiguration.getColorsCenterObject();
+            applet.fill(centerColors[Utils.getRandomInt(centerColors.length)]);
 
-            case 3:
-                // Pointing left
-                applet.triangle(x + size, y, x, y + (size / 2f), x + size, y + size);
-                if (cut1)
-                {
-                    int[] cutColors = frameConfiguration.getColorsCutTriangle();
-                    applet.fill(cutColors[Utils.getRandomInt(cutColors.length)]);
+            final int xCenter = x + size / 2;
+            final int yCenter = y + size / 2;
 
-                    y = y + size / 2 - cutSize / 2;
-                    applet.triangle(x + cutSize, y, x, y + (cutSize / 2f), x + cutSize, y + cutSize);
-                }
-                break;
+            // This is a y-axis adjustment to center the center object relative to the main object
+            final int yAdjust = (size - centerObjectSize) / 4;
 
-            case 1:
-                // Pointing right
-                applet.triangle(x, y, x, y + size, x + size, y + (size / 2f));
-                if (cut1)
-                {
-                    int[] cutColors = frameConfiguration.getColorsCutTriangle();
-                    applet.fill(cutColors[Utils.getRandomInt(cutColors.length)]);
-
-                    x = x + size - cutSize;
-                    y = y + size / 2 - cutSize / 2;
-                    applet.triangle(x, y, x, y + cutSize, x + cutSize, y + (cutSize / 2f));
-                }
-                break;
+            applet.triangle(
+                    xCenter - (centerObjectSize / 2f), yCenter + (centerObjectSize / 2f) + yAdjust,
+                    xCenter, yCenter - (centerObjectSize / 2f) + yAdjust,
+                    xCenter + (centerObjectSize / 2f), yCenter + (centerObjectSize / 2f) + yAdjust);
         }
 
         applet.popMatrix();

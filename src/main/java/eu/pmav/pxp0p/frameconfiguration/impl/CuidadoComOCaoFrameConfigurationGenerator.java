@@ -33,7 +33,7 @@ public class CuidadoComOCaoFrameConfigurationGenerator extends FrameConfiguratio
         // Change direction (triangles and semicircles only)
         //FrameConfiguration.IntFunction directionFunction = (frameIndex) -> Utils.getRandomInt(4);
         FrameConfiguration.IntFunction directionFunction = (frameIndex) -> 2;
-        frameConfigurations = applyParameter(frameConfigurations, List.of(directionFunction), (c, v) -> c.setDirectionFunction((FrameConfiguration.IntFunction) v));
+        //frameConfigurations = applyParameter(frameConfigurations, List.of(directionFunction), (c, v) -> c.setDirectionFunction((FrameConfiguration.IntFunction) v));
 
         // Object Colors
         //configurations = applyParameter(configurations, List.of(new int[]{colorWhite}), (c, v) -> c.setColorsCircle((int[]) v));

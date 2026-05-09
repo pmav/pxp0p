@@ -68,9 +68,6 @@ public class FrameConfiguration implements Serializable
     private int[] colorsCutSquare;
     private int[] colorsCutTriangle;
 
-    // Direction
-    private IntFunction directionFunction = null;
-
     // Rotate
     private FloatFunction rotateFunction = null;
 
@@ -406,16 +403,6 @@ public class FrameConfiguration implements Serializable
     public void setColorsCenterObject(int[] colorsCenterObject)
     {
         this.colorsCenterObject = colorsCenterObject;
-    }
-
-    // Direction
-
-    public IntFunction getDirectionFunction() {
-        return directionFunction;
-    }
-
-    public void setDirectionFunction(IntFunction directionFunction) {
-        this.directionFunction = directionFunction;
     }
 
     // Rotate

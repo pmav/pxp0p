@@ -22,22 +22,23 @@ List of features supported by each type of object:
 | Position variation      | Yes    | Yes    | Yes      | Yes         |
 | Fill color              | Yes    | Yes    | Yes      | Yes         |
 | Transparency            | Yes    | Yes    | Yes      | Yes         |
-| Direction (90º angle)   | No     | No     | Yes      | Yes         |
+| Direction (90º angle)   | No     | No     | No       | Yes         |
 | Rotation (any angle)    | Yes    | No     | Yes      | Yes         |
 | Stroke size             | Yes    | Yes    | Yes      | Yes         |
 | Stroke color            | Yes    | Yes    | Yes      | Yes         |
-| Cuts                    | Yes    | Yes    | Yes, 1   | No          |
+| Cuts                    | Yes    | Yes    | Yes      | No          |
 | Cuts size               | Yes    | Yes    | Yes      | No          |
 | Cuts color              | Yes    | Yes    | Yes      | No          |
-| Center object           | Yes    | Yes    | No       | Yes         |
-| Center object size      | Yes    | Yes    | No       | Yes         |
-| Center object color     | Yes    | Yes    | No       | Yes         |
+| Center object           | Yes    | Yes    | Yes      | Yes         |
+| Center object size      | Yes    | Yes    | Yes      | Yes         |
+| Center object color     | Yes    | Yes    | Yes      | Yes         |
 | Center object direction | No     | No     | No       | Yes         |
 
 ### Examples
 Examples of features being applied to each form:
 - [Square](examples/square/README.md)
 - [Circle](examples/circle/README.md)
+- [Triangle](examples/triangle/README.md)
 
 ### TODO
 - Abstract common code in Forms
@@ -45,6 +46,5 @@ Examples of features being applied to each form:
 - Add unit tests based on image hashs
 
 ### Resources
-
 * https://tilda.cc/colors/
 * https://usbrandcolors.com/

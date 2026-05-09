@@ -127,7 +127,7 @@ public class NewFrameConfigurationGenerator extends FrameConfigurationGenerator
         // Direction (triangles and semicircles only)
         //FrameConfiguration.IntFunction directionFunction = (frameIndex) -> Utils.getRandomInt(4);
         FrameConfiguration.IntFunction directionFunction = (frameIndex) -> 0;
-        fc = applyParameter(fc, List.of(directionFunction), (c, v) -> c.setDirectionFunction((FrameConfiguration.IntFunction) v));
+        //fc = applyParameter(fc, List.of(directionFunction), (c, v) -> c.setDirectionFunction((FrameConfiguration.IntFunction) v));
 
         System.out.printf("Generated %s Frame configurations...%n", fc.size());
 
