@@ -22,18 +22,6 @@ public class Utils
         return LocalDateTime.now().format(dateTimeFormatter);
     }
 
-    public static void createDirectory(String directory)
-    {
-        try
-        {
-            Files.createDirectories(Paths.get(directory));
-        }
-        catch (IOException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
-
     public static int getRandomInt(int bound)
     {
         return random.nextInt(bound);
@@ -42,16 +30,6 @@ public class Utils
     public static float getRandomFloat(float low, float high)
     {
         return random.nextFloat(low, high);
-    }
-
-    public static List<Object> convertArrayToList(int[] array) {
-        List<Object> list = new ArrayList<>();
-
-        for (int j : array) {
-            list.add(j);
-        }
-
-        return list;
     }
 
 }
