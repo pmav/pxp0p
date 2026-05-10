@@ -2,7 +2,7 @@
 
 This page contains examples of features applied to circles. Each one applied on top of the previous one. 
 
-The code for these examples is on [eu.pmav.pxp0p.frameconfiguration.impl.circle](../../src/main/java/eu/pmav/pxp0p/frameconfiguration/impl/circle). 
+The code for these examples is on [eu.pmav.pxp0p.frameconfiguration.impl.examples.circle](../../src/main/java/eu/pmav/pxp0p/frameconfiguration/impl/examples/circle). 
 
 ## 01 One circle
 ![image](20260429_19h53m56s-001-Circle_01_base.png)

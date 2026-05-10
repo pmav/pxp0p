@@ -37,21 +37,12 @@ public class SemiCircleForm extends Form
                 ? frameConfiguration.getAlphaFunction().run(objectConfiguration.getFrameIndex())
                 : 255;
 
-        // Direction
-        //final int direction = frameConfiguration.getDirectionFunction() != null
-        //        ? frameConfiguration.getDirectionFunction().run(frameIndex)
-        //        : 0;
-        final int direction = 0;
-
         // Center object
         final boolean haveCenterObject = frameConfiguration.hasCenterObject();
         final int centerObjectSize = Math.round(size * frameConfiguration.getCenterObjectSize());
 
-        // Get anglesForObject for the main object based on direction
-        Angles anglesForObject = getAngles(direction);
-
-        // Get anglesForObject for the center object
-        Angles anglesForCenterObject = anglesForObject;
+        // Get anglesForObject for the main object and center object based on default (0)
+        Angles anglesForObject = getAngles(0);
 
         // Draw
         applet.pushMatrix();
@@ -75,7 +66,7 @@ public class SemiCircleForm extends Form
         {
             int[] centerColors = frameConfiguration.getColorsCenterObject();
             applet.fill(centerColors[Utils.getRandomInt(centerColors.length)], alpha);
-            applet.arc(x + size / 2f, y + size / 2f, centerObjectSize, centerObjectSize, anglesForCenterObject.startAngle(), anglesForCenterObject.stopAngle(), PConstants.CHORD);
+            applet.arc(x + size / 2f, y + size / 2f, centerObjectSize, centerObjectSize, anglesForObject.startAngle(), anglesForObject.stopAngle(), PConstants.CHORD);
         }
 
         applet.popMatrix();

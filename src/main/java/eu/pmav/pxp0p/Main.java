@@ -1,7 +1,6 @@
 package eu.pmav.pxp0p;
 
-import eu.pmav.pxp0p.frameconfiguration.impl.circle.*;
-import eu.pmav.pxp0p.frameconfiguration.impl.triangle.*;
+import eu.pmav.pxp0p.frameconfiguration.impl.examples.semicircle.*;
 import eu.pmav.pxp0p.frameconfiguration.model.FrameConfiguration;
 import eu.pmav.pxp0p.utils.ExitHandler;
 import eu.pmav.pxp0p.utils.Utils;
@@ -63,15 +62,25 @@ public class Main
         //frameConfigurations.addAll((new Circle08ConfigurationGenerator()).generateConfigurations());
 
         // Triangle variations
-        frameConfigurations.addAll((new Triangle01ConfigurationGenerator()).generateConfigurations());
-        frameConfigurations.addAll((new Triangle02ConfigurationGenerator()).generateConfigurations());
-        frameConfigurations.addAll((new Triangle03ConfigurationGenerator()).generateConfigurations());
-        frameConfigurations.addAll((new Triangle04ConfigurationGenerator()).generateConfigurations());
-        frameConfigurations.addAll((new Triangle05ConfigurationGenerator()).generateConfigurations());
-        frameConfigurations.addAll((new Triangle06ConfigurationGenerator()).generateConfigurations());
-        frameConfigurations.addAll((new Triangle07ConfigurationGenerator()).generateConfigurations());
-        frameConfigurations.addAll((new Triangle08ConfigurationGenerator()).generateConfigurations());
-        frameConfigurations.addAll((new Triangle09ConfigurationGenerator()).generateConfigurations());
+        //frameConfigurations.addAll((new Triangle01ConfigurationGenerator()).generateConfigurations());
+        //frameConfigurations.addAll((new Triangle02ConfigurationGenerator()).generateConfigurations());
+        //frameConfigurations.addAll((new Triangle03ConfigurationGenerator()).generateConfigurations());
+        //frameConfigurations.addAll((new Triangle04ConfigurationGenerator()).generateConfigurations());
+        //frameConfigurations.addAll((new Triangle05ConfigurationGenerator()).generateConfigurations());
+        //frameConfigurations.addAll((new Triangle06ConfigurationGenerator()).generateConfigurations());
+        //frameConfigurations.addAll((new Triangle07ConfigurationGenerator()).generateConfigurations());
+        //frameConfigurations.addAll((new Triangle08ConfigurationGenerator()).generateConfigurations());
+        //frameConfigurations.addAll((new Triangle09ConfigurationGenerator()).generateConfigurations());
+
+        // Semi-circle variations
+        frameConfigurations.addAll((new SemiCircle01ConfigurationGenerator()).generateConfigurations());
+        frameConfigurations.addAll((new SemiCircle02ConfigurationGenerator()).generateConfigurations());
+        frameConfigurations.addAll((new SemiCircle03ConfigurationGenerator()).generateConfigurations());
+        frameConfigurations.addAll((new SemiCircle04ConfigurationGenerator()).generateConfigurations());
+        frameConfigurations.addAll((new SemiCircle05ConfigurationGenerator()).generateConfigurations());
+        frameConfigurations.addAll((new SemiCircle06ConfigurationGenerator()).generateConfigurations());
+        frameConfigurations.addAll((new SemiCircle07ConfigurationGenerator()).generateConfigurations());
+        frameConfigurations.addAll((new SemiCircle08ConfigurationGenerator()).generateConfigurations());
 
         // Semi-circle
         //frameConfigurations.addAll((new SemiCircleWavesBlackAndWhiteFrameConfigurationGenerator()).generateConfigurations());

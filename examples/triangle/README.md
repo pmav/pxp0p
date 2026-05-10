@@ -2,7 +2,7 @@
 
 This page contains examples of features applied to triangles. Each one applied on top of the previous one. 
 
-The code for these examples is on [eu.pmav.pxp0p.frameconfiguration.impl.triangle](../../src/main/java/eu/pmav/pxp0p/frameconfiguration/impl/triangle). 
+The code for these examples is on [eu.pmav.pxp0p.frameconfiguration.impl.examples.triangle](../../src/main/java/eu/pmav/pxp0p/frameconfiguration/impl/examples/triangle). 
 
 ## 01 One triangle
 ![image](20260509_18h20m58s-001-Triangle_01_base.png)

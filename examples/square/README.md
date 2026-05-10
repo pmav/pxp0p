@@ -2,7 +2,7 @@
 
 This page contains examples of features applied to squares. Each one applied on top of the previous one. 
 
-The code for these examples is on [eu.pmav.pxp0p.frameconfiguration.impl.square](../../src/main/java/eu/pmav/pxp0p/frameconfiguration/impl/square). 
+The code for these examples is on [eu.pmav.pxp0p.frameconfiguration.impl.examples.square](../../src/main/java/eu/pmav/pxp0p/frameconfiguration/impl/examples/square). 
 
 ## 01 One square
 ![image](20260411_23h20m25s-001-Square_01_base.png)
