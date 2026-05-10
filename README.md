@@ -1,7 +1,4 @@
-# 🟩🔴🟨🔵🟦🟢🟥🟡
-# pxp0p
-
----
+# pxp0p 🟩🔴🟨🔵🟦🟢🟥🟡
 
 ### What?
 🎨 pxp0p is an art generator! 🖌️ Based on a Java configuration file, the project creates a unique image as output. 🖼️✨
